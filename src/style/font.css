@@ -1,0 +1,5 @@
+/* 폰트 추가 및 변경 필요 */
+@font-face {
+  font-family: "Dongguk";
+  src: url("../assets/fonts/Dongguk.woff") format("WOFF");
+}
