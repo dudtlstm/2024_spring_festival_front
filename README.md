@@ -1,5 +1,11 @@
 2024년 동국대학교 봄 축제 웹 사이트 프론트엔드 레포지토리입니다.
 
+<div>
+  <img src="https://img.shields.io/badge/html5-E34F26?style=flat&logo=html5&logoColor=white" />
+  <img src="https://img.shields.io/badge/javascript-F7DF1E?style=flat&logo=javascript&logoColor=white" />
+  <img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white" />
+</div>
+
 # 👋 팀원 소개 - Spring Festival Frontend Team
 
 | 이름   | 전공         | Email                |
@@ -9,13 +15,6 @@
 | 설현아 | 융합보안학과 | sha0209@dgu.ac.kr    |
 | 오찬주 | 정치외교학과 | ohchanju3@naver.com  |
 | 이유진 | 컴퓨터공학과 | nnjin987@gmail.com   |
-
-# 🛠️ Platforms & Languages
-
-<div></div>
-    <img src="https://img.shields.io/badge/html5-E34F26?style=flat&logo=html5&logoColor=white" />
-    <img src="https://img.shields.io/badge/javascript-F7DF1E?style=flat&logo=javascript&logoColor=white" />
-    <img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white" />
 
 ## 1. 프로젝트 명
 
