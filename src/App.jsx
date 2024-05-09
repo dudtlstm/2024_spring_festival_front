@@ -15,20 +15,19 @@ const BackGroundColor = styled.div`
 `;
 
 // 기본 view 설정 정의
-const Wrapper = styled.div` 
+const Wrapper = styled.div`
   flex-grow: 1;
-  padding-top: 60px;
   margin: 0 auto;
   width: 100%;
   max-width: 420px;
-  
+
   display: flex;
   flex-direction: column;
   align-items: center;
 
   background-color: white;
   font-family: NotoSansRegular;
-  color: white;
+  color: black;
 `;
 
 const Content = styled.div`
@@ -46,9 +45,9 @@ const Layout = () => {
 
   return (
     <BackGroundColor>
-      <Header />
-      {/* {location.pathname !== "/" && <Header />} */}
       <Wrapper>
+        <Header />
+        {/* {location.pathname !== "/" && <Header />} */}
         <Content>
           <Outlet />
         </Content>
@@ -59,13 +58,12 @@ const Layout = () => {
 };
 
 function App() {
-
   return (
     <>
-    <GlobalStyle />
-    <Layout />
+      <GlobalStyle />
+      <Layout />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -17,7 +17,7 @@ const router = createBrowserRouter([
       { path: "/", element: <Mainpage /> },
 
       // 부스 페이지
-      { path: "booths", element: <Booth />},
+      { path: "booths", element: <Booth /> },
 
       // 타임테이블 페이지
       { path: "/timeTable", element: <TimeTable /> },
@@ -32,8 +32,8 @@ const router = createBrowserRouter([
       // about 페이지
       { path: "/about", element: <About /> },
     ],
-    errorElement: <NotFound />
-  }
+    errorElement: <NotFound />,
+  },
 ]);
 
 export default router;
