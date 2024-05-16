@@ -6,10 +6,10 @@ const Header = () => {
   return (
     <S.HeaderWrapper>
       <Link to={"/"}>
-        <div>logo</div>
+        <img src="./layout/logo.svg" alt="무아지경" />
       </Link>
       <Link to={"about"}>
-        <div>🦁</div>
+        <img src="./layout/lionImg.svg" alt="🦁" />
       </Link>
     </S.HeaderWrapper>
   );
