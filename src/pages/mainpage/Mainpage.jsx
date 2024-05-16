@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Mainpage = () => {
-  return (
-    <div>Mainpage</div>
-  )
-}
+  return <div style={{ height: "1000px" }}>Mainpage</div>;
+};
 
-export default Mainpage
+export default Mainpage;

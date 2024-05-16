@@ -7,6 +7,8 @@ import Notice from "./pages/notice/Notice";
 import Promotion from "./pages/promotion/Promotion";
 import About from "./pages/about/About";
 import NotFound from "./NotFound";
+import BoothDetail from "./pages/booth/BoothDetail";
+import NoticeDetail from "./pages/notice/NoticeDetail";
 
 const router = createBrowserRouter([
   {
@@ -18,16 +20,17 @@ const router = createBrowserRouter([
 
       // 부스 페이지
       { path: "booths", element: <Booth /> },
+      { path: "booths/:id", element: <BoothDetail /> },
 
       // 타임테이블 페이지
       { path: "/timeTable", element: <TimeTable /> },
 
       // 공지 페이지
       { path: "/notice", element: <Notice /> },
+      { path: "/notice/:id", element: <NoticeDetail /> }, // 디테일 페이지 element 수정
 
       // 홍보 페이지
       { path: "/promotion", element: <Promotion /> },
-      { path: "/promotion/:id", element: <Promotion /> }, // 디테일 페이지 element 수정
 
       // about 페이지
       { path: "/about", element: <About /> },

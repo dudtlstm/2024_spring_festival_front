@@ -3,6 +3,7 @@ import { GlobalStyle } from "./style/globalStyle";
 import { Outlet, useLocation } from "react-router-dom";
 import Footer from "./components/layouts/footer/Footer";
 import Header from "./components/layouts/header/Header";
+import Nav from "./components/layouts/nav/Nav";
 
 const BackGroundColor = styled.div`
   width: 100vw;
@@ -11,7 +12,7 @@ const BackGroundColor = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: black;
+  background-color: #fff;
 `;
 
 // 기본 view 설정 정의
@@ -28,6 +29,8 @@ const Wrapper = styled.div`
   background-color: white;
   font-family: NotoSansRegular;
   color: black;
+
+  box-shadow: 0px 0px 10px 0px rgba(41, 41, 41, 0.25);
 `;
 
 const Content = styled.div`
@@ -40,6 +43,9 @@ const Content = styled.div`
   align-items: center;
 `;
 
+// 상세페이지 url 패턴 정의
+const idPattern = /^\/(booths|notice)\/([^/]+)$/;
+
 const Layout = () => {
   const location = useLocation();
 
@@ -47,11 +53,11 @@ const Layout = () => {
     <BackGroundColor>
       <Wrapper>
         <Header />
-        {/* {location.pathname !== "/" && <Header />} */}
         <Content>
           <Outlet />
         </Content>
-        <Footer />
+        {!idPattern.test(location.pathname) && <Footer />}
+        <Nav />
       </Wrapper>
     </BackGroundColor>
   );
