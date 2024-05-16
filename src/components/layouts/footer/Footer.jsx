@@ -5,21 +5,25 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <S.FooterWrapper>
-      <Link to="booths">
-        <div>부스</div>
-      </Link>
-      <Link to="timeTable">
-        <div>타임테이블</div>
-      </Link>
-      <Link to="/">
-        <div>🏠</div>
-      </Link>
-      <Link to="notice">
-        <div>공지</div>
-      </Link>
-      <Link to="promotion">
-        <div>홍보</div>
-      </Link>
+      동국대학교 멋쟁이사자처럼
+      <br />
+      @DGU Likelion. All rights Reserved.
+      <S.ContectContainer>
+        <S.IconContainer>
+          <img src="./layout/developers.svg" alt="developers" />
+          <Link to={"./about"}>developers</Link>
+        </S.IconContainer>
+        <S.IconContainer>
+          <img src="./layout/github.svg" alt="developers" />
+          <Link to={"https://github.com/LikeLion-at-DGU"}>Github</Link>
+        </S.IconContainer>
+        <S.IconContainer>
+          <img src="./layout/instagram.svg" alt="developers" />
+          <Link to={"https://www.instagram.com/likelion_dongguk/"}>
+            Instagram
+          </Link>
+        </S.IconContainer>
+      </S.ContectContainer>
     </S.FooterWrapper>
   );
 };
