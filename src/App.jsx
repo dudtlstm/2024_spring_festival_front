@@ -45,6 +45,7 @@ const Content = styled.div`
 
 // 상세페이지 url 패턴 정의
 const idPattern = /^\/(booths|notice)\/([^/]+)$/;
+const boothsDetailPattern = /^\/booths\/([^/]+)$/;
 
 const Layout = () => {
   const location = useLocation();
@@ -57,7 +58,7 @@ const Layout = () => {
           <Outlet />
         </Content>
         {!idPattern.test(location.pathname) && <Footer />}
-        <Nav />
+        {!boothsDetailPattern.test(location.pathname) && <Nav />}
       </Wrapper>
     </BackGroundColor>
   );

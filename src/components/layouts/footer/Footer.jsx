@@ -11,15 +11,17 @@ const Footer = () => {
       <S.ContectContainer>
         <S.IconContainer>
           <img src="./layout/developers.svg" alt="developers" />
-          <div>developers</div>
+          <Link to={"./about"}>developers</Link>
         </S.IconContainer>
         <S.IconContainer>
           <img src="./layout/github.svg" alt="developers" />
-          <div>Github</div>
+          <Link to={"https://github.com/LikeLion-at-DGU"}>Github</Link>
         </S.IconContainer>
         <S.IconContainer>
           <img src="./layout/instagram.svg" alt="developers" />
-          <div>Instagram</div>
+          <Link to={"https://www.instagram.com/likelion_dongguk/"}>
+            Instagram
+          </Link>
         </S.IconContainer>
       </S.ContectContainer>
     </S.FooterWrapper>
