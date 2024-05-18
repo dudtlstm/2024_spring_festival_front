@@ -3,6 +3,7 @@ import App from './App';
 import Mainpage from './pages/mainpage/Mainpage';
 import Booth28 from './pages/booth/Booth28';
 import Booth29 from './pages/booth/Booth29';
+import Booth30 from './pages/booth/Booth30';
 import TimeTable from './pages/timeTable/TimeTable';
 import Notice from './pages/notice/Notice';
 import Promotion from './pages/promotion/Promotion';
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
       // 부스 페이지
       { path: 'booth28', element: <Booth28 /> },
       { path: 'booth29', element: <Booth29 /> },
+      { path: 'booth30', element: <Booth30 /> },
       { path: 'booths/:id', element: <BoothDetail /> },
 
       // 타임테이블 페이지

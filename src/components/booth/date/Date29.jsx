@@ -13,7 +13,9 @@ const Date29 = () => {
             <S.DateItem>28일</S.DateItem>
           </Link>
           <S.DateSelectedItem>29일</S.DateSelectedItem>
-          <S.DateItem>30일</S.DateItem>
+          <Link to={'/booth30'}>
+            <S.DateItem>30일</S.DateItem>
+          </Link>
         </S.Date>
       </S.DateWrapper>
     </>
