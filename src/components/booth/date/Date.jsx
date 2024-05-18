@@ -1,0 +1,21 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import * as S from './style';
+
+const Date = () => {
+  return (
+    <>
+      {/* <div>Booth</div>
+      <Link to={'/booths/1'}>detail 이동</Link> */}
+      <S.DateWrapper>
+        <S.Date>
+          <S.DateSelectedItem>28일</S.DateSelectedItem>
+          <S.DateItem>29일</S.DateItem>
+          <S.DateItem>30일</S.DateItem>
+        </S.Date>
+      </S.DateWrapper>
+    </>
+  );
+};
+
+export default Date;
