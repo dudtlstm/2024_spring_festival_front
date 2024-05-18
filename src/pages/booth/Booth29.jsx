@@ -1,15 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Date28 from '../../components/booth/date/Date28';
+import Date29 from '../../components/booth/date/Date29';
 
-const Booth28 = () => {
+const Booth29 = () => {
   return (
     <>
       {/* <div>Booth</div>
       <Link to={'/booths/1'}>detail 이동</Link> */}
-      <Date28 />
+      <Date29 />
     </>
   );
 };
 
-export default Booth28;
+export default Booth29;
