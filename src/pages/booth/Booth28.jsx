@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import DataSelector from '../../components/booth/dateSelector/DateSelector';
 
-const Booth = () => {
+const Booth28 = () => {
   return (
     <>
       {/* <div>Booth</div>
@@ -12,4 +12,4 @@ const Booth = () => {
   );
 };
 
-export default Booth;
+export default Booth28;
