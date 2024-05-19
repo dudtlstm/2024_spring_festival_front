@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import RealtimeEvent from "../../components/common/realtimeEvent/RealtimeEvent";
 
 const TimeTable = () => {
   return (
-    <div>TimeTable</div>
-  )
-}
+    <div>
+      <RealtimeEvent />
+    </div>
+  );
+};
 
-export default TimeTable
+export default TimeTable;
