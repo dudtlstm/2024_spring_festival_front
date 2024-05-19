@@ -15,6 +15,8 @@ export const Date = styled.div`
 export const DateSelectedItem = styled.div`
   display: flex;
   padding: 12px 16px;
+  width: 68px;
+  height: 48px;
   justify-content: center;
   align-items: center;
   gap: 10px;
@@ -27,6 +29,8 @@ export const DateSelectedItem = styled.div`
 export const DateItem = styled.div`
   display: flex;
   padding: 12px 16px;
+  width: 68px;
+  height: 48px;
   justify-content: center;
   align-items: center;
   gap: 10px;
