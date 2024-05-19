@@ -27,6 +27,7 @@ export const CategorySelectedItem = styled.div`
   font-weight: 600;
   line-height: 24px;
   letter-spacing: -0.25px;
+  cursor: pointer;
 `;
 
 export const CategoryItem = styled.div`
@@ -44,8 +45,24 @@ export const CategoryItem = styled.div`
   font-weight: 600;
   line-height: 24px;
   letter-spacing: -0.25px;
+  cursor: pointer;
 `;
 
-export const CategoryReset = styled.div``;
-export const CategoryResetImg = styled.div``;
-export const CategoryResetText = styled.div``;
+export const CategoryReset = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+`;
+export const CategoryResetImg = styled.img`
+  width: 24px;
+  height: 24px;
+`;
+export const CategoryResetText = styled.div`
+  color: #c4c4c4;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: -0.25px;
+`;
