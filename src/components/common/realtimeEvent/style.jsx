@@ -1,5 +1,13 @@
 import { styled } from "styled-components";
 
+export const Wrapper = styled.div`
+  display: flex;
+  padding: 4px 0px 8px 0px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  align-self: stretch;
+`;
 export const RealtimeEventWrapper = styled.div`
   width: 100vw;
   max-width: 430px;
