@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as S from "./style";
 import PerformanceCard from "./PerformanceCard";
-import { realtimeBar } from "../../../utils/realtimeBar";
+import { realtimeBar, timeSlot } from "../../../utils/realtimeBar";
 
 const TimeLine = () => {
   const [festaDate, setFestaDate] = useState(21);
@@ -84,25 +84,13 @@ const TimeLine = () => {
     return () => clearInterval(interval);
   }, [festaDate]);
 
+  // 타임 테이블 구조 세팅
+  const timeSlots = timeSlot();
+
   // 실시간 공연 정보로 이동
   const handleScrollView = () => {
     scrollRef.current.scrollIntoView({ behavior: "smooth" });
   };
-
-  // 타임테이블 표 생성을 위한 시간 정보
-  const timeSlots = [];
-
-  for (let hour = 13; hour < 22; hour++) {
-    timeSlots.push(`${hour}:00`);
-    timeSlots.push(`${hour}:30`);
-  }
-
-  timeSlots.push("22:00");
-  // -----------------------------
-  // 현재 시간 정보
-  const nowTime = new Date();
-  const time = `${nowTime.getHours()}:${nowTime.getMinutes()}`;
-  console.log(time);
 
   // 대운동장 & 팔정도 - col mapping
   const performanceGrid = (location) => {
