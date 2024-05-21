@@ -27,6 +27,7 @@ export const BoothCardContent = styled.div`
   cursor: pointer;
 `;
 
+// 부스 이미지
 export const BoothCardImg = styled.img`
   width: 90px;
   height: 90px;
