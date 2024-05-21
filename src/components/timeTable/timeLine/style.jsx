@@ -59,11 +59,12 @@ export const RealtimeLine = styled.img`
   z-index: 50;
 `;
 export const Grid = styled.img`
+  display: ${(props) => props.top == false && "none"};
   grid-column: 2/4;
   width: 100%;
 
   position: absolute;
-  top: ${(props) => props.top * 2.4 + 46}px;
+  top: ${(props) => props.top && props.top * 2.4 + 46}px;
 
   z-index: 15;
 `;

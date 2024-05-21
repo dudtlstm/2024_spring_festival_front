@@ -9,8 +9,9 @@ export const realtimeBar = (festaDate) =>{
   if (festaDate == today.getDate()) {
     diffMSec = today.getTime() - festa.getTime();
     diffMin = Math.round(diffMSec / (60 * 1000));
-  }
-  return diffMin;
+    return diffMin;
+  } 
+  else {return false};
 };
 
 // ---- 타임테이블 표 생성을 위한 시간 정보 ----
