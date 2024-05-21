@@ -15,66 +15,66 @@ const TimeLine = () => {
   const performance = [
     {
       id: 1,
-      name: "라면땅",
-      startTime: "13:00",
-      endTime: "14:00",
-      time: "13:00 ~ 14:00",
-      place: "팔정도",
-      now: false,
+      title: "라면땅",
+      start_at: "13:00",
+      end_at: "14:00",
+      during: "13:00 ~ 14:00",
+      location: "팔정도",
+      is_now: false,
     },
     {
       id: 2,
-      name: "아리아",
-      startTime: "14:00",
-      endTime: "15:00",
-      time: "14:00 ~ 15:00",
-      place: "팔정도",
-      now: false,
+      title: "아리아",
+      start_at: "14:00",
+      end_at: "15:00",
+      during: "14:00 ~ 15:00",
+      location: "팔정도",
+      is_now: false,
     },
     {
       id: 3,
-      name: "실용무용",
-      startTime: "15:00",
-      endTime: "16:00",
-      time: "15:00 ~ 16:00",
-      place: "팔정도",
-      now: false,
+      title: "실용무용",
+      start_at: "15:00",
+      end_at: "16:00",
+      during: "15:00 ~ 16:00",
+      location: "팔정도",
+      is_now: false,
     },
     {
       id: 4,
-      name: "선무부",
-      startTime: "16:00",
-      endTime: "17:00",
-      time: "16:00 ~ 17:00",
-      place: "팔정도",
-      now: true,
+      title: "선무부",
+      start_at: "16:00",
+      end_at: "17:00",
+      during: "16:00 ~ 17:00",
+      location: "팔정도",
+      is_now: true,
     },
     {
       id: 5,
-      name: "렛츠무드",
-      startTime: "15:30",
-      endTime: "16:00",
-      time: "15:30 ~ 16:00",
-      place: "대운동장",
-      now: false,
+      title: "렛츠무드",
+      start_at: "15:30",
+      end_at: "16:00",
+      during: "15:30 ~ 16:00",
+      location: "대운동장",
+      is_now: false,
     },
     {
       id: 6,
-      name: "아리랑",
-      startTime: "16:00",
-      endTime: "16:30",
-      time: "16:00 ~ 16:30",
-      place: "대운동장",
-      now: true,
+      title: "아리랑",
+      start_at: "16:00",
+      end_at: "16:30",
+      during: "16:00 ~ 16:30",
+      location: "대운동장",
+      is_now: true,
     },
     {
       id: 7,
-      name: "1시간반",
-      startTime: "17:00",
-      endTime: "18:30",
-      time: "17:00 ~ 18:30",
-      place: "대운동장",
-      now: true,
+      title: "1시간반",
+      start_at: "17:00",
+      end_at: "18:30",
+      during: "17:00 ~ 18:30",
+      location: "대운동장",
+      is_now: true,
     },
   ];
   // 타임테이블 표 생성을 위한 시간 정보
@@ -92,13 +92,15 @@ const TimeLine = () => {
   const time = `${nowTime.getHours()}:${nowTime.getMinutes()}`;
   console.log(time);
 
-  const performanceGrid = (place) => {
+  // 대운동장 & 팔정도 - col mapping
+  const performanceGrid = (location) => {
     return (
       <S.PlaceWrapper>
-        <S.PerformancePlace>{place}</S.PerformancePlace>
+        <S.PerformancePlace>{location}</S.PerformancePlace>
         {timeSlots.map((time, index) => {
           const currentPerformance = performance.find(
-            (perform) => perform.startTime === time && perform.place === place
+            (perform) =>
+              perform.start_at === time && perform.location === location
           );
           return (
             <React.Fragment key={index}>
@@ -129,7 +131,6 @@ const TimeLine = () => {
         </div>
         {performanceGrid("대운동장")}
         {performanceGrid("팔정도")}
-        {realtimeBar(festaDate)}
         <S.Grid
           ref={scrollRef}
           top={300}

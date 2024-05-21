@@ -1,35 +1,13 @@
 import React from "react";
 import * as S from "./style";
+import Playlist from "./Playlist";
 
 const Lineup = () => {
   // API - linup & playlist update
   const lineup = [
-    { id: 1, name: "데이식스", img: "./timeTable/데이식스.png" },
-    { id: 2, name: "잔나비", img: "./timeTable/잔나비.png" },
-    { id: 3, name: "10cm", img: "./timeTable/10cm.png" },
-  ];
-  const playlist = [
-    {
-      id: 1,
-      singer: "데이식스",
-      music_img: "",
-      music_title: "Welcome to the show",
-      link: "",
-    },
-    {
-      id: 2,
-      singer: "데이식스",
-      music_img: "",
-      music_title: "Love Me or Leave Me",
-      link: "",
-    },
-    {
-      id: 3,
-      singer: "데이식스",
-      music_img: "",
-      music_title: "예뻤어",
-      link: "",
-    },
+    { id: 1, artist: "데이식스", image: "./timeTable/데이식스.png" },
+    { id: 2, artist: "잔나비", image: "./timeTable/잔나비.png" },
+    { id: 3, artist: "10cm", image: "./timeTable/10cm.png" },
   ];
 
   return (
@@ -39,28 +17,12 @@ const Lineup = () => {
         <S.LineupBanner>
           {lineup.map((lineup) => (
             <S.LineupLabel key={lineup.id}>
-              <S.LineupBannerImg src={lineup.img} alt={lineup.name} />
-              <S.LineupSinger>{lineup.name}</S.LineupSinger>
+              <S.LineupBannerImg src={lineup.image} alt={lineup.artist} />
+              <S.LineupSinger>{lineup.artist}</S.LineupSinger>
             </S.LineupLabel>
           ))}
         </S.LineupBanner>
-        <S.PlaylistWrapper>
-          <S.PlaylistGuide>
-            공연을 100%로 즐기기 위해, <br />
-            <S.GuideBold>{playlist[0].singer}</S.GuideBold>의 노래를 들어보세요!
-          </S.PlaylistGuide>
-          <S.Playlist>
-            {playlist.map((music) => (
-              <S.Music key={music.id}>
-                <S.PlaylistImg src={music.music_img} alt={music.music_title} />
-                <S.PlaylistTitle>{music.music_title}</S.PlaylistTitle>
-                <S.PlaylistLink href={music.link}>
-                  <img src="./timeTable/play.svg" alt="▶︎" />
-                </S.PlaylistLink>
-              </S.Music>
-            ))}
-          </S.Playlist>
-        </S.PlaylistWrapper>
+        <Playlist />
       </S.LineupWrapper>
       <S.Line />
     </>

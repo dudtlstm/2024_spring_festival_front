@@ -45,16 +45,32 @@ export const RealtimeMove = styled.div`
   letter-spacing: -0.25px;
 `;
 export const TimeGrid = styled.div`
+  position: relative;
+
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 4fr 4fr;
   gap: 1px;
 `;
+export const RealtimeLine = styled.img`
+  position: absolute;
+  width: 100%;
+  top: 500px;
+  z-index: 50;
+`;
+export const Grid = styled.img`
+  grid-column: 2/4;
+  width: 100%;
 
+  position: absolute;
+  top: ${(props) => props.top + 46}px;
+
+  z-index: 15;
+`;
 export const TimeSlot = styled.div`
   position: relative;
 
-  height: 70px;
+  height: 72px; /* 1분당 2.4px */
   display: flex;
   justify-content: center;
   padding: 4px 0px;
@@ -74,10 +90,12 @@ export const TimeSlot = styled.div`
 export const EmptySlot = styled.div`
   position: relative;
 
-  height: 70px;
+  height: 72px; /* 1분당 2.4px */
   border-top: 1px solid #e2e3ec;
 `;
-
+export const PlaceWrapper = styled.div`
+  position: relative;
+`;
 export const PerformancePlace = styled.div`
   height: 48px;
 
@@ -99,7 +117,7 @@ export const PerformancePlace = styled.div`
 export const PerformanceCardWrapper = styled.div`
   position: absolute;
   width: 97%;
-  height: ${(props) => props.timeslots == 2 && "134px"};
+  height: ${(props) => props.timeslots * 64 + 8 * (props.timeslots - 1)}px;
   display: flex;
 
   padding: 12px 16px;
