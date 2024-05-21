@@ -1,15 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as S from "./style";
 import PerformanceCard from "./PerformanceCard";
 import { realtimeBar } from "../../../utils/realtimeBar";
 
 const TimeLine = () => {
   const [festaDate, setFestaDate] = useState(21);
+  const [barPosition, setBarPosition] = useState(realtimeBar(festaDate));
   const scrollRef = useRef(null);
-
-  const handleScrollView = () => {
-    scrollRef.current.scrollIntoView({ behavior: "smooth" });
-  };
 
   // API - 공연 정보
   const performance = [
@@ -77,6 +74,21 @@ const TimeLine = () => {
       is_now: true,
     },
   ];
+
+  // 1분 단위로 실시간 바 위치 정보 업데이트
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setBarPosition(realtimeBar(festaDate));
+    }, 1000 * 60);
+
+    return () => clearInterval(interval);
+  }, [festaDate]);
+
+  // 실시간 공연 정보로 이동
+  const handleScrollView = () => {
+    scrollRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
   // 타임테이블 표 생성을 위한 시간 정보
   const timeSlots = [];
 
@@ -133,9 +145,9 @@ const TimeLine = () => {
         {performanceGrid("팔정도")}
         <S.Grid
           ref={scrollRef}
-          top={300}
+          top={barPosition}
           src="./timeTable/realtimeLine.svg"
-          alt=""
+          alt="----------------------------"
         />
       </S.TimeGrid>
     </S.TimeLineWrapper>

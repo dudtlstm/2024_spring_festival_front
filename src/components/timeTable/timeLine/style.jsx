@@ -63,7 +63,7 @@ export const Grid = styled.img`
   width: 100%;
 
   position: absolute;
-  top: ${(props) => props.top + 46}px;
+  top: ${(props) => props.top * 2.4 + 46}px;
 
   z-index: 15;
 `;

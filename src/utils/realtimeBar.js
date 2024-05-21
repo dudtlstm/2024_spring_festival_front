@@ -1,13 +1,16 @@
 // ---- top 값을 반환하는 함수 ---- 
-export const realtimeBar = ({festa_date}) =>{
-  // const festa = new Date(`2024/05/${festa_date}`);
-  // const festa = new Date(`2024/05/${festa_date}`);
-  const today = new Date().getDate();
+export const realtimeBar = (festaDate) =>{
+  const today = new Date();
+  const festa = new Date(`2024/05/${festaDate} 13:00:00`);
 
-  if (festa_date == today) {
-    console.log(festa_date,today,"이제 띄워보자..");
-    
+  let diffMin;
+  let diffMSec;
+
+  if (festaDate == today.getDate()) {
+    diffMSec = today.getTime() - festa.getTime();
+    diffMin = Math.round(diffMSec / (60 * 1000));
   }
+  return diffMin;
 };
 
 
