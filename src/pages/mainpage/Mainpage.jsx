@@ -1,7 +1,10 @@
 import React from "react";
 
+//import component
+import MiniBanner from "../../components/mainPage/miniBanner";
+
 const Mainpage = () => {
-  return <div style={{ height: "1000px" }}>Mainpage</div>;
+  return <MiniBanner />;
 };
 
 export default Mainpage;
