@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import * as S from "./style";
+import * as S from "./topBannerStyle";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-function MiniBanner() {
+function TopBanner() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const images = [
@@ -69,4 +69,4 @@ function MiniBanner() {
   );
 }
 
-export default MiniBanner;
+export default TopBanner;

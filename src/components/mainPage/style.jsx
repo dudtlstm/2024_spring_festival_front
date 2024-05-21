@@ -1,67 +1,42 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-export const BannerWrapper = styled.div`
+export const TitleWrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  margin-top: 50px;
   align-items: center;
-  width: 100%;
-  max-width: 430px;
+  justify-content: space-between;
+  padding-right: 20px;
 `;
 
-export const BannerContainer = styled.div`
-  position: relative;
+export const TitleText = styled.div`
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
 `;
 
-export const BigBannerImg = styled.img`
-  width: 100%;
-  max-width: 430px;
+export const MoreInfo = styled.div`
+  color: #c4c4c4;
+  font-weight: 500;
+  font-size: 12px;
 `;
 
-export const MiniBannerContainer = styled.div`
+export const LineUpWrapper = styled.div`
   width: 100%;
-  max-width: 430px;
+  padding-left: 20px;
+`;
+
+export const LineUpImgContainer = styled.div`
+  /* border: 1px solid red; */
+  margin-top: 20px;
+  width: 100%;
+  overflow: hidden;
+  /* display: flex; */
+  flex-direction: row;
+  /* height: 100px; */
   gap: 20px;
-  position: absolute;
-  bottom: 80px;
-  left: 0;
-  transform: translateY(100%);
-
-  .slick-track {
-    width: 100%;
-    height: 110px;
-    padding-left: 20px;
-
-    @media (max-width: 380px) {
-      padding-left: 120px;
-    }
-
-    @media (max-width: 350px) {
-      padding-left: 50px;
-    }
-  }
-
-  .slick-slider {
-    width: 100%;
-  }
-  .slick-list {
-    overflow: hidden;
-    height: 110px;
-  }
-  .slick-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 110px;
-  }
 `;
 
-export const MiniBannerItem = styled.img`
-  width: 100px;
-  height: 100px;
-  border-radius: 12px;
-  cursor: pointer;
-
-  &.active {
-    box-shadow: 0px 0px 8px 0px rgba(247, 100, 78, 0.6);
-  }
+export const LineUpImg = styled.img`
+  width: 150px;
 `;

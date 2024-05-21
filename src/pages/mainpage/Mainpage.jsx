@@ -1,10 +1,16 @@
 import React from "react";
 
 //import component
-import MiniBanner from "../../components/mainPage/miniBanner";
+import TopBanner from "../../components/mainPage/TopBanner";
+import LineUp from "../../components/mainPage/LineUp";
 
 const Mainpage = () => {
-  return <MiniBanner />;
+  return (
+    <>
+      <TopBanner />
+      <LineUp />
+    </>
+  );
 };
 
 export default Mainpage;
