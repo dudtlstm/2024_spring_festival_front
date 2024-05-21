@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import * as S from "./style";
 import PerformanceCard from "./PerformanceCard";
+import { realtimeBar } from "../../../utils/realtimeBar";
 
 const TimeLine = () => {
+  const [festaDate, setFestaDate] = useState(21);
+  const scrollRef = useRef(null);
+
+  const handleScrollView = () => {
+    scrollRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
   // API - 공연 정보
   const performance = [
     {
@@ -59,6 +67,15 @@ const TimeLine = () => {
       place: "대운동장",
       now: true,
     },
+    {
+      id: 7,
+      name: "1시간반",
+      startTime: "17:00",
+      endTime: "18:30",
+      time: "17:00 ~ 18:30",
+      place: "대운동장",
+      now: true,
+    },
   ];
   // 타임테이블 표 생성을 위한 시간 정보
   const timeSlots = [];
@@ -70,11 +87,39 @@ const TimeLine = () => {
 
   timeSlots.push("22:00");
   // -----------------------------
+  // 현재 시간 정보
+  const nowTime = new Date();
+  const time = `${nowTime.getHours()}:${nowTime.getMinutes()}`;
+  console.log(time);
+
+  const performanceGrid = (place) => {
+    return (
+      <S.PlaceWrapper>
+        <S.PerformancePlace>{place}</S.PerformancePlace>
+        {timeSlots.map((time, index) => {
+          const currentPerformance = performance.find(
+            (perform) => perform.startTime === time && perform.place === place
+          );
+          return (
+            <React.Fragment key={index}>
+              <S.EmptySlot>
+                {currentPerformance && (
+                  <PerformanceCard performance={currentPerformance} />
+                )}
+              </S.EmptySlot>
+            </React.Fragment>
+          );
+        })}
+      </S.PlaceWrapper>
+    );
+  };
 
   return (
     <S.TimeLineWrapper>
       <S.TimeLineTitle>타임 테이블</S.TimeLineTitle>
-      <S.RealtimeMove>현재 진행중인 공연 보기</S.RealtimeMove>
+      <S.RealtimeMove onClick={handleScrollView}>
+        현재 진행중인 공연 보기
+      </S.RealtimeMove>
       <S.TimeGrid>
         <div>
           <S.PerformancePlace />
@@ -82,42 +127,15 @@ const TimeLine = () => {
             <S.TimeSlot key={index}>{time}</S.TimeSlot>
           ))}
         </div>
-        <div>
-          <S.PerformancePlace>대운동장</S.PerformancePlace>
-          {timeSlots.map((time, index) => {
-            const currentPerformance = performance.find(
-              (perform) =>
-                perform.startTime === time && perform.place === "대운동장"
-            );
-            return (
-              <React.Fragment key={index}>
-                <S.EmptySlot>
-                  {currentPerformance && (
-                    <PerformanceCard performance={currentPerformance} />
-                  )}
-                </S.EmptySlot>
-              </React.Fragment>
-            );
-          })}
-        </div>
-        <div>
-          <S.PerformancePlace>팔정도</S.PerformancePlace>
-          {timeSlots.map((time, index) => {
-            const currentPerformance = performance.find(
-              (perform) =>
-                perform.startTime === time && perform.place === "팔정도"
-            );
-            return (
-              <React.Fragment key={index}>
-                <S.EmptySlot>
-                  {currentPerformance && (
-                    <PerformanceCard performance={currentPerformance} />
-                  )}
-                </S.EmptySlot>
-              </React.Fragment>
-            );
-          })}
-        </div>
+        {performanceGrid("대운동장")}
+        {performanceGrid("팔정도")}
+        {realtimeBar(festaDate)}
+        <S.Grid
+          ref={scrollRef}
+          top={300}
+          src="./timeTable/realtimeLine.svg"
+          alt=""
+        />
       </S.TimeGrid>
     </S.TimeLineWrapper>
   );
