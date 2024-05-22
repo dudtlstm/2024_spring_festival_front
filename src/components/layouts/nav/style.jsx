@@ -3,7 +3,6 @@ import { styled } from "styled-components";
 export const NavWrapper = styled.div`
   width: 100%;
   max-width: 430px;
-  height: 50px;
 
   display: flex;
   padding: 12px 20px 16px 20px;
@@ -16,16 +15,6 @@ export const NavWrapper = styled.div`
   background: #fff;
   box-shadow: 0px -2px 4px 0px rgba(226, 230, 239, 0.25);
 
-  color: var(--use-font-font---info, #929292);
-
-  /* Caption */
-  font-family: Pretendard;
-  text-align: center;
-  font-size: 10px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 12px; /* 120% */
-
   z-index: 50;
 `;
 export const NavContainer = styled.div`
@@ -35,4 +24,14 @@ export const NavContainer = styled.div`
   align-items: center;
   gap: 4px;
   flex-shrink: 0;
+
+  color: ${(props) => props.fontcolor};
+
+  /* Caption */
+  font-family: Pretendard;
+  text-align: center;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 12px; /* 120% */
 `;

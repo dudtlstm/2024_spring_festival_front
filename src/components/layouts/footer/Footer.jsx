@@ -1,32 +1,35 @@
 import React from "react";
 import * as S from "./style";
 import { Link } from "react-router-dom";
+import * as images from "../../../assets/images/layout_images";
 
 const Footer = () => {
   return (
     <S.FooterWrapper>
-      <S.Copyright>
-        동국대학교 멋쟁이사자처럼
-        <br />
-        @DGU Likelion. All rights Reserved.
-        <S.DesignSupport>@Design supported by 축제기획단</S.DesignSupport>
-      </S.Copyright>
       <S.ContectContainer>
         <S.IconContainer>
-          <img src="./layout/footer/developers.svg" alt="developers" />
-          <Link to={"./about"}>Developers</Link>
+          <img src={images.developers} alt="developers" />
+          <Link to="/about">Developers</Link>
         </S.IconContainer>
         <S.IconContainer>
-          <img src="./layout/footer/github.svg" alt="developers" />
-          <Link to={"https://github.com/LikeLion-at-DGU"}>Github</Link>
+          <img src={images.github} alt="github" />
+          <Link to="https://github.com/LikeLion-at-DGU">Github</Link>
         </S.IconContainer>
         <S.IconContainer>
-          <img src="./layout/footer/instagram.svg" alt="developers" />
-          <Link to={"https://www.instagram.com/likelion_dongguk/"}>
+          <img src={images.instagram} alt="instagram" />
+          <Link to="https://www.instagram.com/likelion_dongguk/">
             Instagram
           </Link>
         </S.IconContainer>
       </S.ContectContainer>
+      <S.FooterWrapper>
+        <S.Copyright>
+          동국대학교 멋쟁이사자처럼
+          <br />
+          @DGU Likelion. All rights Reserved.
+          <S.DesignSupport>@Design supported by 축제기획단</S.DesignSupport>
+        </S.Copyright>
+      </S.FooterWrapper>
     </S.FooterWrapper>
   );
 };

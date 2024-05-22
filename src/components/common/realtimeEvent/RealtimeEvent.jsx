@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as S from "./style";
+import { fetchRealtimeEvent } from "../../../apis/api/realtimeEvent";
 
 const RealtimeEvent = () => {
+  const [realtime, setRealtime] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const realtimeList = await fetchRealtimeEvent();
+      setRealtime(realtimeList);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <S.Wrapper>
       <S.RealtimeEventWrapper>

@@ -9,21 +9,21 @@ export const FooterWrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-  gap: 24px;
-  padding-bottom: 50px; /* nav */
+  gap: 18px;
+  padding-bottom: 72px; /* nav */
 
   background: var(--use-background-background---section, #fbfbfb);
   color: var(--use-font-font---info, #929292);
   font-family: Pretendard;
   font-size: 12px;
 `;
-export const Copyright = styled.p`
+export const Copyright = styled.div`
   font-style: normal;
   font-weight: 400;
   line-height: 22px;
   text-align: center;
 `;
-export const DesignSupport = styled.p`
+export const DesignSupport = styled.div`
   color: var(--use-font-font---disable, #c4c4c4);
   font-family: Pretendard;
   font-size: 10px;

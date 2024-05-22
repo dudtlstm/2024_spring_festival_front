@@ -27,7 +27,7 @@ const Wrapper = styled.div`
   align-items: center;
 
   background-color: white;
-  font-family: NotoSansRegular;
+  font-family: Pretendard;
   color: black;
 
   box-shadow: 0px 0px 10px 0px rgba(41, 41, 41, 0.25);
@@ -52,7 +52,7 @@ const Layout = () => {
   return (
     <BackGroundColor>
       <Wrapper>
-        <Header currentPath={location.pathname}/>
+        <Header currentPath={location.pathname} />
         <Content>
           <Outlet />
         </Content>

@@ -2,21 +2,23 @@ import React, { useEffect, useState } from "react";
 import * as S from "./style";
 import Playlist from "./Playlist";
 import { fetchArtists } from "../../../apis/api/lineup";
+import { testerDate } from "../../../utils/currentDate";
 
 const Lineup = ({ date }) => {
-  // const [festaDate, setFestaDate] = useState(date); // 축제 당일 날짜
-  const [festaDate, setFestaDate] = useState(22); // 개발 단계 임의 날짜
+  const [festaDate, setFestaDate] = useState(date);
   const [artists, setArtists] = useState([]);
-  const [focus_id, setFocus_id] = useState(1); // 가수의 id
-
+  const [focus_id, setFocus_id] = useState(); // 가수의 id
+  // console.log("id: ", artists[0]?.id);
   useEffect(() => {
     const fetchData = async () => {
       const fetchArtist = await fetchArtists(festaDate);
       setArtists(fetchArtist);
+      setFocus_id(fetchArtist[0].id);
     };
 
     fetchData();
   }, []);
+
   const handleClick = (id) => {
     setFocus_id(id);
     // console.log(id);
@@ -27,8 +29,7 @@ const Lineup = ({ date }) => {
       <S.LineupWrapper>
         <S.LineupTitle>라인업</S.LineupTitle>
         <S.LineupBanner>
-          {artists.slice(0, 3).map((artist) => (
-            // {artists.map((artist) => ( // 백엔드 날짜별 api 수정시 이걸로!
+          {artists.map((artist) => (
             <S.LineupLabel
               key={artist.id}
               artist_id={artist.id}

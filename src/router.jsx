@@ -9,6 +9,9 @@ import About from "./pages/about/About";
 import NotFound from "./NotFound";
 import BoothDetail from "./pages/booth/BoothDetail";
 import NoticeDetail from "./pages/notice/NoticeDetail";
+import TimeTable_28 from "./pages/timeTable/TimeTable_28";
+import TimeTable_29 from "./pages/timeTable/TimeTable_29";
+import TimeTable_30 from "./pages/timeTable/TimeTable_30";
 
 const router = createBrowserRouter([
   {
@@ -19,11 +22,14 @@ const router = createBrowserRouter([
       { path: "/", element: <Mainpage /> },
 
       // 부스 페이지
-      { path: "booths", element: <Booth /> },
-      { path: "booths/:id", element: <BoothDetail /> },
+      { path: "/booths", element: <Booth /> },
+      { path: "/booths/:id", element: <BoothDetail /> },
 
       // 타임테이블 페이지
-      { path: "/timeTable", element: <TimeTable /> },
+      // { path: "/performance", element: <TimeTable /> },
+      { path: "/performance/28", element: <TimeTable_28 /> },
+      { path: "/performance/29", element: <TimeTable_29 /> },
+      { path: "/performance/30", element: <TimeTable_30 /> },
 
       // 공지 페이지
       { path: "/notice", element: <Notice /> },
