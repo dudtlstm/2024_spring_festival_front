@@ -110,7 +110,8 @@ export const LeadInfoCard = styled.div`
 `;
 
 export const HyeonA = styled.img`
-  align-self: center;
+    align-self: center;
+    width: 60%;
 `;
 
 export const RestLeads = styled.div`
