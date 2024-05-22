@@ -204,7 +204,9 @@ export const NoticeDes = styled.div`
 
 //Promotion.jsx
 
-export const PromotionWrapper = styled.div``;
+export const PromotionWrapper = styled.div`
+  margin-bottom: 30px;
+`;
 
 export const PromotionContainer = styled.div`
   width: 100%;
@@ -212,11 +214,17 @@ export const PromotionContainer = styled.div`
   padding-left: 20px;
   padding-right: 20px;
   position: relative;
+
+  .slick-track {
+    max-height: 180px;
+  }
 `;
 
 export const PromotionImg = styled.img`
   width: 100%;
+  height: 100px;
   border-radius: 5px;
+  background-color: #f1f1f1;
 `;
 
 export const PromotionCount = styled.div`
