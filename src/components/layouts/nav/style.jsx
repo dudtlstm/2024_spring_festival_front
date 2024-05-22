@@ -23,4 +23,6 @@ export const NavWrapper = styled.div`
   font-style: normal;
   font-weight: 400;
   line-height: 16px; /* 133.333% */
+
+  z-index: 100;
 `;

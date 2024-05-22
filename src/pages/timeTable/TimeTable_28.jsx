@@ -3,14 +3,14 @@ import RealtimeEvent from "../../components/common/realtimeEvent/RealtimeEvent";
 import Lineup from "../../components/timeTable/lineup/Lineup";
 import TimeLine from "../../components/timeTable/timeLine/TimeLine";
 
-const TimeTable = () => {
+const TimeTable_28 = () => {
   return (
     <div>
       <RealtimeEvent />
       <Lineup />
-      <TimeLine />
+      <TimeLine date={28} />
     </div>
   );
 };
 
-export default TimeTable;
+export default TimeTable_28;
