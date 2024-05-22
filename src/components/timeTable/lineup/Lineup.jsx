@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import * as S from "./style";
 import Playlist from "./Playlist";
 
 const Lineup = () => {
+  const [focus, setFocus] = useState("데이식스");
+
   // API - linup & playlist update
   const lineup = [
     { id: 1, artist: "데이식스", image: "./timeTable/데이식스.png" },
@@ -16,7 +18,11 @@ const Lineup = () => {
         <S.LineupTitle>라인업</S.LineupTitle>
         <S.LineupBanner>
           {lineup.map((lineup) => (
-            <S.LineupLabel key={lineup.id}>
+            <S.LineupLabel
+              key={lineup.id}
+              artist={lineup.artist}
+              focusartist={focus}
+            >
               <S.LineupBannerImg src={lineup.image} alt={lineup.artist} />
               <S.LineupSinger>{lineup.artist}</S.LineupSinger>
             </S.LineupLabel>

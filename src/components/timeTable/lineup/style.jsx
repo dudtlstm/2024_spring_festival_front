@@ -29,18 +29,22 @@ export const LineupTitle = styled.div`
 `;
 export const LineupBanner = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
   padding-bottom: 16px;
-  align-items: flex-start;
-  gap: 8px;
   align-self: stretch;
 `;
 export const LineupLabel = styled.div`
+  width: 100%;
   position: relative;
+  /* width: ${(props) => (props.artist == props.focusartist ? 200 : 64)}px; */
+  img {
+    width: ${(props) => (props.artist == props.focusartist ? 200 : "")}px;
+    object-fit: cover;
+  }
 `;
 export const LineupBannerImg = styled.img`
   display: flex;
-  width: 206px;
+  width: 64px;
   height: 130px;
 
   border-radius: 8px;
@@ -58,6 +62,10 @@ export const LineupSinger = styled.p`
   letter-spacing: -0.25px;
 
   position: absolute;
+  bottom: 8px;
+  left: 8px;
+
+  z-index: 10;
 `;
 export const PlaylistWrapper = styled.div`
   display: flex;

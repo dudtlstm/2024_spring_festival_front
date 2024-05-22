@@ -12,7 +12,7 @@ const TimeLine = () => {
   const performance = [
     {
       id: 1,
-      title: "라면땅",
+      operator: "라면땅",
       start_at: "13:00",
       end_at: "14:00",
       during: "13:00 ~ 14:00",
@@ -21,7 +21,7 @@ const TimeLine = () => {
     },
     {
       id: 2,
-      title: "아리아",
+      operator: "아리아",
       start_at: "14:00",
       end_at: "15:00",
       during: "14:00 ~ 15:00",
@@ -30,7 +30,7 @@ const TimeLine = () => {
     },
     {
       id: 3,
-      title: "실용무용",
+      operator: "실용무용",
       start_at: "15:00",
       end_at: "16:00",
       during: "15:00 ~ 16:00",
@@ -39,7 +39,7 @@ const TimeLine = () => {
     },
     {
       id: 4,
-      title: "선무부",
+      operator: "선무부",
       start_at: "16:00",
       end_at: "17:00",
       during: "16:00 ~ 17:00",
@@ -48,7 +48,7 @@ const TimeLine = () => {
     },
     {
       id: 5,
-      title: "렛츠무드",
+      operator: "렛츠무드",
       start_at: "15:30",
       end_at: "16:00",
       during: "15:30 ~ 16:00",
@@ -57,7 +57,7 @@ const TimeLine = () => {
     },
     {
       id: 6,
-      title: "아리랑",
+      operator: "아리랑",
       start_at: "16:00",
       end_at: "16:30",
       during: "16:00 ~ 16:30",
@@ -66,7 +66,7 @@ const TimeLine = () => {
     },
     {
       id: 7,
-      title: "1시간반",
+      operator: "1시간반",
       start_at: "17:00",
       end_at: "18:30",
       during: "17:00 ~ 18:30",

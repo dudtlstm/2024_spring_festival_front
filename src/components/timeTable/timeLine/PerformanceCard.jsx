@@ -14,7 +14,7 @@ const PerformanceCard = ({ performance }) => {
       bordercolor={performance.is_now ? "now" : "not"}
       timeslots={timeCheck}
     >
-      <S.PerformanceTeam>{performance.title}</S.PerformanceTeam>
+      <S.PerformanceTeam>{performance.operator}</S.PerformanceTeam>
       <S.PerformanceTime>{performance.during}</S.PerformanceTime>
     </S.PerformanceCardWrapper>
   );
