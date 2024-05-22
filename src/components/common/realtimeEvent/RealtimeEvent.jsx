@@ -1,9 +1,9 @@
 import React from "react";
 import * as S from "./style";
 
-const RealtimeEvent = () => {
+const RealtimeEvent = ({ marginTop }) => {
   return (
-    <S.Wrapper>
+    <S.Wrapper marginTop={marginTop}>
       <S.RealtimeEventWrapper>
         <img src="./common/loudspeaker.svg" alt="📣" />
         <S.RealtimeTxt>

@@ -52,11 +52,12 @@ const Layout = () => {
   return (
     <BackGroundColor>
       <Wrapper>
-        <Header currentPath={location.pathname}/>
+        <Header currentPath={location.pathname} />
         <Content>
           <Outlet />
         </Content>
-        {!idPattern.test(location.pathname) && <Footer />}
+        {!idPattern.test(location.pathname) &&
+          location.pathname !== "/about" && <Footer />}
         {!boothsDetailPattern.test(location.pathname) && <Nav />}
       </Wrapper>
     </BackGroundColor>

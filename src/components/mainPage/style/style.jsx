@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const TitleWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  margin-top: 50px;
+  margin-top: ${(props) => (props.marginTop ? props.marginTop : "64px")};
   align-items: center;
   justify-content: space-between;
   padding: 20px;
