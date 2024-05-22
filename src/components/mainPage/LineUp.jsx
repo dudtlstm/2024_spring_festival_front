@@ -23,16 +23,16 @@ function LineUp() {
   }, []);
 
   //슬라이드 구현
-  useEffect(() => {
-    const slider = sliderRef.current;
+  // useEffect(() => {
+  //   const slider = sliderRef.current;
 
-    const startAutoplay = () => slider.slickPlay();
-    const stopAutoplay = () => slider.slickPause();
-    startAutoplay();
-    return () => {
-      stopAutoplay();
-    };
-  }, []);
+  //   const startAutoplay = () => slider.slickPlay();
+  //   const stopAutoplay = () => slider.slickPause();
+  //   startAutoplay();
+  //   return () => {
+  //     stopAutoplay();
+  //   };
+  // }, []);
 
   const settings = {
     ref: sliderRef,
