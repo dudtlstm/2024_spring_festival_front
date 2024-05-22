@@ -1,11 +1,11 @@
-import React from "react";
-import * as S from "./style";
-import { Link } from "react-router-dom";
+import React from 'react';
+import * as S from './style';
+import { Link } from 'react-router-dom';
 
 const Nav = () => {
   return (
     <S.NavWrapper>
-      <Link to="booths">
+      <Link to="booth/28">
         <div>부스</div>
       </Link>
       <Link to="timeTable">
