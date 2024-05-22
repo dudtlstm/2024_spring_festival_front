@@ -52,7 +52,7 @@ const Layout = () => {
   return (
     <BackGroundColor>
       <Wrapper>
-        <Header />
+        <Header currentPath={location.pathname}/>
         <Content>
           <Outlet />
         </Content>
