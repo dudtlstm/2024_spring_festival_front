@@ -6,7 +6,6 @@ import Category from '../../components/booth/category/Category';
 import BoothList from '../../components/booth/boothList/BoothList';
 
 const Booth28 = ({ date }) => {
-  const dates = ['부스', '푸드트럭', '플리마켓'];
   const [category, setCategory] = useState('부스');
   console.log('category:', category);
   return (
@@ -16,7 +15,7 @@ const Booth28 = ({ date }) => {
       <Date28 />
       <Map />
       <Category category={category} setCategory={setCategory} />
-      <BoothList date={date} />
+      <BoothList date={date} category={category} />
     </>
   );
 };

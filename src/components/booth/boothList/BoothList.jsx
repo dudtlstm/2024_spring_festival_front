@@ -26,18 +26,19 @@ const dummyData = [
   },
 ];
 
-const BoothList = ({ date }) => {
+const BoothList = ({ date, category }) => {
   const [data, setData] = useState([]);
+  console.log('dyrl: ', category);
 
   console.log('here', date);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [category]);
 
   const fetchData = async () => {
     try {
-      const result = await booth(date);
+      const result = await booth(date, category);
       if (Array.isArray(result)) {
         setData(result);
       } else {
