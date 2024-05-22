@@ -1,7 +1,20 @@
 import React from "react";
 
+//import component
+import TopBanner from "../../components/mainPage/TopBanner";
+import LineUp from "../../components/mainPage/LineUp";
+import BoothRank from "../../components/mainPage/BoothRank";
+import MainNotice from "../../components/mainPage/MainNotice";
+
 const Mainpage = () => {
-  return <div style={{ height: "1000px" }}>Mainpage</div>;
+  return (
+    <>
+      <TopBanner />
+      <LineUp />
+      <BoothRank />
+      <MainNotice />
+    </>
+  );
 };
 
 export default Mainpage;
