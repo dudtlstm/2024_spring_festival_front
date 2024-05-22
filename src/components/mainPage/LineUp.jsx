@@ -11,7 +11,6 @@ function LineUp() {
   const [loading, setLoading] = useState(true);
   const sliderRef = useRef(null);
 
-  //api 호출
   useEffect(() => {
     const fetchData = async () => {
       const imageData = await fetchArtistImages("someDay");
@@ -22,16 +21,11 @@ function LineUp() {
     fetchData();
   }, []);
 
-  //슬라이드 구현
   useEffect(() => {
     const slider = sliderRef.current;
-
-    const startAutoplay = () => slider.slickPlay();
-    const stopAutoplay = () => slider.slickPause();
-    startAutoplay();
-    return () => {
-      stopAutoplay();
-    };
+    if (slider) {
+      slider.slickPause();
+    }
   }, []);
 
   const settings = {
@@ -41,7 +35,7 @@ function LineUp() {
     infinite: false,
     autoplaySpeed: 200,
     speed: 1000,
-    slidesToShow: 1.8,
+    slidesToShow: 2.3,
     slidesToScroll: 1,
     autoplay: true,
     arrows: false,

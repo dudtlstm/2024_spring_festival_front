@@ -41,7 +41,7 @@ export const LineUpImgContainer = styled.div`
 `;
 
 export const LineUpImg = styled.img`
-  width: 150px;
+  width: 100px;
 `;
 
 //BoothRank.jsx
@@ -144,7 +144,7 @@ export const BoothMoreText = styled.div`
   color: #c4c4c4;
 `;
 
-//Promotion.jsx
+//MainNotice.jsx
 
 export const NoticeWrapper = styled.div`
   width: 100%;
@@ -200,4 +200,37 @@ export const NoticeDes = styled.div`
   line-height: 16px;
   margin-top: 3px;
   color: #929292;
+`;
+
+//Promotion.jsx
+
+export const PromotionWrapper = styled.div``;
+
+export const PromotionContainer = styled.div`
+  width: 100%;
+  border-radius: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  position: relative;
+`;
+
+export const PromotionImg = styled.img`
+  width: 100%;
+  border-radius: 5px;
+`;
+
+export const PromotionCount = styled.div`
+  padding: 3px 14px;
+  font-size: 10px;
+  background-color: #fa9487;
+  color: white;
+  width: 53px;
+  border-radius: 50px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  transform: translateY(100%);
 `;
