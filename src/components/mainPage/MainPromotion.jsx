@@ -29,6 +29,9 @@ function MainPromotion() {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
+    beforeChange: (oldIndex, newIndex) => {
+      setCurrentIndex(newIndex);
+    },
   };
 
   return (
