@@ -5,20 +5,23 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <S.FooterWrapper>
-      동국대학교 멋쟁이사자처럼
-      <br />
-      @DGU Likelion. All rights Reserved.
+      <S.Copyright>
+        동국대학교 멋쟁이사자처럼
+        <br />
+        @DGU Likelion. All rights Reserved.
+        <S.DesignSupport>@Design supported by 축제기획단</S.DesignSupport>
+      </S.Copyright>
       <S.ContectContainer>
         <S.IconContainer>
-          <img src="./layout/developers.svg" alt="developers" />
-          <Link to={"./about"}>developers</Link>
+          <img src="./layout/footer/developers.svg" alt="developers" />
+          <Link to={"./about"}>Developers</Link>
         </S.IconContainer>
         <S.IconContainer>
-          <img src="./layout/github.svg" alt="developers" />
+          <img src="./layout/footer/github.svg" alt="developers" />
           <Link to={"https://github.com/LikeLion-at-DGU"}>Github</Link>
         </S.IconContainer>
         <S.IconContainer>
-          <img src="./layout/instagram.svg" alt="developers" />
+          <img src="./layout/footer/instagram.svg" alt="developers" />
           <Link to={"https://www.instagram.com/likelion_dongguk/"}>
             Instagram
           </Link>
