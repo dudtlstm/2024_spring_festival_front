@@ -10,8 +10,6 @@ const Booth28 = ({ date }) => {
   console.log('category:', category);
   return (
     <>
-      {/* <div>Booth</div>
-      <Link to={'/booths/1'}>detail 이동</Link> */}
       <Date28 url1={'/booth/29'} url2={'/booth/30'} />
       <Map />
       <Category category={category} setCategory={setCategory} />
