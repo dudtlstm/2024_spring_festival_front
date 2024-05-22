@@ -31,7 +31,7 @@ function AboutPage() {
                         Team Lead
                     </S.LeadInfoTitle>
                     <S.LeadInfoCard>
-                        <S.HyeonA src={"/developers/people/HA.svg"} alt="설현아" />
+                        <S.HyeonA src={"/developers/people/seol.png"} alt="설현아" />
                         <S.RestLeads>
                             <S.JW src={"/developers/people/JW.svg"} alt="이주원" />
                             <S.YJ src={"/developers/people/YJ.svg"} alt="이유진" />
