@@ -45,7 +45,7 @@ function LineUp() {
 
   return (
     <S.LineUpWrapper>
-      <TitleComponent title={"라인업"} to={"/timeTable"} />
+      <TitleComponent title={"라인업"} to={"/timeTable"} marginTop={"32px"} />
       <S.LineUpImgContainer>
         {loading ? (
           <Slider {...settings}>
