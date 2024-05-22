@@ -143,3 +143,61 @@ export const BoothMoreText = styled.div`
   font-weight: 400;
   color: #c4c4c4;
 `;
+
+//Promotion.jsx
+
+export const NoticeWrapper = styled.div`
+  width: 100%;
+`;
+
+export const NoticeContainer = styled.div`
+  width: 100%;
+  padding-left: 20px;
+  gap: 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-height: 190px;
+
+  .slick-track {
+    width: 100%;
+    max-height: 180px;
+    padding-left: 140px;
+
+    @media (max-width: 380px) {
+      padding-left: 75px;
+    }
+
+    @media (max-width: 350px) {
+      padding-left: 45px;
+    }
+  }
+`;
+
+export const NoticeCard = styled.div`
+  width: 100%;
+  max-width: 120px;
+  max-height: 180px;
+`;
+
+export const NoticeImg = styled.img`
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+`;
+
+export const NoticeTitle = styled.div`
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  margin-top: 5px;
+`;
+
+export const NoticeDes = styled.div`
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  margin-top: 3px;
+  color: #929292;
+`;

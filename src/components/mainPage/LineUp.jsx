@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import * as S from "./style";
+import * as S from "./style/style";
 import TitleComponent from "./Title";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";

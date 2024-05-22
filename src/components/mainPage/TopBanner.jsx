@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import * as S from "./topBannerStyle";
+import * as S from "./style/topBannerStyle";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

@@ -4,6 +4,7 @@ import React from "react";
 import TopBanner from "../../components/mainPage/TopBanner";
 import LineUp from "../../components/mainPage/LineUp";
 import BoothRank from "../../components/mainPage/BoothRank";
+import MainNotice from "../../components/mainPage/MainNotice";
 
 const Mainpage = () => {
   return (
@@ -11,6 +12,7 @@ const Mainpage = () => {
       <TopBanner />
       <LineUp />
       <BoothRank />
+      <MainNotice />
     </>
   );
 };

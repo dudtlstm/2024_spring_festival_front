@@ -1,5 +1,5 @@
 import React from "react";
-import * as S from "./style";
+import * as S from "./style/style";
 import TitleComponent from "./Title";
 import BoothRankCard from "./BoothRankCard";
 
