@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <S.HeaderWrapper>
-      <Link to={"/"}>
+        {/* Header 문구 눌러도 이동 안 함 */}
         <img src="./layout/logo.svg" alt="무아지경" />
-      </Link>
+
       <Link to={"about"}>
         <img src="./layout/lionImg.svg" alt="🦁" />
       </Link>
