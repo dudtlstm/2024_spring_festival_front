@@ -37,10 +37,9 @@ const Content = styled.div`
   flex-grow: 1;
   min-height: 100%;
   width: 100%;
-
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
 `;
 
 // 상세페이지 url 패턴 정의
@@ -53,7 +52,7 @@ const Layout = () => {
   return (
     <BackGroundColor>
       <Wrapper>
-        <Header />
+        <Header currentPath={location.pathname}/>
         <Content>
           <Outlet />
         </Content>
