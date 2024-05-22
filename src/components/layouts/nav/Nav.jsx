@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Nav = () => {
   return (
     <S.NavWrapper>
-      <Link to="booth28">
+      <Link to="booth/28">
         <div>부스</div>
       </Link>
       <Link to="timeTable">

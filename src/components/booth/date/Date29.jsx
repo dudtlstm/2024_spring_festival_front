@@ -9,11 +9,11 @@ const Date29 = () => {
       <Link to={'/booths/1'}>detail 이동</Link> */}
       <S.DateWrapper>
         <S.Date>
-          <Link to={'/booth28'}>
+          <Link to={'/booth/28'}>
             <S.DateItem>28일</S.DateItem>
           </Link>
           <S.DateSelectedItem>29일</S.DateSelectedItem>
-          <Link to={'/booth30'}>
+          <Link to={'/booth/30'}>
             <S.DateItem>30일</S.DateItem>
           </Link>
         </S.Date>
