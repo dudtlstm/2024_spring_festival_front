@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Date28 from '../../components/booth/date/Date28';
 import Map from '../../components/booth/map/Map';
 import Category from '../../components/booth/category/Category';
 import BoothList from '../../components/booth/boothList/BoothList';
 
 const Booth28 = () => {
+  const { date } = useParams();
   return (
     <>
       {/* <div>Booth</div>
@@ -13,7 +14,7 @@ const Booth28 = () => {
       <Date28 />
       <Map />
       <Category />
-      <BoothList />
+      <BoothList date={date} />
     </>
   );
 };

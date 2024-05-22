@@ -21,9 +21,9 @@ const router = createBrowserRouter([
       { path: '/', element: <Mainpage /> },
 
       // 부스 페이지
-      { path: 'booth28', element: <Booth28 /> },
-      { path: 'booth29', element: <Booth29 /> },
-      { path: 'booth30', element: <Booth30 /> },
+      { path: 'booth/28', element: <Booth28 /> },
+      { path: 'booth/29', element: <Booth29 /> },
+      { path: 'booth/30', element: <Booth30 /> },
       { path: 'booths/:id', element: <BoothDetail /> },
 
       // 타임테이블 페이지
