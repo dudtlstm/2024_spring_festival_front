@@ -13,7 +13,9 @@ function LineUp() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const imageData = await fetchArtistImages("someDay");
+      const today = new Date();
+      const day = today.getDate();
+      const imageData = await fetchArtistImages(day);
       setArtistImages(imageData);
       setLoading(false);
     };
