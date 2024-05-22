@@ -34,11 +34,14 @@ export const LineupBanner = styled.div`
   align-self: stretch;
 `;
 export const LineupLabel = styled.div`
+  display: flex;
+  justify-content: center;
+
   width: 100%;
   position: relative;
   /* width: ${(props) => (props.artist == props.focusartist ? 200 : 64)}px; */
   img {
-    width: ${(props) => (props.artist == props.focusartist ? 200 : "")}px;
+    width: ${(props) => (props.artist_id == props.focus_id ? 200 : "")}px;
     object-fit: cover;
   }
 `;
