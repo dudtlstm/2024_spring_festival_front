@@ -76,8 +76,9 @@ export const MoveToSite = styled.div`
 export const ThirdWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 64px;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
 `;
 
 export const Leads = styled.div`
@@ -110,8 +111,8 @@ export const LeadInfoCard = styled.div`
 `;
 
 export const HyeonA = styled.img`
-    align-self: center;
-    width: 60%;
+  align-self: center;
+  width: 30%;
 `;
 
 export const RestLeads = styled.div`
