@@ -26,8 +26,10 @@ const dummyData = [
   },
 ];
 
-const BoothList = ({ id }) => {
+const BoothList = ({ date }) => {
   const [data, setData] = useState([]);
+
+  console.log('here', date);
 
   useEffect(() => {
     fetchData();
@@ -35,7 +37,7 @@ const BoothList = ({ id }) => {
 
   const fetchData = async () => {
     try {
-      const result = await booth(`${id}`);
+      const result = await booth(date);
       if (Array.isArray(result)) {
         setData(result);
       } else {
