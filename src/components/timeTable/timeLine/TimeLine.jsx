@@ -2,78 +2,34 @@ import React, { useEffect, useRef, useState } from "react";
 import * as S from "./style";
 import PerformanceCard from "./PerformanceCard";
 import { realtimeBar, timeSlot } from "../../../utils/realtimeBar";
+import { fetchAllPerformance } from "../../../apis/api/timetable";
 
-const TimeLine = () => {
-  const [festaDate, setFestaDate] = useState(21);
+const TimeLine = ({ date }) => {
+  // const [festaDate, setFestaDate] = useState(date); // 축제 당일 날짜
+  const [festaDate, setFestaDate] = useState(22); // 개발 단계 임의 날짜
   const [barPosition, setBarPosition] = useState(realtimeBar(festaDate));
+  const [paljeongPerformances, setPaljeongPerformances] = useState([]);
+  const [grandPerformances, setGrandPerformances] = useState([]);
   const scrollRef = useRef(null);
 
-  // API - 공연 정보
-  const performance = [
-    {
-      id: 1,
-      operator: "라면땅",
-      start_at: "13:00",
-      end_at: "14:00",
-      during: "13:00 ~ 14:00",
-      location: "팔정도",
-      is_now: false,
-    },
-    {
-      id: 2,
-      operator: "아리아",
-      start_at: "14:00",
-      end_at: "15:00",
-      during: "14:00 ~ 15:00",
-      location: "팔정도",
-      is_now: false,
-    },
-    {
-      id: 3,
-      operator: "실용무용",
-      start_at: "15:00",
-      end_at: "16:00",
-      during: "15:00 ~ 16:00",
-      location: "팔정도",
-      is_now: false,
-    },
-    {
-      id: 4,
-      operator: "선무부",
-      start_at: "16:00",
-      end_at: "17:00",
-      during: "16:00 ~ 17:00",
-      location: "팔정도",
-      is_now: true,
-    },
-    {
-      id: 5,
-      operator: "렛츠무드",
-      start_at: "15:30",
-      end_at: "16:00",
-      during: "15:30 ~ 16:00",
-      location: "대운동장",
-      is_now: false,
-    },
-    {
-      id: 6,
-      operator: "아리랑",
-      start_at: "16:00",
-      end_at: "16:30",
-      during: "16:00 ~ 16:30",
-      location: "대운동장",
-      is_now: true,
-    },
-    {
-      id: 7,
-      operator: "1시간반",
-      start_at: "17:00",
-      end_at: "18:30",
-      during: "17:00 ~ 18:30",
-      location: "대운동장",
-      is_now: true,
-    },
-  ];
+  useEffect(() => {
+    const fetchData = async () => {
+      // 팔정도 공연 정보
+      const paljeongPerformance = await fetchAllPerformance(
+        festaDate,
+        "팔정도"
+      );
+      // console.log("팔정도 공연 정보:", paljeongPerformance);
+      setPaljeongPerformances(paljeongPerformance);
+
+      // 대운동장 공연 정보
+      const grandPerformance = await fetchAllPerformance(festaDate, "대운동장");
+      // console.log("대운동장 공연 정보:", grandPerformance);
+      setGrandPerformances(grandPerformance);
+    };
+
+    fetchData();
+  }, []);
 
   // 1분 단위로 실시간 바 위치 정보 업데이트
   useEffect(() => {
@@ -98,10 +54,13 @@ const TimeLine = () => {
       <S.PlaceWrapper>
         <S.PerformancePlace>{location}</S.PerformancePlace>
         {timeSlots.map((time, index) => {
-          const currentPerformance = performance.find(
+          const allPerformance = paljeongPerformances.concat(grandPerformances);
+          const currentPerformance = allPerformance.find(
             (perform) =>
-              perform.start_at === time && perform.location === location
+              perform.start_at.slice(11, 16) === time &&
+              perform.location === location
           );
+
           return (
             <React.Fragment key={index}>
               <S.EmptySlot>

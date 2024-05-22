@@ -11,7 +11,7 @@ export const realtimeBar = (festaDate) =>{
     diffMin = Math.round(diffMSec / (60 * 1000));
     return diffMin;
   } 
-  else {return false};
+  else {return null};
 };
 
 // ---- 타임테이블 표 생성을 위한 시간 정보 ----

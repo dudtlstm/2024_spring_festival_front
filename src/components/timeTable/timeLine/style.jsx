@@ -59,7 +59,7 @@ export const RealtimeLine = styled.img`
   z-index: 50;
 `;
 export const Grid = styled.img`
-  display: ${(props) => props.top == false && "none"};
+  display: ${(props) => props.top == null && "none"};
   grid-column: 2/4;
   width: 100%;
 

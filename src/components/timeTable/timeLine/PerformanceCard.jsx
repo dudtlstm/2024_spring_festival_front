@@ -4,9 +4,7 @@ import * as S from "./style";
 const PerformanceCard = ({ performance }) => {
   // 공연 시간에 따른 height 값 조절을 위한 변수
   const timeCheck =
-    (new Date(`2024/05/28 ${performance.end_at}`) -
-      new Date(`2024/05/28 ${performance.start_at}`)) /
-    1800000;
+    (new Date(performance.end_at) - new Date(performance.start_at)) / 1800000;
 
   return (
     <S.PerformanceCardWrapper
