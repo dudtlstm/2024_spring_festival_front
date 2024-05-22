@@ -1,14 +1,11 @@
-import { API } from "../utils";
+import { API } from '../utils';
 
-// 수정하여 사용하세요!
 export const booth = async () => {
   try {
-    const response = await API.get('', {
-    });
-    console.log("success!");
-    return response;
-
+    const response = await API.get('api/v1/booth');
+    return response.data;
   } catch (error) {
-    console.error("API error: ", error);
+    // console.error('API error: ', error);
+    return [];
   }
 };
