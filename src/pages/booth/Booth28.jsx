@@ -12,7 +12,7 @@ const Booth28 = ({ date }) => {
     <>
       {/* <div>Booth</div>
       <Link to={'/booths/1'}>detail 이동</Link> */}
-      <Date28 />
+      <Date28 url1={'/booth/29'} url2={'/booth/30'} />
       <Map />
       <Category category={category} setCategory={setCategory} />
       <BoothList date={date} category={category} />

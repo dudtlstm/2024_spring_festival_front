@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import * as S from './style';
 
-const Date28 = () => {
+const Date28 = props => {
   return (
     <>
       {/* <div>Booth</div>
@@ -10,10 +10,10 @@ const Date28 = () => {
       <S.DateWrapper>
         <S.Date>
           <S.DateSelectedItem>28일</S.DateSelectedItem>
-          <Link to={'/booth/29'}>
+          <Link to={props.url1}>
             <S.DateItem>29일</S.DateItem>
           </Link>
-          <Link to={'/booth/30'}>
+          <Link to={props.url2}>
             <S.DateItem>30일</S.DateItem>
           </Link>
         </S.Date>
