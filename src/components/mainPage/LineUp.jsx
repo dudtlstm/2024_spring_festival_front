@@ -13,7 +13,9 @@ function LineUp() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const imageData = await fetchArtistImages("someDay");
+      const today = new Date();
+      const day = today.getDate();
+      const imageData = await fetchArtistImages(day);
       setArtistImages(imageData);
       setLoading(false);
     };
@@ -33,11 +35,11 @@ function LineUp() {
     focusOnSelect: true,
     dots: false,
     infinite: false,
-    autoplaySpeed: 200,
+    // autoplaySpeed: 200,
     speed: 1000,
     slidesToShow: 2.3,
     slidesToScroll: 1,
-    autoplay: true,
+    // autoplay: true,
     arrows: false,
   };
 

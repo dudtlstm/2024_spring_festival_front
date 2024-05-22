@@ -2,7 +2,7 @@ import React from "react";
 import * as S from "./style/style";
 import { Link } from "react-router-dom";
 
-const BoothRankCard = ({ src, title, heartNum, descript }) => {
+const BoothRankCard = ({ src, title, heartNum, descript, to }) => {
   return (
     <S.BoothRankCardWrapper>
       <S.BoothRankNum>
@@ -19,9 +19,9 @@ const BoothRankCard = ({ src, title, heartNum, descript }) => {
       </S.BoothRankInfo>
       <S.BoothMore>
         <S.BoothMoreArrow src="/image/mainpage/main_arrow.png" />
-        {/* <Link to={`/booths/${boothId}`}> */}
-        <S.BoothMoreText>더보기</S.BoothMoreText>
-        {/* </Link> */}
+        <Link to={to}>
+          <S.BoothMoreText>더보기</S.BoothMoreText>
+        </Link>
       </S.BoothMore>
     </S.BoothRankCardWrapper>
   );
