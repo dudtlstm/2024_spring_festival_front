@@ -25,6 +25,7 @@ const BoothRank = () => {
         {top3Booths.map((booth, index) => (
           <BoothRankCard
             key={index}
+            thumImg={booth.thumbnail}
             title={booth.name}
             heartNum={booth.like_cnt}
             descript={booth.description}
