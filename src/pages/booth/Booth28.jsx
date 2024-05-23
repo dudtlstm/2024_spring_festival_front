@@ -11,7 +11,6 @@ const Booth28 = ({ date }) => {
   const [category, setCategory] = useState('부스');
   const [data, setData] = useState([]);
   const [selectedBoothId, setSelectedBoothId] = useState(null);
-  console.log('category:', category);
 
   useEffect(() => {
     fetchData();
