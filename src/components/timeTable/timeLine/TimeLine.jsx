@@ -20,16 +20,16 @@ const TimeLine = ({ date }) => {
     const fetchData = async () => {
       // 팔정도 공연 정보
       const paljeongPerformance = await fetchAllPerformance(
-        date,
-        // festaDate, // 실시간 더미데이터 확인 용도
+        // date,
+        festaDate, // 실시간 더미데이터 확인 용도
         "팔정도"
       );
       // console.log("팔정도 공연 정보:", paljeongPerformance);
       setPaljeongPerformances(paljeongPerformance);
 
       // 대운동장 공연 정보
-      const grandPerformance = await fetchAllPerformance(date, "대운동장");
-      // const grandPerformance = await fetchAllPerformance(festaDate, "대운동장"); // 실시간 더미데이터 확인 용도
+      // const grandPerformance = await fetchAllPerformance(date, "대운동장");
+      const grandPerformance = await fetchAllPerformance(festaDate, "대운동장"); // 실시간 더미데이터 확인 용도
       // console.log("대운동장 공연 정보:", grandPerformance);
       setGrandPerformances(grandPerformance);
     };
