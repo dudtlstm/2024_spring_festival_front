@@ -32,8 +32,7 @@ const RealtimeEvent = ({ marginTop }) => {
   }, [realtime]);
 
   return (
-
-    <S.Wrapper marginTop={marginTop}>
+    <S.Wrapper $marginTop={marginTop}>
       <S.RealtimeEventWrapper isseveral={realtime.length}>
         {realtime?.length > 0 ? (
           <S.RealtimeTxt
