@@ -27,7 +27,6 @@ const dummyData = [
 ];
 
 const BoothList = ({ date, category, data, onLocationClick }) => {
-  const [boothListData, setBoothListData] = useState([]);
   // useEffect(() => {
   //   fetchData();
   // }, [category]);

@@ -10,6 +10,7 @@ import { boothDetail } from '../../apis/api/boothDetail';
 const Booth28 = ({ date }) => {
   const [category, setCategory] = useState('부스');
   const [data, setData] = useState([]);
+  const [selectedBoothId, setSelectedBoothId] = useState(null);
   console.log('category:', category);
 
   useEffect(() => {
@@ -35,19 +36,26 @@ const Booth28 = ({ date }) => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       const locationData = await boothDetail(id);
       setData([locationData]);
+      setSelectedBoothId(id);
     } catch (e) {
       // console.log(e);
     }
   };
 
   const resetData = () => {
+    setSelectedBoothId(null);
     fetchData();
   };
 
   return (
     <>
       <Date28 url1={'/booth/29'} url2={'/booth/30'} />
-      <Map data={data} category={category} />
+      <Map
+        data={data}
+        category={category}
+        selectedBoothId={selectedBoothId}
+        resetData={resetData}
+      />
       <Category
         category={category}
         setCategory={setCategory}

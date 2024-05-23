@@ -21,22 +21,27 @@ const dummyData = [
   },
 ];
 
-const Map = ({ data, category }) => {
-  console.log('잘 받고있니>?', category);
+const Map = ({ data, category, selectedBoothId, resetData }) => {
+  console.log('잘 받고있니>?', selectedBoothId);
   const [map, setMap] = useState();
   // const [data, setData] = useState([]);
   const markersRef = useRef([]);
 
   useEffect(() => {
     initMap();
-    // setData(dummyData);
   }, []);
+
+  useEffect(() => {
+    if (resetData) {
+      initMap();
+    }
+  }, [resetData]);
 
   useEffect(() => {
     if (map) {
       makeMarker(data);
     }
-  }, [map, data]);
+  }, [map, data, category, selectedBoothId]);
 
   const initMap = () => {
     const container = document.getElementById('map');
@@ -82,6 +87,11 @@ const Map = ({ data, category }) => {
         });
         marker.setMap(map);
         markersRef.current.push(marker);
+
+        if (selectedBoothId === item.id) {
+          map.setCenter(new kakao.maps.LatLng(item.latitude, item.longitude));
+          map.setLevel(2);
+        }
       });
     }
   };
