@@ -6,16 +6,20 @@ export const IsModal = styled(Modal)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   max-width: 430px;
   height: 100%;
-
   background: rgba(0, 0, 0, 0.2);
-  mix-blend-mode: multiply;
+  /* mix-blend-mode: multiply; */
+  z-index: 10000 !important;
+`;
+
+export const CustomOverlay = styled.div`
+  position: fixed;
+  inset: 0;
 `;
 
 export const SiteConnectWrapper = styled.div`
@@ -27,7 +31,6 @@ export const SiteConnectWrapper = styled.div`
   gap: 10px;
   border-radius: 11.598px;
   background: var(--use-background-background---main, #fff);
-
   @media (max-width: 375px) {
     width: 90%;
   }
@@ -83,7 +86,7 @@ export const SiteConnectConfirm = styled.div`
   align-items: center;
   gap: 12px;
   flex: 1 0 0;
-
+  cursor: pointer;
   border-radius: 8px;
   background: var(--main-red-400, #f97c69);
 
@@ -105,6 +108,7 @@ export const SiteConnectCancle = styled.div`
   align-items: center;
   gap: 12px;
   flex: 1 0 0;
+  cursor: pointer;
 
   border-radius: 8px;
   border: 1px solid var(--use-stroke-stroke---main, #c9cad3);

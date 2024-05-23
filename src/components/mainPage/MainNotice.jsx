@@ -44,6 +44,10 @@ function MainNotice() {
     ],
   };
 
+  const truncateTitle = (title, maxLength) => {
+    return title.length > maxLength ? `${title.slice(0, maxLength)}...` : title;
+  };
+
   return (
     <S.NoticeWrapper>
       <TitleComponent title={"공지"} to={"notice"} />
@@ -52,8 +56,11 @@ function MainNotice() {
           {noticeData.map((d) => (
             <Link to={`/notice/${d.id}`} key={d.id}>
               <S.NoticeCard>
-                <S.NoticeImg src={d.thumbnail} loading="lazy" />
-                <S.NoticeTitle>{d.title}</S.NoticeTitle>
+                <S.NoticeImg
+                  src={d.thumbnail || "/image/common/default.png"}
+                  loading="lazy"
+                />
+                <S.NoticeTitle>{truncateTitle(d.title, 8)}</S.NoticeTitle>
                 <S.NoticeDes>{d.short_description}</S.NoticeDes>
               </S.NoticeCard>
             </Link>

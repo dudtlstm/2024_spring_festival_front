@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const TitleWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  margin-top: ${(props) => (props.marginTop ? props.marginTop : "64px")};
+  margin-top: ${(props) => (props.$marginTop ? props.$marginTop : "64px")};
   align-items: center;
   justify-content: space-between;
   padding: 20px;
@@ -86,10 +86,11 @@ export const BoothThumImg = styled.img`
 
 export const BoothRankInfo = styled.div`
   width: 50%;
+  margin-left: 5px;
 `;
 
 export const BoothRankTitle = styled.div`
-  font-size: 13px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 600;
 `;
@@ -113,7 +114,7 @@ export const BoothHeartImg = styled.img`
 
 export const BoothRankDes = styled.div`
   margin-top: 10px;
-  font-size: 10px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 500;
   line-height: 16px;
@@ -227,6 +228,7 @@ export const PromotionImg = styled.img`
   height: 100px;
   border-radius: 5px;
   background-color: #f1f1f1;
+  cursor: pointer;
 `;
 
 export const PromotionCount = styled.div`
