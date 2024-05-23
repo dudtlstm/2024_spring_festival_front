@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
-import * as S from './style';
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import * as S from "./style";
 
-const DateSelector = () => {
+const DateSelector = ({ date }) => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const dates = [28, 29, 30];
-  const [selectedDate, setSelectedDate] = useState(28);
+  const [selectedDate, setSelectedDate] = useState(date);
+  // const [selectedDate, setSelectedDate] = useState(28);
 
-  const handleDateClick = date => {
+  const handleDateClick = (date) => {
     setSelectedDate(date);
+
+    const pathnameDiv = location.pathname.split("/").slice(0, -1).join("/");
+    navigate(`${pathnameDiv}/${date}`);
   };
 
   return (
@@ -19,8 +26,8 @@ const DateSelector = () => {
             <S.DateSelectorItem
               key={index}
               onClick={() => handleDateClick(date)}
-              bgcolor={selectedDate === date ? '#F97C69' : ' #FBFBFB'}
-              color={selectedDate === date ? '#FFFFFF' : ' #C4C4C4'}
+              bgcolor={selectedDate === date ? "#F97C69" : " #FBFBFB"}
+              color={selectedDate === date ? "#FFFFFF" : " #C4C4C4"}
             >
               {date}일
             </S.DateSelectorItem>

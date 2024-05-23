@@ -6,13 +6,13 @@ import { loudspeaker } from "../../../assets/images/performance_images";
 const RealtimeEvent = ({ marginTop }) => {
   const [realtime, setRealtime] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  console.log(currentIndex);
+  // console.log(currentIndex);
 
   useEffect(() => {
     const fetchData = async () => {
       const realtimeList = await fetchRealtimeEvent();
       setRealtime(realtimeList);
-      console.log("실시간바 공연 정보 : ", realtimeList);
+      // console.log("실시간바 공연 정보 : ", realtimeList);
     };
 
     fetchData();
@@ -31,9 +31,6 @@ const RealtimeEvent = ({ marginTop }) => {
     }
   }, [realtime]);
 
-  console.log(realtime[0]);
-  console.log(realtime.length);
-
   return (
     <S.Wrapper marginTop={marginTop}>
       <S.RealtimeEventWrapper isseveral={realtime.length}>
@@ -51,7 +48,10 @@ const RealtimeEvent = ({ marginTop }) => {
             </S.TextWrapper>
           </S.RealtimeTxt>
         ) : (
-          <S.RealtimeTxt>진행중인 컨텐츠가 없습니다!</S.RealtimeTxt>
+          <S.RealtimeTxt>
+            <S.Loudspeaker src={loudspeaker} alt="📣" />
+            <S.TextWrapper>진행중인 컨텐츠가 없습니다!</S.TextWrapper>
+          </S.RealtimeTxt>
         )}
       </S.RealtimeEventWrapper>
     </S.Wrapper>
