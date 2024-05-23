@@ -26,25 +26,25 @@ const dummyData = [
   },
 ];
 
-const BoothList = ({ date, category }) => {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    fetchData();
-  }, [category]);
+const BoothList = ({ date, category, data }) => {
+  const [boothListData, setBoothListData] = useState([]);
+  // useEffect(() => {
+  //   fetchData();
+  // }, [category]);
 
-  const fetchData = async () => {
-    try {
-      const result = await booth(date, category);
-      console.log(result);
-      if (Array.isArray(result)) {
-        setData(result);
-      } else {
-        // console.error('Expected an array but got:', result);
-      }
-    } catch (error) {
-      // console.error('Fetch data error: ', error);
-    }
-  };
+  // const fetchData = async () => {
+  //   try {
+  //     const result = await booth(date, category);
+  //     console.log(result);
+  //     if (Array.isArray(result)) {
+  //       setBoothListData(result);
+  //     } else {
+  //       // console.error('Expected an array but got:', result);
+  //     }
+  //   } catch (error) {
+  //     // console.error('Fetch data error: ', error);
+  //   }
+  // };
 
   return (
     <S.BoothListWrapper>

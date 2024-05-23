@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import * as S from './style';
 import MarkerBooth from '../../../../public/booth/marker_booth.svg';
 
@@ -19,18 +19,21 @@ const dummyData = [
   },
 ];
 
-const Map = () => {
+const Map = data => {
   const [map, setMap] = useState();
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
+  const markersRef = useRef([]);
+
+  console.log('data: ', data.data);
 
   useEffect(() => {
     initMap();
-    setData(dummyData);
+    // setData(dummyData);
   }, []);
 
   useEffect(() => {
     if (map) {
-      makeMarker(data);
+      makeMarker(data.data);
     }
   }, [map, data]);
 
@@ -44,18 +47,25 @@ const Map = () => {
   };
 
   const makeMarker = data => {
-    data.forEach(data => {
-      const markerImage = new kakao.maps.MarkerImage(
-        MarkerBooth,
-        new kakao.maps.Size(24, 35)
-      );
+    // 기존 마커 제거
+    markersRef.current.forEach(marker => marker.setMap(null));
+    markersRef.current = [];
 
-      const marker = new kakao.maps.Marker({
-        position: new kakao.maps.LatLng(data.latitude, data.longitude),
-        image: markerImage,
+    if (data.length > 0) {
+      data.forEach(item => {
+        const markerImage = new kakao.maps.MarkerImage(
+          MarkerBooth,
+          new kakao.maps.Size(24, 35)
+        );
+
+        const marker = new kakao.maps.Marker({
+          position: new kakao.maps.LatLng(item.latitude, item.longitude),
+          image: markerImage,
+        });
+        marker.setMap(map);
+        markersRef.current.push(marker);
       });
-      marker.setMap(map);
-    });
+    }
   };
 
   useEffect(() => {
