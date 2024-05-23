@@ -5,6 +5,7 @@ import Map from '../../components/booth/map/Map';
 import Category from '../../components/booth/category/Category';
 import BoothList from '../../components/booth/boothList/BoothList';
 import { booth } from '../../apis/api/booth';
+import { boothDetail } from '../../apis/api/boothDetail';
 
 const Booth28 = ({ date }) => {
   const [category, setCategory] = useState('부스');
@@ -29,12 +30,26 @@ const Booth28 = ({ date }) => {
     }
   };
 
+  const handleLocationClick = async id => {
+    try {
+      const locationData = await boothDetail(id);
+      setData([locationData]);
+    } catch (e) {
+      // console.log(e);
+    }
+  };
+
   return (
     <>
       <Date28 url1={'/booth/29'} url2={'/booth/30'} />
       <Map data={data} />
       <Category category={category} setCategory={setCategory} />
-      <BoothList date={date} category={category} data={data} />
+      <BoothList
+        date={date}
+        category={category}
+        data={data}
+        onLocationClick={handleLocationClick}
+      />
     </>
   );
 };

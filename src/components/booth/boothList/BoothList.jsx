@@ -26,7 +26,7 @@ const dummyData = [
   },
 ];
 
-const BoothList = ({ date, category, data }) => {
+const BoothList = ({ date, category, data, onLocationClick }) => {
   const [boothListData, setBoothListData] = useState([]);
   // useEffect(() => {
   //   fetchData();
@@ -86,7 +86,9 @@ const BoothList = ({ date, category, data }) => {
             </S.BoothCardContent>
 
             {/* 위치보기 버튼 */}
-            <S.BoothCardContentLocation>
+            <S.BoothCardContentLocation
+              onClick={() => onLocationClick(booth.id)}
+            >
               <S.BoothCardContentLocationWrapper>
                 <S.BoothCardContentLocationImg src={LocationIcon} />
                 <S.BoothCardContentLocationText>
