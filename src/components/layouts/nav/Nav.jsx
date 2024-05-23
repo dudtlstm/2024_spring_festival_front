@@ -52,7 +52,7 @@ const Nav = () => {
   };
 
   return (
-    <S.NavWrapper>
+    <S.NavWrapper zIndex={50}>
       {route_map.map((page) => (
         <Link to={page.route} key={page.id}>
           <S.NavContainer

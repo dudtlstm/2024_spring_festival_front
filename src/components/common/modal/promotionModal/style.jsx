@@ -16,6 +16,7 @@ export const IsModal = styled(Modal)`
 
   background: rgba(0, 0, 0, 0.2);
   mix-blend-mode: multiply;
+  z-index: 200;
 `;
 
 export const SiteConnectWrapper = styled.div`

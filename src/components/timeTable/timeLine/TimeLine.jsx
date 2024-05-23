@@ -97,10 +97,11 @@ const TimeLine = ({ date }) => {
         </div>
         {performanceGrid("대운동장")}
         {performanceGrid("팔정도")}
-        <S.Grid
+        <S.RealTimeBar
           ref={scrollRef}
           top={barPosition}
           src={realtimeBarImg}
+          zIndex={30}
           alt="----------------------------"
         />
       </S.TimeGrid>
