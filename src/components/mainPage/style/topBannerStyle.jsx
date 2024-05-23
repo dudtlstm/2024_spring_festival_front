@@ -58,8 +58,8 @@ export const MiniBannerContainer = styled.div`
 `;
 
 export const MiniBannerItem = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 100px !important;
+  height: 100px !important;
   border-radius: 12px;
   cursor: pointer;
   object-fit: cover;

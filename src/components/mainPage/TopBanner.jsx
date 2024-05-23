@@ -4,15 +4,6 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import { createGlobalStyle } from "styled-components";
-
-//사파리 적용 위한 ....
-const GlobalStyle = createGlobalStyle`
-  .sc-duSHzT {
-    width: auto !important;
-  }
-`;
-
 function TopBanner() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -60,7 +51,6 @@ function TopBanner() {
 
   return (
     <>
-      <GlobalStyle />
       <S.BannerWrapper>
         <S.BannerContainer>
           <S.BigBannerImg src={`/image/mainpage/main_bg_${currentIndex}.png`} />
