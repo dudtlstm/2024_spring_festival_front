@@ -32,8 +32,9 @@ function TopBanner() {
     infinite: true,
     speed: 500,
     slidesToShow: 3.5,
+    autoplaySpeed: 3000,
     slidesToScroll: 1,
-    autoplay: false,
+    autoplay: true,
     arrows: false,
 
     responsive: [
@@ -54,7 +55,6 @@ function TopBanner() {
     ],
     beforeChange: (_, newIndex) => {
       setCurrentIndex(newIndex);
-      console.log(newIndex);
     },
   };
 

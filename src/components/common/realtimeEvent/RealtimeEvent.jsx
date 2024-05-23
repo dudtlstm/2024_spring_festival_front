@@ -3,7 +3,7 @@ import * as S from "./style";
 
 const RealtimeEvent = ({ marginTop }) => {
   return (
-    <S.Wrapper marginTop={marginTop}>
+    <S.Wrapper $marginTop={marginTop}>
       <S.RealtimeEventWrapper>
         <img src="./common/loudspeaker.svg" alt="📣" />
         <S.RealtimeTxt>
