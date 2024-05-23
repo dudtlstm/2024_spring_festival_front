@@ -39,11 +39,19 @@ const Booth28 = ({ date }) => {
     }
   };
 
+  const resetData = () => {
+    fetchData();
+  };
+
   return (
     <>
       <Date28 url1={'/booth/29'} url2={'/booth/30'} />
       <Map data={data} />
-      <Category category={category} setCategory={setCategory} />
+      <Category
+        category={category}
+        setCategory={setCategory}
+        resetData={resetData}
+      />
       <BoothList
         date={date}
         category={category}
