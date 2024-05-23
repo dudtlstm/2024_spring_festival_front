@@ -4,6 +4,7 @@ import PerformanceCard from "./PerformanceCard";
 import { realtimeBar, timeSlot } from "../../../utils/realtimeBar";
 import { fetchAllPerformance } from "../../../apis/api/timetable";
 import { testerDate } from "../../../utils/currentDate";
+import { realtimeBarImg } from "../../../assets/images/performance_images";
 
 const TimeLine = ({ date }) => {
   // const [festaDate, setFestaDate] = useState(date); // 페이지 -> 컴포넌트화 진행시 이 코드 사용
@@ -99,7 +100,7 @@ const TimeLine = ({ date }) => {
         <S.Grid
           ref={scrollRef}
           top={barPosition}
-          src="./timeTable/realtimeLine.svg"
+          src={realtimeBarImg}
           alt="----------------------------"
         />
       </S.TimeGrid>
