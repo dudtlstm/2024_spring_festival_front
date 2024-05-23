@@ -1,3 +1,4 @@
+// Nav.jsx
 import c_notice from "/layout/nav/c_notice.svg";
 import notice from "/layout/nav/notice.svg";
 import c_booth from "/layout/nav/c_booth.svg";
@@ -8,11 +9,23 @@ import c_performance from "/layout/nav/c_performance.svg";
 import performance from "/layout/nav/performance.svg";
 import c_promotion from "/layout/nav/c_promotion.svg";
 import promotion from "/layout/nav/promotion.svg";
+// Footer.jsx
 import developers from "/layout/footer/developers.svg";
 import github from "/layout/footer/github.svg";
 import instagram from "/layout/footer/instagram.svg";
+// Header.jsx
+import promotionText from "/layout/header/promotion.svg"
+import boothText from "/layout/header/booth.svg"
+import boothDetailText from "/layout/header/boothDetail.svg"
+import noticeText from "/layout/header/notice.svg"
+import noticeDetailText from "/layout/header/noticeDetail.svg"
+import timeTableText from "/layout/header/timeTable.svg"
+import developersText from "/layout/header/developers.svg"
+import main from "/layout/logo.svg"
+import lionImg from "/layout/lionImg.svg"
 
 export {
+  // Nav
   c_notice,
   notice,
   c_booth,
@@ -23,7 +36,18 @@ export {
   performance,
   c_promotion,
   promotion,
+  // Footer
   developers,
   github,
-  instagram
+  instagram,
+  // Header
+  promotionText,
+  boothText,
+  boothDetailText,
+  noticeText,
+  noticeDetailText,
+  timeTableText,
+  developersText,
+  main,
+  lionImg,
 };

@@ -6,6 +6,12 @@ import * as images from "../../../assets/images/layout_images";
 const Footer = () => {
   return (
     <S.FooterWrapper>
+      <S.Copyright>
+        동국대학교 멋쟁이사자처럼
+        <br />
+        @DGU Likelion. All rights Reserved.
+        <S.DesignSupport>@Design supported by 축제기획단</S.DesignSupport>
+      </S.Copyright>
       <S.ContectContainer>
         <S.IconContainer>
           <img src={images.developers} alt="developers" />
@@ -22,14 +28,6 @@ const Footer = () => {
           </Link>
         </S.IconContainer>
       </S.ContectContainer>
-      <S.FooterWrapper>
-        <S.Copyright>
-          동국대학교 멋쟁이사자처럼
-          <br />
-          @DGU Likelion. All rights Reserved.
-          <S.DesignSupport>@Design supported by 축제기획단</S.DesignSupport>
-        </S.Copyright>
-      </S.FooterWrapper>
     </S.FooterWrapper>
   );
 };

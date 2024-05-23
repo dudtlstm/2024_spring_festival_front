@@ -1,16 +1,17 @@
 import React from "react";
 import * as S from "./style";
 import { Link } from "react-router-dom";
+import * as images from "../../../assets/images/layout_images";
 
 const logoMap = {
-  "/promotion": "./layout/header/promotion.svg",
-  "/booths": "./layout/header/booth.svg",
-  "/boothsDetail": "./layout/header/boothDetail.svg",
-  "/notice": "./layout/header/notice.svg",
-  "/noticeDetail": "./layout/header/noticeDetail.svg",
-  "/timeTable": "./layout/header/timeTable.svg",
-  "/about": "./layout/header/developers.svg",
-  "/": "./layout/logo.svg",
+  "/promotion": images.promotionText,
+  "/booths": images.boothText,
+  "/boothsDetail": images.boothDetailText,
+  "/notice": images.noticeText,
+  "/noticeDetail": images.noticeDetailText,
+  "/performance": images.timeTableText,
+  "/about": images.developersText,
+  "/": images.main,
 };
 
 const Header = ({ currentPath }) => {
@@ -20,6 +21,8 @@ const Header = ({ currentPath }) => {
     logoSrc = logoMap["/boothsDetail"];
   } else if (currentPath.startsWith("/notice/")) {
     logoSrc = logoMap["/noticeDetail"];
+  } else if (currentPath.startsWith("/performance")) {
+    logoSrc = logoMap["/performance"];
   } else {
     logoSrc = logoMap[currentPath] || logoMap["/"];
   }
@@ -30,7 +33,7 @@ const Header = ({ currentPath }) => {
       <img src={logoSrc} alt="무아지경" />
 
       <Link to={"about"}>
-        <img src="./layout/lionImg.svg" alt="🦁" />
+        <img src={images.lionImg} alt="🦁" />
       </Link>
     </S.HeaderWrapper>
   );
