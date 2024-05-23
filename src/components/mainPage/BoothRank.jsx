@@ -11,12 +11,23 @@ const BoothRank = () => {
     const fetchData = async () => {
       const today = new Date();
       const formattedDate = today.getDate();
-      const data = await getTopBooth(formattedDate);
+      //api 테스트 위한 코드로 실제로는 formattedDate -1 이 아닌 formattedDate로 해야 함
+      const data = await getTopBooth(formattedDate - 1);
       setTop3Booths(data);
     };
 
     fetchData();
   }, []);
+
+  const truncateTitle = (title, maxLength) => {
+    return title.length > maxLength ? `${title.slice(0, maxLength)}...` : title;
+  };
+
+  const truncateDescript = (descript, maxLength) => {
+    return descript.length > maxLength
+      ? `${descript.slice(0, maxLength)}...`
+      : descript;
+  };
 
   return (
     <S.BoothRankWrapper>
@@ -25,10 +36,10 @@ const BoothRank = () => {
         {top3Booths.map((booth, index) => (
           <BoothRankCard
             key={index}
-            thumImg={booth.thumbnail}
-            title={booth.name}
+            thumImg={booth.thumbnail || "/image/common/default.png"}
+            title={truncateTitle(booth.name, 8)}
             heartNum={booth.like_cnt}
-            descript={booth.description}
+            descript={truncateDescript(booth.description, 20)}
             src={
               index === 0
                 ? "/image/mainpage/num_1.png"

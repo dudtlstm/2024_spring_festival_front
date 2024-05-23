@@ -23,11 +23,12 @@ function MainPromotion() {
   }, []);
 
   const settings = {
-    focusOnSelect: true,
+    // focusOnSelect: true,
     dots: false,
     infinite: false,
     slidesToShow: 1,
     slidesToScroll: 1,
+    fade: true,
     arrows: false,
     beforeChange: (oldIndex, newIndex) => {
       setCurrentIndex(newIndex);
@@ -41,7 +42,7 @@ function MainPromotion() {
         {images.length > 0 ? (
           <Slider {...settings}>
             {images.map((d, index) => (
-              <S.PromotionImg key={index} src={d.img} />
+              <S.PromotionImg key={index} src={d.img} loading="lazy" />
             ))}
           </Slider>
         ) : (

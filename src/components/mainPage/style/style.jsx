@@ -26,7 +26,7 @@ export const MoreInfo = styled.div`
 
 export const LineUpWrapper = styled.div`
   width: 100%;
-  padding-left: 20px;
+  /* padding-left: 20px; */
 `;
 
 export const LineUpImgContainer = styled.div`
@@ -41,7 +41,8 @@ export const LineUpImgContainer = styled.div`
 `;
 
 export const LineUpImg = styled.img`
-  width: 100px;
+  /* width: 100px; */
+  height: 160px;
 `;
 
 //BoothRank.jsx
@@ -88,7 +89,7 @@ export const BoothRankInfo = styled.div`
 `;
 
 export const BoothRankTitle = styled.div`
-  font-size: 16px;
+  font-size: 13px;
   font-style: normal;
   font-weight: 600;
 `;
@@ -112,7 +113,7 @@ export const BoothHeartImg = styled.img`
 
 export const BoothRankDes = styled.div`
   margin-top: 10px;
-  font-size: 12px;
+  font-size: 10px;
   font-style: normal;
   font-weight: 500;
   line-height: 16px;
@@ -130,6 +131,7 @@ export const BoothMore = styled.div`
   width: 52px;
   height: 90px;
   cursor: pointer;
+  margin-left: auto;
 `;
 
 export const BoothMoreArrow = styled.img`

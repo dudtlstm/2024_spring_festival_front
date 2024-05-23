@@ -52,7 +52,7 @@ function MainNotice() {
           {noticeData.map((d) => (
             <Link to={`/notice/${d.id}`} key={d.id}>
               <S.NoticeCard>
-                <S.NoticeImg src={d.thumbnail} />
+                <S.NoticeImg src={d.thumbnail} loading="lazy" />
                 <S.NoticeTitle>{d.title}</S.NoticeTitle>
                 <S.NoticeDes>{d.short_description}</S.NoticeDes>
               </S.NoticeCard>
