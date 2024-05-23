@@ -41,6 +41,16 @@ const Booth28 = ({ date }) => {
     }
   };
 
+  const handleMarkerClick = async id => {
+    try {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      const locationData = await boothDetail(id);
+      setData([locationData]);
+    } catch (e) {
+      // console.log(e);
+    }
+  };
+
   const resetData = () => {
     setSelectedBoothId(null);
     fetchData();
@@ -54,6 +64,7 @@ const Booth28 = ({ date }) => {
         category={category}
         selectedBoothId={selectedBoothId}
         resetData={resetData}
+        onMarkerClick={handleMarkerClick}
       />
       <Category
         category={category}

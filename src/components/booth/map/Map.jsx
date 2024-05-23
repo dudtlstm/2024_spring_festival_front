@@ -21,10 +21,9 @@ const dummyData = [
   },
 ];
 
-const Map = ({ data, category, selectedBoothId, resetData }) => {
+const Map = ({ data, category, selectedBoothId, resetData, onMarkerClick }) => {
   console.log('잘 받고있니>?', selectedBoothId);
   const [map, setMap] = useState();
-  // const [data, setData] = useState([]);
   const markersRef = useRef([]);
 
   useEffect(() => {
@@ -87,6 +86,10 @@ const Map = ({ data, category, selectedBoothId, resetData }) => {
         });
         marker.setMap(map);
         markersRef.current.push(marker);
+
+        kakao.maps.event.addListener(marker, 'click', function () {
+          onMarkerClick(item.id);
+        });
 
         if (selectedBoothId === item.id) {
           map.setCenter(new kakao.maps.LatLng(item.latitude, item.longitude));
