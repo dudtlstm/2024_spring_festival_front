@@ -56,9 +56,9 @@ export const RealtimeLine = styled.img`
   position: absolute;
   width: 100%;
   top: 500px;
-  z-index: 50;
+  /* z-index: 50; */
 `;
-export const Grid = styled.img`
+export const RealTimeBar = styled.img`
   display: ${(props) => props.top == null && "none"};
   grid-column: 2/4;
   width: 100%;
@@ -134,7 +134,7 @@ export const PerformanceCardWrapper = styled.div`
   background: ${(props) =>
     props.bgcolor == "now" ? "rgba(250, 148, 135, 0.20)" : "#FBFBFB"};
 
-  z-index: 10;
+  /* z-index: 10; */
 `;
 export const PerformanceTeam = styled.div`
   color: var(--use-font-font---body, #474747);
@@ -146,6 +146,10 @@ export const PerformanceTeam = styled.div`
   font-weight: 600;
   line-height: 20px; /* 125% */
   letter-spacing: -0.16px;
+
+  @media (max-width: 385px) {
+    font-size: 14px;
+  }
 `;
 export const PerformanceTime = styled.div`
   color: var(--use-font-font---info, #929292);
@@ -156,4 +160,8 @@ export const PerformanceTime = styled.div`
   font-style: normal;
   font-weight: 500;
   line-height: 16px; /* 133.333% */
+
+  @media (max-width: 385px) {
+    font-size: 10px;
+  }
 `;

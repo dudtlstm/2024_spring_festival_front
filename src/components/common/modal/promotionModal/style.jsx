@@ -14,12 +14,14 @@ export const IsModal = styled(Modal)`
   height: 100%;
   background: rgba(0, 0, 0, 0.2);
   /* mix-blend-mode: multiply; */
-  z-index: 10000 !important;
+  /* z-index: 10000 !important; */
 `;
 
 export const CustomOverlay = styled.div`
   position: fixed;
   inset: 0;
+  mix-blend-mode: multiply;
+  z-index: 200;
 `;
 
 export const SiteConnectWrapper = styled.div`

@@ -15,7 +15,7 @@ export const NavWrapper = styled.div`
   background: #fff;
   box-shadow: 0px -2px 4px 0px rgba(226, 230, 239, 0.25);
 
-  z-index: 50;
+  /* z-index: 50; */
 `;
 export const NavContainer = styled.div`
   display: flex;
