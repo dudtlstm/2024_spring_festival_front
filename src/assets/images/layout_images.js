@@ -23,6 +23,7 @@ import timeTableText from "/layout/header/timeTable.svg"
 import developersText from "/layout/header/developers.svg"
 import main from "/layout/logo.svg"
 import lionImg from "/layout/lionImg.svg"
+import prev from "/layout/header/prev.svg"
 
 export {
   // Nav
@@ -50,4 +51,5 @@ export {
   developersText,
   main,
   lionImg,
+  prev,
 };
