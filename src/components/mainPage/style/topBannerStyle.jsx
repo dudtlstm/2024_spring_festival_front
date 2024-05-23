@@ -58,14 +58,14 @@ export const MiniBannerContainer = styled.div`
 `;
 
 export const MiniBannerItem = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 100px !important;
+  height: 100px !important;
   border-radius: 12px;
   cursor: pointer;
   object-fit: cover;
 
   &.active {
     box-shadow: 0px 0px 8px 0px rgba(247, 100, 78, 0.6);
-    /* transform: scale(1.1); */
+    transform: scale(1.1);
   }
 `;

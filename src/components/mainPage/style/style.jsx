@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const TitleWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  margin-top: ${(props) => (props.marginTop ? props.marginTop : "64px")};
+  margin-top: ${(props) => (props.$marginTop ? props.$marginTop : "64px")};
   align-items: center;
   justify-content: space-between;
   padding: 20px;
@@ -26,7 +26,7 @@ export const MoreInfo = styled.div`
 
 export const LineUpWrapper = styled.div`
   width: 100%;
-  padding-left: 20px;
+  /* padding-left: 20px; */
 `;
 
 export const LineUpImgContainer = styled.div`
@@ -41,7 +41,8 @@ export const LineUpImgContainer = styled.div`
 `;
 
 export const LineUpImg = styled.img`
-  width: 100px;
+  /* width: 100px; */
+  height: 160px;
 `;
 
 //BoothRank.jsx
@@ -85,6 +86,7 @@ export const BoothThumImg = styled.img`
 
 export const BoothRankInfo = styled.div`
   width: 50%;
+  margin-left: 5px;
 `;
 
 export const BoothRankTitle = styled.div`
@@ -130,6 +132,7 @@ export const BoothMore = styled.div`
   width: 52px;
   height: 90px;
   cursor: pointer;
+  margin-left: auto;
 `;
 
 export const BoothMoreArrow = styled.img`
@@ -225,6 +228,7 @@ export const PromotionImg = styled.img`
   height: 100px;
   border-radius: 5px;
   background-color: #f1f1f1;
+  cursor: pointer;
 `;
 
 export const PromotionCount = styled.div`
