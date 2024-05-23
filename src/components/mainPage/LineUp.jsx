@@ -5,12 +5,15 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { fetchArtistImages } from "../../apis/api/getLineUp";
+import { currentDate } from "../../utils/currentDate";
 
 function LineUp() {
   const [artistImages, setArtistImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const sliderRef = useRef(null);
   const lineUpRef = useRef(null);
+
+  const day = currentDate(); // today가 축제 당일이 아니라면, 28일로 초기화해주는 함수
 
   useEffect(() => {
     const fetchData = async () => {
@@ -74,8 +77,12 @@ function LineUp() {
 
   return (
     <S.LineUpWrapper>
-      <TitleComponent title={"라인업"} to={"/timeTable"} $marginTop={"32px"} />
-      <S.LineUpImgContainer ref={lineUpRef}>
+      <TitleComponent
+        title={"라인업"}
+        to={`/performance/${day}`} // 공연 각 날짜별 페이지로 이동
+        marginTop={"32px"}
+      />
+      <S.LineUpImgContainer>
         {loading ? (
           <Slider {...settings}>
             {[1, 2, 3].map((index) => (

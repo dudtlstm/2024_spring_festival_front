@@ -39,10 +39,14 @@ export const LineupLabel = styled.div`
 
   width: 100%;
   position: relative;
-  /* width: ${(props) => (props.artist == props.focusartist ? 200 : 64)}px; */
+
+  transition: width 0.3s ease, transform 0.3s ease;
+
   img {
-    width: ${(props) => (props.artist_id == props.focus_id ? 200 : "")}px;
+    width: ${(props) =>
+      props.artist_id === props.focus_id ? "200px" : "64px"};
     object-fit: cover;
+    transition: width 0.3s ease;
   }
 `;
 export const LineupBannerImg = styled.img`

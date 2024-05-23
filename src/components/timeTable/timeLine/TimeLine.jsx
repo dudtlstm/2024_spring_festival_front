@@ -3,11 +3,15 @@ import * as S from "./style";
 import PerformanceCard from "./PerformanceCard";
 import { realtimeBar, timeSlot } from "../../../utils/realtimeBar";
 import { fetchAllPerformance } from "../../../apis/api/timetable";
+import { testerDate } from "../../../utils/currentDate";
+import { realtimeBarImg } from "../../../assets/images/performance_images";
 
 const TimeLine = ({ date }) => {
-  // const [festaDate, setFestaDate] = useState(date); // 축제 당일 날짜
-  const [festaDate, setFestaDate] = useState(22); // 개발 단계 임의 날짜
+  // const [festaDate, setFestaDate] = useState(date); // 페이지 -> 컴포넌트화 진행시 이 코드 사용
+  const [festaDate, setFestaDate] = useState(testerDate()); // 개발 단계에서 실시간 바를 적용해보고자 하는 태스트 용도
+  // 실시간 바의 top 상태 변경
   const [barPosition, setBarPosition] = useState(realtimeBar(festaDate));
+  // 팔정도, 대운동장 공연 리스트 상태 변경
   const [paljeongPerformances, setPaljeongPerformances] = useState([]);
   const [grandPerformances, setGrandPerformances] = useState([]);
   const scrollRef = useRef(null);
@@ -16,14 +20,16 @@ const TimeLine = ({ date }) => {
     const fetchData = async () => {
       // 팔정도 공연 정보
       const paljeongPerformance = await fetchAllPerformance(
-        festaDate,
+        // date,
+        festaDate, // 실시간 더미데이터 확인 용도
         "팔정도"
       );
       // console.log("팔정도 공연 정보:", paljeongPerformance);
       setPaljeongPerformances(paljeongPerformance);
 
       // 대운동장 공연 정보
-      const grandPerformance = await fetchAllPerformance(festaDate, "대운동장");
+      // const grandPerformance = await fetchAllPerformance(date, "대운동장");
+      const grandPerformance = await fetchAllPerformance(festaDate, "대운동장"); // 실시간 더미데이터 확인 용도
       // console.log("대운동장 공연 정보:", grandPerformance);
       setGrandPerformances(grandPerformance);
     };
@@ -34,7 +40,8 @@ const TimeLine = ({ date }) => {
   // 1분 단위로 실시간 바 위치 정보 업데이트
   useEffect(() => {
     const interval = setInterval(() => {
-      setBarPosition(realtimeBar(festaDate));
+      // setBarPosition(realtimeBar(festaDate)); // 실시간 더미데이터 확인 용도
+      setBarPosition(realtimeBar(date));
     }, 1000 * 60);
 
     return () => clearInterval(interval);
@@ -93,7 +100,7 @@ const TimeLine = ({ date }) => {
         <S.Grid
           ref={scrollRef}
           top={barPosition}
-          src="./timeTable/realtimeLine.svg"
+          src={realtimeBarImg}
           alt="----------------------------"
         />
       </S.TimeGrid>

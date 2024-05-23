@@ -6,7 +6,7 @@ export const GlobalStyle = createGlobalStyle`
     --vh: 100%;
     display: flex;
     justify-content: center;
-    background-color: black;
+    background-color: white;
    }
 
   html, body, div, span, applet, object, iframe,
