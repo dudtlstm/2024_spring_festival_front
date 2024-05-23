@@ -130,7 +130,7 @@ export const Playlist = styled.div`
   gap: 12px;
   align-self: stretch;
 `;
-export const Music = styled.div`
+export const Music = styled.a`
   display: flex;
   padding: 8px 12px 8px 8px;
   align-items: center;
@@ -165,7 +165,7 @@ export const PlaylistImg = styled.img`
   border: 1px solid var(--use-stroke-stroke---disable, #e2e3ec);
   background: url(<path-to-image>) lightgray 50% / cover no-repeat;
 `;
-export const PlaylistLink = styled.a`
+export const PlaylistLink = styled.img`
   margin-left: auto;
 `;
 export const Line = styled.div`

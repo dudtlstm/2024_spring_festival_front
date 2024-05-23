@@ -6,13 +6,11 @@ import { loudspeaker } from "../../../assets/images/performance_images";
 const RealtimeEvent = ({ marginTop }) => {
   const [realtime, setRealtime] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  // console.log(currentIndex);
 
   useEffect(() => {
     const fetchData = async () => {
       const realtimeList = await fetchRealtimeEvent();
       setRealtime(realtimeList);
-      // console.log("실시간바 공연 정보 : ", realtimeList);
     };
 
     fetchData();

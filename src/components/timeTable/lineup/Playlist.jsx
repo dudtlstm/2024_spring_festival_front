@@ -14,7 +14,8 @@ const Playlist = ({ artist_id }) => {
 
     fetchData();
   }, [artist_id]);
-  // console.log();
+
+  window;
   return (
     <S.PlaylistWrapper>
       <S.PlaylistGuide>
@@ -24,12 +25,10 @@ const Playlist = ({ artist_id }) => {
       <S.Playlist>
         {playlist.musics &&
           playlist.musics.map((music) => (
-            <S.Music key={music.id}>
+            <S.Music key={music.id} href={music.ytb_url}>
               <S.PlaylistImg src={music.album} alt={music.title} />
               <S.PlaylistTitle>{music.title}</S.PlaylistTitle>
-              <S.PlaylistLink href={music.ytb_url}>
-                <img src={playBtn} alt="▶︎" />
-              </S.PlaylistLink>
+              <S.PlaylistLink src={playBtn} alt="▶︎" />
             </S.Music>
           ))}
       </S.Playlist>
