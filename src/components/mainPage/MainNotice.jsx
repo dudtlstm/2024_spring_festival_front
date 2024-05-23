@@ -56,7 +56,10 @@ function MainNotice() {
           {noticeData.map((d) => (
             <Link to={`/notice/${d.id}`} key={d.id}>
               <S.NoticeCard>
-                <S.NoticeImg src={d.thumbnail} loading="lazy" />
+                <S.NoticeImg
+                  src={d.thumbnail || "/image/common/default.png"}
+                  loading="lazy"
+                />
                 <S.NoticeTitle>{truncateTitle(d.title, 8)}</S.NoticeTitle>
                 <S.NoticeDes>{d.short_description}</S.NoticeDes>
               </S.NoticeCard>
