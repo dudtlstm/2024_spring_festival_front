@@ -20,6 +20,7 @@ const slideUpAnimation = keyframes`
 `;
 
 export const Wrapper = styled.div`
+  margin-top: ${(props) => (props.marginTop ? props.marginTop : "0px")};
   display: flex;
   padding: 4px 0px 8px 0px;
   flex-direction: column;

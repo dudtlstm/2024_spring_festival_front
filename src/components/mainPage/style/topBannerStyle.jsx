@@ -25,18 +25,19 @@ export const MiniBannerContainer = styled.div`
   bottom: 80px;
   left: 0;
   transform: translateY(100%);
+  -webkit-transform: translateY(100%);
 
   .slick-track {
     width: 100%;
     height: 110px;
-    padding-left: 20px;
+    padding-left: 60px;
 
-    @media (max-width: 380px) {
-      padding-left: 120px;
+    @media (max-width: 391px) {
+      padding-left: 10px;
     }
 
     @media (max-width: 350px) {
-      padding-left: 50px;
+      padding-left: 60px;
     }
   }
 
@@ -52,6 +53,7 @@ export const MiniBannerContainer = styled.div`
     justify-content: center;
     align-items: center;
     height: 110px;
+    flex: 0 0 auto;
   }
 `;
 
@@ -60,8 +62,10 @@ export const MiniBannerItem = styled.img`
   height: 100px;
   border-radius: 12px;
   cursor: pointer;
+  object-fit: cover;
 
   &.active {
     box-shadow: 0px 0px 8px 0px rgba(247, 100, 78, 0.6);
+    /* transform: scale(1.1); */
   }
 `;

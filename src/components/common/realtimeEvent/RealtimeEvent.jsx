@@ -3,7 +3,7 @@ import * as S from "./style";
 import { fetchRealtimeEvent } from "../../../apis/api/realtimeEvent";
 import { loudspeaker } from "../../../assets/images/performance_images";
 
-const RealtimeEvent = () => {
+const RealtimeEvent = ({ marginTop }) => {
   const [realtime, setRealtime] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   console.log(currentIndex);
@@ -35,7 +35,7 @@ const RealtimeEvent = () => {
   console.log(realtime.length);
 
   return (
-    <S.Wrapper>
+    <S.Wrapper marginTop={marginTop}>
       <S.RealtimeEventWrapper isseveral={realtime.length}>
         {realtime?.length > 0 ? (
           <S.RealtimeTxt

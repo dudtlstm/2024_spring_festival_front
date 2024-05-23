@@ -11,10 +11,11 @@ function LineUp() {
   const [loading, setLoading] = useState(true);
   const sliderRef = useRef(null);
 
-  //api 호출
   useEffect(() => {
     const fetchData = async () => {
-      const imageData = await fetchArtistImages("someDay");
+      const today = new Date();
+      const day = today.getDate();
+      const imageData = await fetchArtistImages(day);
       setArtistImages(imageData);
       setLoading(false);
     };
@@ -22,34 +23,29 @@ function LineUp() {
     fetchData();
   }, []);
 
-  //슬라이드 구현
-  // useEffect(() => {
-  //   const slider = sliderRef.current;
-
-  //   const startAutoplay = () => slider.slickPlay();
-  //   const stopAutoplay = () => slider.slickPause();
-  //   startAutoplay();
-  //   return () => {
-  //     stopAutoplay();
-  //   };
-  // }, []);
+  useEffect(() => {
+    const slider = sliderRef.current;
+    if (slider) {
+      slider.slickPause();
+    }
+  }, []);
 
   const settings = {
     ref: sliderRef,
     focusOnSelect: true,
     dots: false,
     infinite: false,
-    autoplaySpeed: 200,
+    // autoplaySpeed: 200,
     speed: 1000,
-    slidesToShow: 1.8,
+    slidesToShow: 2.3,
     slidesToScroll: 1,
-    autoplay: true,
+    // autoplay: true,
     arrows: false,
   };
 
   return (
     <S.LineUpWrapper>
-      <TitleComponent title={"라인업"} to={"/timeTable"} />
+      <TitleComponent title={"라인업"} to={"/timeTable"} marginTop={"32px"} />
       <S.LineUpImgContainer>
         {loading ? (
           <Slider {...settings}>

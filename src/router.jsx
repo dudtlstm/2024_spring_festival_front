@@ -1,6 +1,19 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import Mainpage from "./pages/mainpage/Mainpage";
+import Booth28 from "./pages/booth/Booth28";
+import Booth29 from "./pages/booth/Booth29";
+import Booth30 from "./pages/booth/Booth30";
+import TimeTable from "./pages/timeTable/TimeTable";
+import Notice from "./pages/notice/Notice";
+import Promotion from "./pages/promotion/Promotion";
+import About from "./pages/about/About";
+import NotFound from "./NotFound";
+import BoothDetail from "./pages/booth/BoothDetail";
+import NoticeDetail from "./pages/notice/NoticeDetail";
+import { createBrowserRouter } from "react-router-dom";
+import App from "./App";
+import Mainpage from "./pages/mainpage/Mainpage";
 import Booth from "./pages/booth/Booth";
 import TimeTable from "./pages/timeTable/TimeTable";
 import Notice from "./pages/notice/Notice";
@@ -22,8 +35,10 @@ const router = createBrowserRouter([
       { path: "/", element: <Mainpage /> },
 
       // 부스 페이지
-      { path: "/booths", element: <Booth /> },
-      { path: "/booths/:id", element: <BoothDetail /> },
+      { path: "booth/28", element: <Booth28 date="28" /> },
+      { path: "booth/29", element: <Booth29 date="29" /> },
+      { path: "booth/30", element: <Booth30 date="30" /> },
+      { path: "booths/:id", element: <BoothDetail /> },
 
       // 타임테이블 페이지
       // { path: "/performance", element: <TimeTable /> },
