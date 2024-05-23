@@ -46,7 +46,7 @@ const Booth28 = ({ date }) => {
   return (
     <>
       <Date28 url1={'/booth/29'} url2={'/booth/30'} />
-      <Map data={data} />
+      <Map data={data} category={category} />
       <Category
         category={category}
         setCategory={setCategory}

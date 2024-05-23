@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import * as S from './style';
 import MarkerBooth from '../../../../public/booth/marker_booth.svg';
+import MarkerFood from '../../../../public/booth/marker_food.svg';
+import MarkerMarket from '../../../../public/booth/marker_market.svg';
 
 const dummyData = [
   {
@@ -19,12 +21,11 @@ const dummyData = [
   },
 ];
 
-const Map = data => {
+const Map = ({ data, category }) => {
+  console.log('잘 받고있니>?', category);
   const [map, setMap] = useState();
   // const [data, setData] = useState([]);
   const markersRef = useRef([]);
-
-  console.log('data: ', data.data);
 
   useEffect(() => {
     initMap();
@@ -33,7 +34,7 @@ const Map = data => {
 
   useEffect(() => {
     if (map) {
-      makeMarker(data.data);
+      makeMarker(data);
     }
   }, [map, data]);
 
@@ -46,6 +47,26 @@ const Map = data => {
     setMap(new kakao.maps.Map(container, options));
   };
 
+  const changeMarkerImg = category => {
+    switch (category) {
+      case '푸드트럭':
+        return new kakao.maps.MarkerImage(
+          MarkerFood,
+          new kakao.maps.Size(24, 35)
+        );
+      case '플리마켓':
+        return new kakao.maps.MarkerImage(
+          MarkerMarket,
+          new kakao.maps.Size(24, 35)
+        );
+      default:
+        return new kakao.maps.MarkerImage(
+          MarkerBooth,
+          new kakao.maps.Size(24, 35)
+        );
+    }
+  };
+
   const makeMarker = data => {
     // 기존 마커 제거
     markersRef.current.forEach(marker => marker.setMap(null));
@@ -53,10 +74,7 @@ const Map = data => {
 
     if (data.length > 0) {
       data.forEach(item => {
-        const markerImage = new kakao.maps.MarkerImage(
-          MarkerBooth,
-          new kakao.maps.Size(24, 35)
-        );
+        const markerImage = changeMarkerImg(category);
 
         const marker = new kakao.maps.Marker({
           position: new kakao.maps.LatLng(item.latitude, item.longitude),
