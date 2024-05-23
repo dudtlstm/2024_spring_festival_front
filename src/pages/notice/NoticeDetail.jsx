@@ -62,10 +62,9 @@ const NoticeDetail = () => {
           src={noticeDetail.images[currentIndex]}
           alt={`Notice image ${currentIndex + 1}`}
         />
+        <S.LeftButton onClick={handlePrevClick} />
+        <S.RightButton onClick={handleNextClick} />
       </S.ImageContainer>
-
-      <S.LeftButton onClick={handlePrevClick} />
-      <S.RightButton onClick={handleNextClick} />
 
       <S.Pagination>
         {noticeDetail.images.map((_, index) => (
