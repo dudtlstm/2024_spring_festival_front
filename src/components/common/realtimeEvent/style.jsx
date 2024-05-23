@@ -52,6 +52,13 @@ export const RealtimeTxt = styled.div`
   font-weight: 500;
   line-height: 24px;
   letter-spacing: -0.25px;
+
+  @media (max-width: 385px) {
+    font-size: 14px;
+  }
+  @media (max-width: 350px) {
+    font-size: 12px;
+  }
 `;
 export const Loudspeaker = styled.img`
   margin-right: 10px;

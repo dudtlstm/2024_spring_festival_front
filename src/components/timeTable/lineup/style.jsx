@@ -44,9 +44,34 @@ export const LineupLabel = styled.div`
 
   img {
     width: ${(props) =>
-      props.artist_id === props.focus_id ? "200px" : "64px"};
+      props.artist_id === props.focus_id ? "205px" : "70px"};
     object-fit: cover;
     transition: width 0.3s ease;
+  }
+
+  @media (max-width: 390px) {
+    img {
+      width: ${(props) =>
+        props.artist_id === props.focus_id ? "200px" : "64px"};
+      object-fit: cover;
+      transition: width 0.3s ease;
+    }
+  }
+  @media (max-width: 365px) {
+    img {
+      width: ${(props) =>
+        props.artist_id === props.focus_id ? "190px" : "54px"};
+      object-fit: cover;
+      transition: width 0.3s ease;
+    }
+  }
+  @media (max-width: 340px) {
+    img {
+      width: ${(props) =>
+        props.artist_id === props.focus_id ? "180px" : "44px"};
+      object-fit: cover;
+      transition: width 0.3s ease;
+    }
   }
 `;
 export const LineupBannerImg = styled.img`
@@ -73,6 +98,10 @@ export const LineupSinger = styled.p`
   left: 8px;
 
   z-index: 10;
+
+  @media (max-width: 380px) {
+    font-size: 10px;
+  }
 `;
 export const PlaylistWrapper = styled.div`
   display: flex;
@@ -124,6 +153,10 @@ export const PlaylistTitle = styled.div`
   font-weight: 500;
   line-height: 24px; /* 150% */
   letter-spacing: -0.25px;
+
+  @media (max-width: 385px) {
+    font-size: 14px;
+  }
 `;
 export const PlaylistImg = styled.img`
   width: 44px;

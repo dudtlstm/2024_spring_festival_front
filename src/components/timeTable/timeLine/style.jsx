@@ -146,6 +146,10 @@ export const PerformanceTeam = styled.div`
   font-weight: 600;
   line-height: 20px; /* 125% */
   letter-spacing: -0.16px;
+
+  @media (max-width: 385px) {
+    font-size: 14px;
+  }
 `;
 export const PerformanceTime = styled.div`
   color: var(--use-font-font---info, #929292);
@@ -156,4 +160,8 @@ export const PerformanceTime = styled.div`
   font-style: normal;
   font-weight: 500;
   line-height: 16px; /* 133.333% */
+
+  @media (max-width: 385px) {
+    font-size: 10px;
+  }
 `;
