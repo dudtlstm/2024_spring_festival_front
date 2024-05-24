@@ -65,7 +65,6 @@ export const IconContainer = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: 4px;
   width: 80px;
 
   color: var(--use-font-font---info, #929292);
@@ -76,4 +75,17 @@ export const IconContainer = styled.div`
   font-style: normal;
   font-weight: 400;
   line-height: 12px; /* 120% */
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: inherit;
+    gap: 4px;
+  }
+
+  img {
+    display: block;
+  }
 `;
