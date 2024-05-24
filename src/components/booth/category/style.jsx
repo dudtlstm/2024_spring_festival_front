@@ -11,7 +11,7 @@ export const CategoryWrapper = styled.div`
 export const CategoryItems = styled.div`
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
 `;
 
 export const CategoryItem = styled.div`

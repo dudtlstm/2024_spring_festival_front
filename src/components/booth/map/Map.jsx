@@ -87,7 +87,8 @@ const Map = ({ data, category, selectedBoothId, resetData, onMarkerClick }) => {
         marker.setMap(map);
         markersRef.current.push(marker);
 
-        kakao.maps.event.addListener(marker, 'click', function () {
+        // Add click event listener for the marker
+        kakao.maps.event.addListener(marker, 'click', () => {
           onMarkerClick(item.id);
         });
 
