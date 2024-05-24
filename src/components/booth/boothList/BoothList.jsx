@@ -26,28 +26,24 @@ const dummyData = [
   },
 ];
 
-const BoothList = ({ date, category }) => {
-  const [data, setData] = useState([]);
-  console.log('dyrl: ', category);
+const BoothList = ({ date, category, data, onLocationClick }) => {
+  // useEffect(() => {
+  //   fetchData();
+  // }, [category]);
 
-  console.log('here', date);
-
-  useEffect(() => {
-    fetchData();
-  }, [category]);
-
-  const fetchData = async () => {
-    try {
-      const result = await booth(date, category);
-      if (Array.isArray(result)) {
-        setData(result);
-      } else {
-        // console.error('Expected an array but got:', result);
-      }
-    } catch (error) {
-      // console.error('Fetch data error: ', error);
-    }
-  };
+  // const fetchData = async () => {
+  //   try {
+  //     const result = await booth(date, category);
+  //     console.log(result);
+  //     if (Array.isArray(result)) {
+  //       setBoothListData(result);
+  //     } else {
+  //       // console.error('Expected an array but got:', result);
+  //     }
+  //   } catch (error) {
+  //     // console.error('Fetch data error: ', error);
+  //   }
+  // };
 
   return (
     <S.BoothListWrapper>
@@ -56,7 +52,7 @@ const BoothList = ({ date, category }) => {
           <S.BoothCardWrapper key={booth.id}>
             <S.BoothCardContent>
               {/* 부스 이미지 */}
-              <S.BoothCardImg src={booth.img || BoothImg} />
+              <S.BoothCardImg src={booth.thumbnail || BoothImg} />
               <S.BoothCardContentInfo>
                 <S.BoothCardContentInfoTitle>
                   {booth.name}
@@ -66,7 +62,7 @@ const BoothList = ({ date, category }) => {
                 <S.BoothCardContentInfoLike>
                   <S.BoothCardContentInfoLikeImg src={LikeIcon} />
                   <S.BoothCardContentInfoLikeCnt>
-                    {booth.like}
+                    {booth.like_cnt}
                   </S.BoothCardContentInfoLikeCnt>
                 </S.BoothCardContentInfoLike>
 
@@ -74,7 +70,7 @@ const BoothList = ({ date, category }) => {
                 <S.BoothCardContentInfoTime>
                   <S.BoothCardContentInfoTimeImg src={TimeIcon} />
                   <S.BoothCardContentInfoTimeText>
-                    {booth.time}
+                    {booth.during}
                   </S.BoothCardContentInfoTimeText>
                 </S.BoothCardContentInfoTime>
 
@@ -89,7 +85,9 @@ const BoothList = ({ date, category }) => {
             </S.BoothCardContent>
 
             {/* 위치보기 버튼 */}
-            <S.BoothCardContentLocation>
+            <S.BoothCardContentLocation
+              onClick={() => onLocationClick(booth.id)}
+            >
               <S.BoothCardContentLocationWrapper>
                 <S.BoothCardContentLocationImg src={LocationIcon} />
                 <S.BoothCardContentLocationText>

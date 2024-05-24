@@ -10,7 +10,7 @@ import performance from "/layout/nav/performance.svg";
 import c_promotion from "/layout/nav/c_promotion.svg";
 import promotion from "/layout/nav/promotion.svg";
 // Footer.jsx
-import developers from "/layout/footer/developers.svg";
+import footerlionImg from "/layout/footer/footerlionImg.svg";
 import github from "/layout/footer/github.svg";
 import instagram from "/layout/footer/instagram.svg";
 // Header.jsx
@@ -38,7 +38,7 @@ export {
   c_promotion,
   promotion,
   // Footer
-  developers,
+  footerlionImg,
   github,
   instagram,
   // Header
