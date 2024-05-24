@@ -12,9 +12,6 @@ const TimeTable_28 = () => {
     <div>
       <DateSelector date={28} />
       <RealtimeEvent date={28} />
-      <PlaylistGuide style={{ padding: "24px" }}>
-        28일은 <GuideBold>연예인 공연</GuideBold>이 없습니다.
-      </PlaylistGuide>
       <TimeLine date={28} />
     </div>
   );
