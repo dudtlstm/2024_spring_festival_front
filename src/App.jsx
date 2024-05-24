@@ -4,6 +4,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import Footer from "./components/layouts/footer/Footer";
 import Header from "./components/layouts/header/Header";
 import Nav from "./components/layouts/nav/Nav";
+import ScrollToTop from "./components/common/ScrollToTop";
 
 const BackGroundColor = styled.div`
   width: 100vw;
@@ -69,6 +70,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
+      <ScrollToTop />
       <Layout />
     </>
   );
