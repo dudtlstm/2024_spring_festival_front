@@ -31,14 +31,14 @@ export const MiniBannerContainer = styled.div`
   .slick-track {
     width: 100%;
     display: flex;
-    padding-left: 60px;
+    padding-left: 70px;
 
     @media (max-width: 391px) {
-      padding-left: 25px;
+      padding-left: 33px;
     }
 
-    @media (max-width: 350px) {
-      padding-left: 60px;
+    @media (max-width: 320px) {
+      padding-left: 70px;
     }
   }
 

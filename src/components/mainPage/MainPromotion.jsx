@@ -28,10 +28,12 @@ function MainPromotion() {
 
   const settings = {
     dots: false,
-    infinite: false,
+    infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
     fade: true,
+    autoplaySpeed: 3000,
+    autoplay: true,
     arrows: false,
     beforeChange: (oldIndex, newIndex) => {
       setCurrentIndex(newIndex);

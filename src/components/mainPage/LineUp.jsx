@@ -31,50 +31,46 @@ function LineUp() {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    const slider = sliderRef.current;
-    if (slider) {
-      slider.slickPause();
-    }
+  // useEffect(() => {
+  //   const slider = sliderRef.current;
+  //   if (slider) {
+  //     slider.slickPause();
+  //   }
 
-    const handleIntersection = (entries) => {
-      entries.forEach((entry) => {
-        if (slider) {
-          if (entry.isIntersecting) {
-            slider.slickPlay();
-          } else {
-            slider.slickGoTo(0, true);
-            slider.slickPause();
-          }
-        }
-      });
-    };
+  //   const handleIntersection = (entries) => {
+  //     entries.forEach((entry) => {
+  //       if (slider) {
+  //         if (entry.isIntersecting) {
+  //           slider.slickPlay();
+  //         } else {
+  //           slider.slickGoTo(0, true);
+  //           slider.slickPause();
+  //         }
+  //       }
+  //     });
+  //   };
 
-    const observer = new IntersectionObserver(handleIntersection, {
-      threshold: 0.2,
-    });
+  //   const observer = new IntersectionObserver(handleIntersection, {
+  //     threshold: 0.2,
+  //   });
 
-    if (lineUpRef.current) {
-      observer.observe(lineUpRef.current);
-    }
+  //   if (lineUpRef.current) {
+  //     observer.observe(lineUpRef.current);
+  //   }
 
-    return () => {
-      if (lineUpRef.current) {
-        observer.unobserve(lineUpRef.current);
-      }
-    };
-  }, []);
+  //   return () => {
+  //     if (lineUpRef.current) {
+  //       observer.unobserve(lineUpRef.current);
+  //     }
+  //   };
+  // }, []);
 
   const settings = {
-    ref: sliderRef,
     focusOnSelect: true,
     dots: false,
     infinite: false,
-    autoplaySpeed: 500,
-    speed: 1000,
     slidesToShow: 2.4,
     slidesToScroll: 1,
-    autoplay: true,
     arrows: false,
   };
 
