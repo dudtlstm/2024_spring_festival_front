@@ -40,11 +40,16 @@ const Notice = ({ noticeId }) => {
     <div>
       <S.NoticeTitleWrapper>
         <img src="./promotion/promotionTitle.svg" alt="홍보안내문구" />
-        <div>카드를 클릭하면 해당 서비스로 이동합니다!</div>
+        <div>카드를 클릭하면 축제기획단 인스타로 이동합니다! </div>
       </S.NoticeTitleWrapper>
       <S.CardWrapper>
         {notice.map((promo) => (
-          <Link key={promo.id} to={`/notice/${promo.id}`}>
+          <a
+            key={promo.id}
+            href={promo.insta_url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <S.Card>
               <S.CardImgContainer>
                 <S.CardImage
@@ -55,7 +60,7 @@ const Notice = ({ noticeId }) => {
               <S.CardTitle>{promo.title}</S.CardTitle>
               <S.CardDescription>{promo.short_description}</S.CardDescription>
             </S.Card>
-          </Link>
+          </a>
         ))}
       </S.CardWrapper>
     </div>
