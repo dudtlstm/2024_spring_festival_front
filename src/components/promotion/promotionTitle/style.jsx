@@ -4,7 +4,8 @@ export const PromotionTitleWrapper = styled.div`
     display: flex;
     gap: 8px;
     
-    align-items: flex-start;
+    align-items: center;
+    text-align : center;
 
     color: var(--use-font-font---info, #929292);
 
