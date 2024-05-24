@@ -60,7 +60,9 @@ const BoothList = ({ date, category, data, onLocationClick }) => {
               <S.BoothCardImg src={booth.thumbnail || BoothImg} />
               <S.BoothCardContentInfo>
                 <S.BoothCardContentInfoTitle>
-                  {booth.name}
+                  {booth.name.length < 14
+                    ? booth.name
+                    : booth.name.slice(0, 14) + '...'}
                 </S.BoothCardContentInfoTitle>
 
                 {/* 좋아요 */}
