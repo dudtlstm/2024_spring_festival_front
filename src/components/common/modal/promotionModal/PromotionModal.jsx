@@ -29,7 +29,8 @@ function PromotionModal({ isOpen, onClose, onConfirm, description, title }) {
       contentLabel="사이트 연결 확인"
       ariaHideApp={false}
       shouldCloseOnOverlayClick={true}
-      // overlayClassName={S.CustomOverlay}
+      zIndex={200}
+//       overlayClassName={S.CustomOverlay}
     >
       <S.SiteConnectWrapper ref={modalRef}>
         <S.SiteConnect>

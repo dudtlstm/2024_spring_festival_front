@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import TitleComponent from "./Title";
 import { fetchPromotionBanner } from "../../apis/api/getPromotionBanner";
-import PromotionModal from "../common/modal/promotionModal/PromotionModal"; // 경로에 맞게 수정하세요
+import PromotionModal from "../common/modal/promotionModal/PromotionModal";
 
 function MainPromotion() {
   const [currentIndex, setCurrentIndex] = useState(0);
