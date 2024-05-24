@@ -9,7 +9,7 @@ import Promotion from "./pages/promotion/Promotion";
 import About from "./pages/about/About";
 import NotFound from "./NotFound";
 import BoothDetail from "./pages/booth/BoothDetail";
-import NoticeDetail from "./pages/notice/NoticeDetail";
+// import NoticeDetail from "./pages/notice/NoticeDetail";
 import TimeTable_28 from "./pages/timeTable/TimeTable_28";
 import TimeTable_29 from "./pages/timeTable/TimeTable_29";
 import TimeTable_30 from "./pages/timeTable/TimeTable_30";
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
 
       // 공지 페이지
       { path: "/notice", element: <Notice /> },
-      { path: "/notice/:id", element: <NoticeDetail /> },
+      // { path: "/notice/:id", element: <NoticeDetail /> },
 
       // 홍보 페이지
       { path: "/promotion", element: <Promotion /> },
