@@ -12,7 +12,7 @@ const Mainpage = () => {
   return (
     <>
       <TopBanner />
-      <RealtimeEvent marginTop={"50px"} />
+      <RealtimeEvent marginTop={"70px"} />
       <LineUp />
       <BoothRank />
       <MainNotice />
