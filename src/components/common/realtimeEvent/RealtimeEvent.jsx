@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as S from "./style";
 import { fetchRealtimeEvent } from "../../../apis/api/realtimeEvent";
 import { loudspeaker } from "../../../assets/images/performance_images";
+import { getCorrectPostposition } from "../../../utils/hasFinalConsonant";
 
 const RealtimeEvent = ({ marginTop }) => {
   const [realtime, setRealtime] = useState([]);
@@ -42,7 +43,8 @@ const RealtimeEvent = ({ marginTop }) => {
               <S.RealtimeBold>{realtime[currentIndex].location}</S.RealtimeBold>
               에서{" "}
               <S.RealtimeBold>{realtime[currentIndex].operator}</S.RealtimeBold>
-              (이)가 진행중이에요!
+              {getCorrectPostposition(realtime[currentIndex].operator)}{" "}
+              진행중이에요!
             </S.TextWrapper>
           </S.RealtimeTxt>
         ) : (

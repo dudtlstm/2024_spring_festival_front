@@ -29,15 +29,15 @@ const TimeLine = ({ date }) => {
     const fetchData = async () => {
       // 팔정도 공연 정보
       const paljeongPerformance = await fetchAllPerformance(
-        // date,
-        festaDate, // 실시간 더미데이터 확인 용도
+        date,
+        // festaDate, // 실시간 더미데이터 확인 용도
         "팔정도"
       );
       setPaljeongPerformances(paljeongPerformance);
 
       // 대운동장 공연 정보
-      // const grandPerformance = await fetchAllPerformance(date, "대운동장");
-      const grandPerformance = await fetchAllPerformance(festaDate, "대운동장"); // 실시간 더미데이터 확인 용도
+      const grandPerformance = await fetchAllPerformance(date, "대운동장");
+      // const grandPerformance = await fetchAllPerformance(festaDate, "대운동장"); // 실시간 더미데이터 확인 용도
       setGrandPerformances(grandPerformance);
       setLoading(false);
     };
@@ -48,12 +48,12 @@ const TimeLine = ({ date }) => {
   // 1분 단위로 실시간 바 위치 정보 업데이트
   useEffect(() => {
     const interval = setInterval(() => {
-      setBarPosition(realtimeBar(festaDate)); // 실시간 더미데이터 확인 용도
-      // setBarPosition(realtimeBar(date));
+      // setBarPosition(realtimeBar(festaDate)); // 실시간 더미데이터 확인 용도
+      setBarPosition(realtimeBar(date));
     }, 1000 * 60);
 
     return () => clearInterval(interval);
-  }, [festaDate]);
+  }, [date]);
 
   // --------------- view ---------------
   // 타임 테이블 구조 세팅
