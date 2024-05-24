@@ -21,10 +21,10 @@ function PromotionList() {
                     }));
                     setPromotions(transformedData);
                 } else {
-                    console.error("Fetched data is not an array:", data);
+                    // console.error("Fetched data is not an array:", data);
                 }
             } catch (error) {
-                console.error("Failed to fetch promotions: ", error);
+                // console.error("Failed to fetch promotions: ", error);
             }
         };
 
