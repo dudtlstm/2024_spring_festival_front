@@ -16,25 +16,25 @@ const Footer = () => {
       
       <S.ContectContainer>
         <S.IconContainer>
+          <a href="https://github.com/LikeLion-at-DGU" target="_blank" rel="noopener noreferrer">
             <img src={images.github} alt="github" />
-            <a href="https://github.com/LikeLion-at-DGU" target="_blank" rel="noopener noreferrer">
-              Github
-            </a>
-          </S.IconContainer>
-          <S.VerticalLine />
-          <S.IconContainer>
+            <span>Github</span>
+          </a>
+        </S.IconContainer>
+        <S.VerticalLine />
+        <S.IconContainer>
+          <a href="/about" rel="noopener noreferrer">
             <img src={images.footerlionImg} alt="developers" />
-            <a href="/about" target="_blank" rel="noopener noreferrer">
-              Developers
-            </a>
-          </S.IconContainer>
-          <S.VerticalLine />
-          <S.IconContainer>
+            <span>Developers</span>
+          </a>
+        </S.IconContainer>
+        <S.VerticalLine />
+        <S.IconContainer>
+          <a href="https://www.instagram.com/likelion_dongguk/" target="_blank" rel="noopener noreferrer">
             <img src={images.instagram} alt="instagram" />
-            <a href="https://www.instagram.com/likelion_dongguk/" target="_blank" rel="noopener noreferrer">
-              Instagram
-            </a>
-          </S.IconContainer>
+            <span>Instagram</span>
+          </a>
+        </S.IconContainer>
       </S.ContectContainer>
     </S.FooterWrapper>
   );
