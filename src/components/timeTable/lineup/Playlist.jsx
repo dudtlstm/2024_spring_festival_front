@@ -27,7 +27,11 @@ const Playlist = ({ artist_id }) => {
           playlist.musics.map((music) => (
             <S.Music key={music.id} href={music.ytb_url} target="blank">
               <S.PlaylistImg src={music.album} alt={music.title} />
-              <S.PlaylistTitle>{music.title}</S.PlaylistTitle>
+              <S.PlaylistTitle>
+                {music.title.length > 20
+                  ? music.title.slice(0, 19) + " ..."
+                  : music.title}
+              </S.PlaylistTitle>
               <S.PlaylistLink src={playBtn} alt="▶︎" />
             </S.Music>
           ))}
