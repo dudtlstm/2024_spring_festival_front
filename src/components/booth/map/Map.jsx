@@ -99,10 +99,6 @@ const Map = ({ data, category, selectedBoothId, resetData, onMarkerClick }) => {
     }
   };
 
-  useEffect(() => {
-    initMap();
-  }, []);
-
   return (
     <S.MapWrapper>
       <S.Map id="map" />
