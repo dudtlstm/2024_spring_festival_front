@@ -22,6 +22,15 @@ const Category = ({ category, setCategory, resetData }) => {
         >
           푸드트럭
         </S.CategoryItem>
+
+        <S.CategoryItem
+          onClick={() => setCategory('플리마켓')}
+          bgcolor={category === '플리마켓' ? '#f97c69' : ' #ffffff'}
+          color={category === '플리마켓' ? '#FFFFFF' : ' #C4C4C4'}
+          border={category === '플리마켓' ? 'none' : ' #e2e3ec'}
+        >
+          플리마켓
+        </S.CategoryItem>
       </S.CategoryItems>
 
       <S.CategoryReset>
