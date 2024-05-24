@@ -106,7 +106,7 @@ export const PerformancePlace = styled.div`
 
   color: var(--use-font-font---info, #929292);
   font-family: Pretendard;
-  font-size: 20px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 600;
   line-height: 24px;

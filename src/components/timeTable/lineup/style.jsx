@@ -1,14 +1,11 @@
 import { styled, keyframes } from "styled-components";
 
 const fadeAnimation = keyframes`
-    0%{
+  0%{
     opacity: 0;
   }
-  30% {
+  50% {
     opacity: 1;
-  }
-  100% {
-    opacity: 0;
   }
 `;
 
@@ -166,10 +163,11 @@ export const PlaylistTitle = styled.div`
   line-height: 24px; /* 150% */
   letter-spacing: -0.25px;
 
+  animation: ${fadeAnimation} 1s ease-in-out;
+
   @media (max-width: 385px) {
     font-size: 14px;
   }
-  animation: fade;
 `;
 
 export const PlaylistImg = styled.img`
