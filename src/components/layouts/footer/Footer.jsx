@@ -9,12 +9,12 @@ const Footer = () => {
       <S.Copyright>
         동국대학교 멋쟁이사자처럼
         <br />
-        @DGU Likelion. All rights Reserved.
+        @DGU LikeLion. All rights Reserved.
         <S.DesignSupport>@Design supported by 축제기획단</S.DesignSupport>
       </S.Copyright>
       <S.ContectContainer>
         <S.IconContainer>
-          <img src={images.developers} alt="developers" />
+          <img src={images.footerlionImg} alt="developers" />
           <Link to="/about">Developers</Link>
         </S.IconContainer>
         <S.IconContainer>
