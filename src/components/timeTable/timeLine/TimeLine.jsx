@@ -3,16 +3,15 @@ import * as S from "./style";
 import PerformanceCard from "./PerformanceCard";
 import { realtimeBar, timeSlot } from "../../../utils/realtimeBar";
 import { fetchAllPerformance } from "../../../apis/api/timetable";
-import { isFestaDate, testerDate } from "../../../utils/currentDate";
+import { isFestaDate } from "../../../utils/currentDate";
 import { realtimeBarImg } from "../../../assets/images/performance_images";
 import Spinner from "../../common/Spinner";
 
 const TimeLine = ({ date }) => {
   // --------------- useState ---------------
   const [loading, setLoading] = useState(true);
-  const [festaDate, setFestaDate] = useState(testerDate()); // 개발 단계에서 실시간 바를 적용해보고자 하는 태스트 용도
   // 실시간 바의 top 상태 변경
-  const [barPosition, setBarPosition] = useState(realtimeBar(festaDate));
+  const [barPosition, setBarPosition] = useState(realtimeBar(date));
   // 팔정도, 대운동장 공연 리스트 상태 변경
   const [paljeongPerformances, setPaljeongPerformances] = useState([]);
   const [grandPerformances, setGrandPerformances] = useState([]);
@@ -28,16 +27,11 @@ const TimeLine = ({ date }) => {
   useEffect(() => {
     const fetchData = async () => {
       // 팔정도 공연 정보
-      const paljeongPerformance = await fetchAllPerformance(
-        date,
-        // festaDate, // 실시간 더미데이터 확인 용도
-        "팔정도"
-      );
+      const paljeongPerformance = await fetchAllPerformance(date, "팔정도");
       setPaljeongPerformances(paljeongPerformance);
 
       // 대운동장 공연 정보
       const grandPerformance = await fetchAllPerformance(date, "대운동장");
-      // const grandPerformance = await fetchAllPerformance(festaDate, "대운동장"); // 실시간 더미데이터 확인 용도
       setGrandPerformances(grandPerformance);
       setLoading(false);
     };
@@ -48,7 +42,6 @@ const TimeLine = ({ date }) => {
   // 1분 단위로 실시간 바 위치 정보 업데이트
   useEffect(() => {
     const interval = setInterval(() => {
-      // setBarPosition(realtimeBar(festaDate)); // 실시간 더미데이터 확인 용도
       setBarPosition(realtimeBar(date));
     }, 1000 * 60);
 

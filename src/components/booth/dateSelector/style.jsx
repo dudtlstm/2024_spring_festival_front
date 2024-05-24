@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import { styled } from "styled-components";
 
 export const DateSelectorWrapper = styled.div`
   display: flex;
@@ -17,11 +17,13 @@ export const DateSelector = styled.div`
 export const DateSelectorItem = styled.div`
   display: flex;
   padding: 12px 16px;
+  width: 68px;
+  height: 48px;
   justify-content: center;
   align-items: center;
   gap: 10px;
   border-radius: 24px;
-  background-color: ${props => props.bgcolor};
-  color: ${props => props.color};
+  background-color: ${(props) => props.bgcolor};
+  color: ${(props) => props.color};
   cursor: pointer;
 `;
