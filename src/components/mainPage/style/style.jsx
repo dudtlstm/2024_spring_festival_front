@@ -185,6 +185,7 @@ export const NoticeCard = styled.div`
   width: 100%;
   max-width: 120px;
   max-height: 180px;
+  overflow: hidden;
 `;
 
 export const NoticeImg = styled.img`

@@ -92,7 +92,7 @@ function MainNotice() {
         isOpen={modalIsOpen}
         onClose={closeModal}
         onConfirm={handleConfirm}
-        description="선택한 사이트로 이동하시겠습니까?"
+        description="축기단 인스타그램으로 이동합니다."
         title="사이트 연결"
       />
     </S.NoticeWrapper>

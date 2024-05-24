@@ -62,7 +62,7 @@ function TopBanner() {
     infinite: true,
     speed: 500,
     slidesToShow: 3.5,
-    autoplaySpeed: 4000,
+    autoplaySpeed: 3000,
     slidesToScroll: 1,
     autoplay: true,
     arrows: false,

@@ -66,7 +66,7 @@ const BoothRank = () => {
                   ? "/image/mainpage/num_2.png"
                   : "/image/mainpage/num_3.png"
               }
-              to={`/booth/${booth.id}`}
+              to={`/booths/${booth.id}`}
             />
           ))}
         </S.BoothRankBg>
