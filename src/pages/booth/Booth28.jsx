@@ -46,6 +46,7 @@ const Booth28 = ({ date }) => {
       window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
       const locationData = await boothDetail(id);
       setData([locationData]);
+      setSelectedBoothId(id);
     } catch (e) {
       // console.log(e);
     }
