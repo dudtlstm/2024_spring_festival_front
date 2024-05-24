@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from './style';
 import ResetIcon from '../../../../public/booth/reset.svg';
 
-const Category = ({ category, setCategory }) => {
+const Category = ({ category, setCategory, resetData }) => {
   return (
     <S.CategoryWrapper>
       <S.CategoryItems>
@@ -26,7 +26,7 @@ const Category = ({ category, setCategory }) => {
 
       <S.CategoryReset>
         <S.CategoryResetImg src={ResetIcon} />
-        <S.CategoryResetText>초기화</S.CategoryResetText>
+        <S.CategoryResetText onClick={resetData}>초기화</S.CategoryResetText>
       </S.CategoryReset>
     </S.CategoryWrapper>
   );

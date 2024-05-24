@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import * as S from './style';
 import MarkerBooth from '../../../../public/booth/marker_booth.svg';
+import MarkerFood from '../../../../public/booth/marker_food.svg';
+import MarkerMarket from '../../../../public/booth/marker_market.svg';
 
 const dummyData = [
   {
@@ -19,20 +21,26 @@ const dummyData = [
   },
 ];
 
-const Map = () => {
+const Map = ({ data, category, selectedBoothId, resetData, onMarkerClick }) => {
+  console.log('잘 받고있니>?', selectedBoothId);
   const [map, setMap] = useState();
-  const [data, setData] = useState([]);
+  const markersRef = useRef([]);
 
   useEffect(() => {
     initMap();
-    setData(dummyData);
   }, []);
+
+  useEffect(() => {
+    if (resetData) {
+      initMap();
+    }
+  }, [resetData]);
 
   useEffect(() => {
     if (map) {
       makeMarker(data);
     }
-  }, [map, data]);
+  }, [map, data, category, selectedBoothId]);
 
   const initMap = () => {
     const container = document.getElementById('map');
@@ -43,19 +51,52 @@ const Map = () => {
     setMap(new kakao.maps.Map(container, options));
   };
 
-  const makeMarker = data => {
-    data.forEach(data => {
-      const markerImage = new kakao.maps.MarkerImage(
-        MarkerBooth,
-        new kakao.maps.Size(24, 35)
-      );
+  const changeMarkerImg = category => {
+    switch (category) {
+      case '푸드트럭':
+        return new kakao.maps.MarkerImage(
+          MarkerFood,
+          new kakao.maps.Size(24, 35)
+        );
+      case '플리마켓':
+        return new kakao.maps.MarkerImage(
+          MarkerMarket,
+          new kakao.maps.Size(24, 35)
+        );
+      default:
+        return new kakao.maps.MarkerImage(
+          MarkerBooth,
+          new kakao.maps.Size(24, 35)
+        );
+    }
+  };
 
-      const marker = new kakao.maps.Marker({
-        position: new kakao.maps.LatLng(data.latitude, data.longitude),
-        image: markerImage,
+  const makeMarker = data => {
+    // 기존 마커 제거
+    markersRef.current.forEach(marker => marker.setMap(null));
+    markersRef.current = [];
+
+    if (data.length > 0) {
+      data.forEach(item => {
+        const markerImage = changeMarkerImg(category);
+
+        const marker = new kakao.maps.Marker({
+          position: new kakao.maps.LatLng(item.latitude, item.longitude),
+          image: markerImage,
+        });
+        marker.setMap(map);
+        markersRef.current.push(marker);
+
+        kakao.maps.event.addListener(marker, 'click', function () {
+          onMarkerClick(item.id);
+        });
+
+        if (selectedBoothId === item.id) {
+          map.setCenter(new kakao.maps.LatLng(item.latitude, item.longitude));
+          map.setLevel(2);
+        }
       });
-      marker.setMap(map);
-    });
+    }
   };
 
   useEffect(() => {
