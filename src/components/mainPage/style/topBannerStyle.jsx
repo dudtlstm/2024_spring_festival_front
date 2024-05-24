@@ -34,7 +34,7 @@ export const MiniBannerContainer = styled.div`
     padding-left: 60px;
 
     @media (max-width: 391px) {
-      padding-left: 10px;
+      padding-left: 25px;
     }
 
     @media (max-width: 350px) {
