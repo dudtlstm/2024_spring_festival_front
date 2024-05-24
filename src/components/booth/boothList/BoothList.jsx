@@ -7,6 +7,7 @@ import PinIcon from '../../../../public/booth/pin.svg';
 import LocationIcon from '../../../../public/booth/location.svg';
 import { booth } from '../../../apis/api/booth';
 import { useNavigate } from 'react-router-dom';
+import Spinner from '../../common/Spinner';
 
 const dummyData = [
   {
@@ -105,7 +106,7 @@ const BoothList = ({ date, category, data, onLocationClick }) => {
           </S.BoothCardWrapper>
         ))
       ) : (
-        <p>No booths available</p>
+        <Spinner />
       )}
     </S.BoothListWrapper>
   );
