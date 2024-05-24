@@ -4,11 +4,11 @@ import * as S from "./style";
 function AboutPage() {
   return (
     <S.AboutWrapper>
-      <S.FirstWrapper src={"/developers/12thSlogan.svg"} alt="12기 슬로건" />
+      <S.FirstWrapper src={"/developers/12thSlogan.png"} alt="12기 슬로건" loading="lazy" decoding="async"/>
       <S.SecondWrapper>
         <S.SecondMainWrapper>
           <S.SecondTitle>개발자 정보</S.SecondTitle>
-          <S.Logo src={"/developers/dgulogo.svg"} alt="동대 멋사 로고" />
+          <S.Logo src={"/developers/dgulogo.png"} alt="동대 멋사 로고" loading="lazy" decoding="async"/>
           <S.SecondClubTitle>동국대학교 멋쟁이사자처럼</S.SecondClubTitle>
         </S.SecondMainWrapper>
         <a
@@ -17,7 +17,7 @@ function AboutPage() {
           rel="noopener noreferrer"
         >
           <S.MoveToSite>
-            <img src="./developers/link.svg" alt="동멋 사이트 링크" />
+            <S.LinkImg src="./developers/link.png" alt="동멋 사이트 링크" loading="lazy" decoding="async"/>
             <div>동대멋사 사이트</div>
           </S.MoveToSite>
         </a>
@@ -25,29 +25,12 @@ function AboutPage() {
       <S.ThirdWrapper>
         <S.Leads>
           <S.LeadInfoTitle>Team Lead</S.LeadInfoTitle>
-          <S.LeadInfoCard>
-            <S.HyeonA src={"/developers/people/seol.png"} alt="설현아" />
-            <S.RestLeads>
-              <S.JW src={"/developers/people/JW.svg"} alt="이주원" />
-              <S.YJ src={"/developers/people/YJ.svg"} alt="이유진" />
-              <S.JB src={"/developers/people/JB.svg"} alt="이종범" />
-              <S.MK src={"/developers/people/MK.svg"} alt="김민경" />
-            </S.RestLeads>
-          </S.LeadInfoCard>
+            <S.HereLeads src={"/developers/people/lead.png"} alt="리드" loading="lazy" decoding="async"/>
         </S.Leads>
-        <S.Member>
+        <S.Members>
           <S.MemberInfoTitle>Team Member</S.MemberInfoTitle>
-          <S.MemberInfoCard>
-            <img src="./developers/people/SH.svg" alt="심서현" />
-            <img src="./developers/people/HJ.svg" alt="윤혜정" />
-            <img src="./developers/people/YS.svg" alt="김윤서" />
-            <img src="./developers/people/dudtlstm.svg" alt="박영신" />
-            <img src="./developers/people/coldweek.svg" alt="오찬주" />
-            <img src="./developers/people/HY.svg" alt="박호연" />
-            <img src="./developers/people/mat.svg" alt="이상준" />
-            <img src="./developers/people/eunho.svg" alt="차은호" />
-          </S.MemberInfoCard>
-        </S.Member>
+            <S.HereMembers src={"/developers/people/member.png"} alt="멤버" loading="lazy" decoding="async"/>
+        </S.Members>
       </S.ThirdWrapper>
       <S.LastWrapper>
         <S.LastInfo>사이트 경험은 어떠셨나요? 후기를 남겨주세요</S.LastInfo>
@@ -57,7 +40,7 @@ function AboutPage() {
           rel="noopener noreferrer"
         >
           <S.MoveToForm>
-            <S.MoveImg src={"/developers/formthumb.svg"} alt="후기 남기기" />
+            <S.MoveImg src={"/developers/thumb.png"} alt="후기 남기기" loading="lazy" decoding="async"/>
             <S.MoveToFormInfo>후기 남기기</S.MoveToFormInfo>
           </S.MoveToForm>
         </a>
