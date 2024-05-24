@@ -42,6 +42,7 @@ const Booth30 = ({ date }) => {
   };
 
   const resetData = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     setSelectedBoothId(null);
     fetchData();
   };
