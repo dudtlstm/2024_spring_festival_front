@@ -6,6 +6,7 @@ import TimeIcon from '../../../../public/booth/time.svg';
 import PinIcon from '../../../../public/booth/pin.svg';
 import LocationIcon from '../../../../public/booth/location.svg';
 import { booth } from '../../../apis/api/booth';
+import { useNavigate } from 'react-router-dom';
 
 const dummyData = [
   {
@@ -27,6 +28,10 @@ const dummyData = [
 ];
 
 const BoothList = ({ date, category, data, onLocationClick }) => {
+  const navigate = useNavigate();
+  const handleCardClick = id => {
+    navigate(`/booths/${id}`);
+  };
   // useEffect(() => {
   //   fetchData();
   // }, [category]);
@@ -50,7 +55,7 @@ const BoothList = ({ date, category, data, onLocationClick }) => {
       {data.length > 0 ? (
         data.map(booth => (
           <S.BoothCardWrapper key={booth.id}>
-            <S.BoothCardContent>
+            <S.BoothCardContent onClick={() => handleCardClick(booth.id)}>
               {/* 부스 이미지 */}
               <S.BoothCardImg src={booth.thumbnail || BoothImg} />
               <S.BoothCardContentInfo>
