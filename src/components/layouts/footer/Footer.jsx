@@ -1,31 +1,39 @@
 import React from "react";
 import * as S from "./style";
-import { Link } from "react-router-dom";
 import * as images from "../../../assets/images/layout_images";
 
 const Footer = () => {
   return (
     <S.FooterWrapper>
       <S.Copyright>
-        동국대학교 멋쟁이사자처럼
-        <br />
-        @DGU LikeLion. All rights Reserved.
+        <S.LIKELIONDGU>
+          동국대학교 멋쟁이사자처럼
+          <br />
+          @LIKELION DGU. All rights Reserved.
+        </S.LIKELIONDGU>
         <S.DesignSupport>@Design supported by 축제기획단</S.DesignSupport>
       </S.Copyright>
+      
       <S.ContectContainer>
         <S.IconContainer>
-          <img src={images.footerlionImg} alt="developers" />
-          <Link to="/about">Developers</Link>
+          <a href="https://github.com/LikeLion-at-DGU" target="_blank" rel="noopener noreferrer">
+            <img src={images.github} alt="github" />
+            <span>Github</span>
+          </a>
         </S.IconContainer>
+        <S.VerticalLine />
         <S.IconContainer>
-          <img src={images.github} alt="github" />
-          <Link to="https://github.com/LikeLion-at-DGU">Github</Link>
+          <a href="/about" rel="noopener noreferrer">
+            <img src={images.footerlionImg} alt="developers" />
+            <span>Developers</span>
+          </a>
         </S.IconContainer>
+        <S.VerticalLine />
         <S.IconContainer>
-          <img src={images.instagram} alt="instagram" />
-          <Link to="https://www.instagram.com/likelion_dongguk/">
-            Instagram
-          </Link>
+          <a href="https://www.instagram.com/likelion_dongguk/" target="_blank" rel="noopener noreferrer">
+            <img src={images.instagram} alt="instagram" />
+            <span>Instagram</span>
+          </a>
         </S.IconContainer>
       </S.ContectContainer>
     </S.FooterWrapper>

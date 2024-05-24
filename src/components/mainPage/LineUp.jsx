@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { fetchArtistImages } from "../../apis/api/getLineUp";
 import { currentDate } from "../../utils/currentDate";
+import Spinner from "../common/Spinner";
 
 function LineUp() {
   const [artistImages, setArtistImages] = useState([]);
@@ -13,14 +14,16 @@ function LineUp() {
   const sliderRef = useRef(null);
   const lineUpRef = useRef(null);
 
-  const day = currentDate(); // today가 축제 당일이 아니라면, 28일로 초기화해주는 함수
-
   useEffect(() => {
     const fetchData = async () => {
+      let day;
       const today = new Date();
-      const day = today.getDate();
-      //api 테스트 위한 코드로 실제로는 day -1 이 아닌 day로 해야 함
-      const imageData = await fetchArtistImages(day - 1);
+      if (today.getDate() >= 28 && today.getDate() <= 30) {
+        day = today.getDate();
+      } else {
+        day = 29;
+      }
+      const imageData = await fetchArtistImages(day);
       setArtistImages(imageData);
       setLoading(false);
     };
@@ -28,50 +31,46 @@ function LineUp() {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    const slider = sliderRef.current;
-    if (slider) {
-      slider.slickPause();
-    }
+  // useEffect(() => {
+  //   const slider = sliderRef.current;
+  //   if (slider) {
+  //     slider.slickPause();
+  //   }
 
-    const handleIntersection = (entries) => {
-      entries.forEach((entry) => {
-        if (slider) {
-          if (entry.isIntersecting) {
-            slider.slickPlay();
-          } else {
-            slider.slickGoTo(0, true);
-            slider.slickPause();
-          }
-        }
-      });
-    };
+  //   const handleIntersection = (entries) => {
+  //     entries.forEach((entry) => {
+  //       if (slider) {
+  //         if (entry.isIntersecting) {
+  //           slider.slickPlay();
+  //         } else {
+  //           slider.slickGoTo(0, true);
+  //           slider.slickPause();
+  //         }
+  //       }
+  //     });
+  //   };
 
-    const observer = new IntersectionObserver(handleIntersection, {
-      threshold: 0.2,
-    });
+  //   const observer = new IntersectionObserver(handleIntersection, {
+  //     threshold: 0.2,
+  //   });
 
-    if (lineUpRef.current) {
-      observer.observe(lineUpRef.current);
-    }
+  //   if (lineUpRef.current) {
+  //     observer.observe(lineUpRef.current);
+  //   }
 
-    return () => {
-      if (lineUpRef.current) {
-        observer.unobserve(lineUpRef.current);
-      }
-    };
-  }, []);
+  //   return () => {
+  //     if (lineUpRef.current) {
+  //       observer.unobserve(lineUpRef.current);
+  //     }
+  //   };
+  // }, []);
 
   const settings = {
-    ref: sliderRef,
     focusOnSelect: true,
     dots: false,
     infinite: false,
-    autoplaySpeed: 500,
-    speed: 1000,
-    slidesToShow: 2.3,
+    slidesToShow: 2.4,
     slidesToScroll: 1,
-    autoplay: true,
     arrows: false,
   };
 
@@ -79,24 +78,22 @@ function LineUp() {
     <S.LineUpWrapper>
       <TitleComponent
         title={"라인업"}
-        to={`/performance/${day}`} // 공연 각 날짜별 페이지로 이동
+        to={`/performance/${currentDate()}`}
         marginTop={"32px"}
       />
-      <S.LineUpImgContainer>
+      <S.LineUpImgWrapper>
         {loading ? (
-          <Slider {...settings}>
-            {[1, 2, 3].map((index) => (
-              <S.LineUpImg key={index} src={`/image/mainpage/Lineup_1.png`} />
-            ))}
-          </Slider>
+          <Spinner />
         ) : (
           <Slider {...settings}>
             {artistImages.map((imageUrl, index) => (
+              // <S.LineUpImgContainer>
               <S.LineUpImg key={index} src={imageUrl} loading="lazy" />
+              // </S.LineUpImgContainer>
             ))}
           </Slider>
         )}
-      </S.LineUpImgContainer>
+      </S.LineUpImgWrapper>
     </S.LineUpWrapper>
   );
 }

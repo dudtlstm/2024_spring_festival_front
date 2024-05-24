@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from "react";
+import PropTypes from "prop-types";
 import * as S from "./style";
 
-function PromotionModal({ isOpen, onClose, onConfirm, description, title }) {
+function NoticeModal({ isOpen, onClose, onConfirm, description, title, link }) {
   const modalRef = useRef(null);
 
   const handleClickOutside = (event) => {
@@ -22,6 +23,11 @@ function PromotionModal({ isOpen, onClose, onConfirm, description, title }) {
     };
   }, [isOpen]);
 
+  const handleConfirm = () => {
+    window.open(link, "_blank");
+    onConfirm();
+  };
+
   return (
     <S.IsModal
       isOpen={isOpen}
@@ -30,15 +36,16 @@ function PromotionModal({ isOpen, onClose, onConfirm, description, title }) {
       ariaHideApp={false}
       shouldCloseOnOverlayClick={true}
       zIndex={200}
-//       overlayClassName={S.CustomOverlay}
     >
       <S.SiteConnectWrapper ref={modalRef}>
         <S.SiteConnect>
-          <S.SiteConnectTitle>{title}</S.SiteConnectTitle>
-          <S.SiteConnectContent>{description}</S.SiteConnectContent>
+          <S.SiteConnectTitle>사이트 연결</S.SiteConnectTitle>
+          <S.SiteConnectContent>
+            축기단 인스타그램으로 이동합니다
+          </S.SiteConnectContent>
           <S.SiteConnectButton>
             <S.SiteConnectCancle onClick={onClose}>취소</S.SiteConnectCancle>
-            <S.SiteConnectConfirm onClick={onConfirm}>
+            <S.SiteConnectConfirm onClick={handleConfirm}>
               확인
             </S.SiteConnectConfirm>
           </S.SiteConnectButton>
@@ -48,4 +55,4 @@ function PromotionModal({ isOpen, onClose, onConfirm, description, title }) {
   );
 }
 
-export default PromotionModal;
+export default NoticeModal;

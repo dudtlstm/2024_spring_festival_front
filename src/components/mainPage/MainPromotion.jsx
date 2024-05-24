@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import TitleComponent from "./Title";
 import { fetchPromotionBanner } from "../../apis/api/getPromotionBanner";
-import PromotionModal from "../common/modal/promotionModal/PromotionModal"; // 경로에 맞게 수정하세요
+import PromotionModal from "../common/modal/promotionModal/PromotionModal";
 
 function MainPromotion() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -28,10 +28,12 @@ function MainPromotion() {
 
   const settings = {
     dots: false,
-    infinite: false,
+    infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
     fade: true,
+    autoplaySpeed: 3000,
+    autoplay: true,
     arrows: false,
     beforeChange: (oldIndex, newIndex) => {
       setCurrentIndex(newIndex);

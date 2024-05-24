@@ -27,7 +27,6 @@ export const CustomOverlay = styled.div`
   z-index: 1000;
 `;
 
-
 export const SiteConnectWrapper = styled.div`
   display: inline-flex;
   padding: 28px 40px;
@@ -127,4 +126,31 @@ export const SiteConnectCancle = styled.div`
   font-weight: 500;
   line-height: 24px;
   letter-spacing: -0.25px;
+`;
+// 비밀번호
+export const PasswordInput = styled.input`
+  text-align: center;
+  width: 146px;
+  height: 40px;
+  margin-top: 20px;
+  display: flex;
+  /* padding: 8px 20px; */
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
+  border: 1.45px solid var(--use-stroke-stroke---main, #c9cad3);
+  background: var(--use-background-background---main, #fff);
+`;
+
+export const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+export const PasswordIcon = styled.input`
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  border: 1px solid red;
 `;

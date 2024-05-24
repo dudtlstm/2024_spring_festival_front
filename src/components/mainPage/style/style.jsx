@@ -26,30 +26,34 @@ export const MoreInfo = styled.div`
 
 export const LineUpWrapper = styled.div`
   width: 100%;
-  /* padding-left: 20px; */
+`;
+
+export const LineUpImgWrapper = styled.div`
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+  flex-direction: row;
+  /* gap: 20px; */
+
+  .slick-track {
+    display: flex;
+    align-content: flex-end;
+    justify-content: flex-end;
+    flex-wrap: wrap-reverse;
+  }
 `;
 
 export const LineUpImgContainer = styled.div`
-  /* border: 1px solid red; */
-  margin-top: 20px;
-  width: 100%;
-  overflow: hidden;
-  /* display: flex; */
-  flex-direction: row;
-  /* height: 100px; */
-  gap: 20px;
+  border: 1px solid red;
 `;
 
 export const LineUpImg = styled.img`
-  /* width: 100px; */
-  height: 160px;
+  width: 100% !important;
 `;
 
 //BoothRank.jsx
 
-export const BoothRankWrapper = styled.div`
-  /* border: 1px solid red; */
-`;
+export const BoothRankWrapper = styled.div``;
 
 export const BoothRankBg = styled.div`
   background-color: #fbfbfb;
@@ -165,14 +169,14 @@ export const NoticeContainer = styled.div`
   .slick-track {
     width: 100%;
     max-height: 180px;
-    padding-left: 140px;
+    padding-left: 117px;
 
     @media (max-width: 380px) {
       padding-left: 75px;
     }
 
     @media (max-width: 350px) {
-      padding-left: 45px;
+      padding-left: 20px;
     }
   }
 `;
@@ -181,12 +185,14 @@ export const NoticeCard = styled.div`
   width: 100%;
   max-width: 120px;
   max-height: 180px;
+  overflow: hidden;
 `;
 
 export const NoticeImg = styled.img`
   width: 120px;
   height: 120px;
   border-radius: 8px;
+  cursor: pointer;
 `;
 
 export const NoticeTitle = styled.div`

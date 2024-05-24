@@ -73,15 +73,22 @@ export const MoveToSite = styled.div`
   align-items: flex-start;
 `;
 
+export const LinkImg = styled.img`
+  width: 14px;
+  height: 12.067px;
+  flex-shrink: 0;
+`;
+
 export const ThirdWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 18px;
+  gap: 69px;
 `;
 
 export const Leads = styled.div`
+  width: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -101,43 +108,12 @@ export const LeadInfoTitle = styled.div`
   letter-spacing: -0.5px;
 `;
 
-export const LeadInfoCard = styled.div`
-  width: 100%;
-  height: 564px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
+export const HereLeads = styled.img`
+  width: 80%;
 `;
 
-export const HyeonA = styled.img`
-  align-self: center;
-  width: 30%;
-`;
-
-export const RestLeads = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-`;
-
-export const JW = styled.img`
-  grid-area: 1 / 1;
-`;
-
-export const YJ = styled.img`
-  grid-area: 1 / 2;
-`;
-
-export const JB = styled.img`
-  grid-area: 2 / 1;
-`;
-
-export const MK = styled.img`
-  grid-area: 2 / 2;
-`;
-
-export const Member = styled.div`
+export const Members = styled.div`
+  width: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -157,13 +133,8 @@ export const MemberInfoTitle = styled.div`
   letter-spacing: -0.5px;
 `;
 
-export const MemberInfoCard = styled.div`
-  width: 282px;
-  height: 758px;
-
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+export const HereMembers = styled.img`
+  width: 80%;
 `;
 
 export const LastWrapper = styled.div`

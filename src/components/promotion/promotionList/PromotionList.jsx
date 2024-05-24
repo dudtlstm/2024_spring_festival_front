@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import * as S from './style';
 import Card from '../card/Card';
 import PromotionTitle from '../promotionTitle/PromotionTitle';
+import Spinner from '../../common/Spinner';
 
 import { getPromotions } from '../../../apis/api/promotion';
 
 function PromotionList() {
 
     const [promotions, setPromotions] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchPromotions = async () => {
@@ -25,6 +27,8 @@ function PromotionList() {
                 }
             } catch (error) {
                 // console.error("Failed to fetch promotions: ", error);
+            } finally {
+                setLoading(false);
             }
         };
 
@@ -33,6 +37,9 @@ function PromotionList() {
 
     return (
         <>
+        {loading ? (
+            <Spinner />
+        ) : (
         <S.PromotionListWrapper>
             <PromotionTitle />
             <S.PromotionListCards>
@@ -48,6 +55,7 @@ function PromotionList() {
                 ))}
             </S.PromotionListCards>
         </S.PromotionListWrapper>
+        )}
         </>
     );
 }
