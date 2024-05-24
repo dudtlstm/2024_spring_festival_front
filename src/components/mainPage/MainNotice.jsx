@@ -4,11 +4,13 @@ import TitleComponent from "./Title";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Link } from "react-router-dom";
 import { fetchNoticeList } from "../../apis/api/getNotice";
+import PromotionModal from "../common/modal/promotionModal/PromotionModal";
 
 function MainNotice() {
   const [noticeData, setNoticeData] = useState([]);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedUrl, setSelectedUrl] = useState("");
 
   useEffect(() => {
     const getNoticeData = async () => {
@@ -22,30 +24,49 @@ function MainNotice() {
   const settings = {
     dots: false,
     infinite: true,
-    slidesToShow: 3,
+    slidesToShow: 2.8,
     slidesToScroll: 1,
     arrows: false,
-
     responsive: [
       {
         breakpoint: 380,
         settings: {
-          slidesToShow: 2.5,
+          slidesToShow: 2.3,
           slidesToScroll: 1,
         },
       },
       {
         breakpoint: 350,
         settings: {
-          slidesToShow: 2.3,
+          slidesToShow: 2.1,
           slidesToScroll: 1,
         },
       },
     ],
+    // beforeChange: (_, newIndex) => {
+    //   setCurrentIndex(newIndex);
+    // },
   };
 
   const truncateTitle = (title, maxLength) => {
     return title.length > maxLength ? `${title.slice(0, maxLength)}...` : title;
+  };
+
+  const openModal = (url) => {
+    setSelectedUrl(
+      url || "https://www.instagram.com/donggukstuco?igsh=MTA2dzdyNHM3MjQxYQ=="
+    );
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+    setSelectedUrl("");
+  };
+
+  const handleConfirm = () => {
+    window.open(selectedUrl, "_blank");
+    closeModal();
   };
 
   return (
@@ -54,7 +75,7 @@ function MainNotice() {
       <S.NoticeContainer>
         <Slider {...settings}>
           {noticeData.map((d) => (
-            <Link to={`/notice/${d.id}`} key={d.id}>
+            <div key={d.id} onClick={() => openModal(d.insta_url)}>
               <S.NoticeCard>
                 <S.NoticeImg
                   src={d.thumbnail || "/image/common/default.png"}
@@ -63,10 +84,17 @@ function MainNotice() {
                 <S.NoticeTitle>{truncateTitle(d.title, 8)}</S.NoticeTitle>
                 <S.NoticeDes>{d.short_description}</S.NoticeDes>
               </S.NoticeCard>
-            </Link>
+            </div>
           ))}
         </Slider>
       </S.NoticeContainer>
+      <PromotionModal
+        isOpen={modalIsOpen}
+        onClose={closeModal}
+        onConfirm={handleConfirm}
+        description="선택한 사이트로 이동하시겠습니까?"
+        title="사이트 연결"
+      />
     </S.NoticeWrapper>
   );
 }
