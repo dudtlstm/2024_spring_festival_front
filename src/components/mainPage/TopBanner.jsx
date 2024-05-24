@@ -26,7 +26,7 @@ function TopBanner() {
     {
       img: "/image/mainpage/main_BigBanner_1.png",
       miniImg: "/image/mainpage/main_SmallBanner_1.png",
-      link: `/booths/${todayDate}`,
+      link: `/booth/${todayDate}`,
     },
     {
       img: "/image/mainpage/main_BigBanner_2.png",
@@ -62,7 +62,7 @@ function TopBanner() {
     infinite: true,
     speed: 500,
     slidesToShow: 3.5,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 4000,
     slidesToScroll: 1,
     autoplay: true,
     arrows: false,
@@ -70,7 +70,7 @@ function TopBanner() {
       {
         breakpoint: 391,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 3.2,
           slidesToScroll: 1,
         },
       },
@@ -92,7 +92,7 @@ function TopBanner() {
       <S.BannerWrapper>
         <S.BannerContainer>
           <a href={banners[currentIndex].link}>
-            <S.BigBannerImg src={banners[currentIndex].img} />
+            <S.BigBannerImg src={banners[currentIndex].img} loading="lazy" />
           </a>
           <S.MiniBannerContainer>
             <Slider {...settings}>
@@ -101,6 +101,7 @@ function TopBanner() {
                   key={index}
                   src={banner.miniImg}
                   className={currentIndex === index ? "active" : ""}
+                  loading="lazy"
                 />
               ))}
             </Slider>
