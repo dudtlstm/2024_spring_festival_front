@@ -1,11 +1,39 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
-import PropTypes from "prop-types";
 import * as S from "../../components/booth/boothdetail/style";
 import { useParams } from "react-router-dom";
 import ReplyDeleteModal from "../../components/common/modal/promotionModal/ReplyDeleteModal";
-import ReplyModal from "../../components/common/modal/promotionModal/ReplyModal";
-import styled from "styled-components"; // styled-components import 추가
+import PromotionModal from "../../components/common/modal/promotionModal/ReplyModal";
+import styled from "styled-components";
+import Spinner from "../../components/common/Spinner";
+
+const StyledTextArea = styled.textarea`
+  width: 242px;
+  height: 24px;
+  color: ${(props) =>
+    props.hasValue ? "#000" : "var(--use-font-font---disable, #C4C4C4)"};
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+  letter-spacing: -0.25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex: 1 0 0;
+  background-color: transparent;
+  border: none;
+  resize: none;
+  overflow: hidden;
+  &:focus {
+    outline: none;
+    border-color: transparent;
+  }
+  padding: 4px 8px;
+  box-sizing: border-box;
+`;
 
 const BoothDetail = () => {
   const { id } = useParams();
@@ -74,16 +102,21 @@ const BoothDetail = () => {
     setIsDeleteModalOpen(false);
   };
 
-  const handleCommentChange = (event) => {
+  const handleCommentChange = useCallback((event) => {
     setNewComment(event.target.value);
-  };
+  }, []);
 
   const handleSubmitComment = () => {
     setIsModalOpen(true); // 전송하기 버튼을 누르면 ReplyModal 열림
   };
 
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    setNewComment(""); // 모달이 닫힐 때 댓글 입력창 비우기
+  };
+
   if (loading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   if (error) {
@@ -93,31 +126,7 @@ const BoothDetail = () => {
   if (!boothDetail) {
     return <div>No booth available</div>;
   }
-  const StyledTextArea = styled.textarea`
-    width: 242px;
-    height: 24px;
-    color: ${(props) =>
-      props.hasValue ? "#000" : "var(--use-font-font---disable, #C4C4C4)"};
-    font-family: Pretendard;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 24px; /* 150% */
-    letter-spacing: -0.25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex: 1 0 0;
-    background-color: transparent;
-    border: none;
-    resize: none;
-    overflow: hidden;
-    &:focus {
-      outline: none;
-      border-color: transparent;
-    }
-  `;
+
   return (
     <>
       <S.ImageContainer>
@@ -159,7 +168,7 @@ const BoothDetail = () => {
         </S.ReplyAllBox>
       ))}
       <S.BottomBox>
-        <S.HeartButton src="/booth/heart.png" alt="좋아요" />
+        <S.HeartButton src="../public/booth/heart.png" alt="좋아요" />
         <S.WriteReply>
           <StyledTextArea
             hasValue={newComment.trim().length > 0}
@@ -175,9 +184,12 @@ const BoothDetail = () => {
         />
       </S.BottomBox>
       {isModalOpen && (
-        <ReplyModal
+        <PromotionModal
           isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
+          onClose={handleModalClose}
+          description={newComment}
+          title="비밀번호 설정"
+          id={id} // id 값을 전달
         />
       )}
       {isDeleteModalOpen && (
