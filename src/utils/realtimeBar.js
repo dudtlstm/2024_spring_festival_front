@@ -1,3 +1,5 @@
+import { PlaceWrapper,PerformancePlace } from "../components/timeTable/timeLine/style";
+
 // ---- top 값을 반환하는 함수 ---- 
 export const realtimeBar = (festaDate) =>{
   const today = new Date();
