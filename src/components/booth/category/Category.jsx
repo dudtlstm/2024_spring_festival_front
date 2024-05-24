@@ -33,9 +33,9 @@ const Category = ({ category, setCategory, resetData }) => {
         </S.CategoryItem>
       </S.CategoryItems>
 
-      <S.CategoryReset>
+      <S.CategoryReset onClick={resetData}>
         <S.CategoryResetImg src={ResetIcon} />
-        <S.CategoryResetText onClick={resetData}>전체보기</S.CategoryResetText>
+        <S.CategoryResetText>전체보기</S.CategoryResetText>
       </S.CategoryReset>
     </S.CategoryWrapper>
   );
