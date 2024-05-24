@@ -66,7 +66,7 @@ export const RealTimeBar = styled.img`
   position: absolute;
   top: ${(props) => props.top && props.top * 2.4 + 46}px;
 
-  z-index: 15;
+  /* z-index: 15; */
 `;
 export const TimeSlot = styled.div`
   position: relative;
