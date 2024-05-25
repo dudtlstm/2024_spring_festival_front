@@ -14,12 +14,15 @@ function NoticeModal({ isOpen, onClose, onConfirm, description, title, link }) {
   useEffect(() => {
     if (isOpen) {
       document.addEventListener("mousedown", handleClickOutside);
+      document.querySelector('.header').classList.add('modal-open');
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.querySelector('.header').classList.remove('modal-open');
     }
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.querySelector('.header').classList.remove('modal-open');
     };
   }, [isOpen]);
 
@@ -35,7 +38,7 @@ function NoticeModal({ isOpen, onClose, onConfirm, description, title, link }) {
       contentLabel="사이트 연결 확인"
       ariaHideApp={false}
       shouldCloseOnOverlayClick={true}
-      zIndex={200}
+      // zIndex={200}
     >
       <S.SiteConnectWrapper ref={modalRef}>
         <S.SiteConnect>

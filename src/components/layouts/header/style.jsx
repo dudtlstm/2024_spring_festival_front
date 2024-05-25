@@ -17,4 +17,8 @@ export const HeaderWrapper = styled.div`
   background: var(--use-background-background---main, #fff);
 
   z-index: 100;
+
+  &.modal-open {
+    z-index: 0;
+  }
 `;
