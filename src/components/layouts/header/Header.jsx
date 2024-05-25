@@ -41,7 +41,7 @@ const Header = ({ currentPath }) => {
   }
 
   return (
-    <S.HeaderWrapper>
+    <S.HeaderWrapper className="header">
       <img src={logoSrc} alt="무아지경" onClick={handleClick} />
       <Link to="/about">
         <img src={images.lionImg} alt="🦁" />

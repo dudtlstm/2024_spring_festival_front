@@ -18,12 +18,15 @@ function PromotionModal({ isOpen, onClose, description, title, id }) {
   useEffect(() => {
     if (isOpen) {
       document.addEventListener("mousedown", handleClickOutside);
+      document.querySelector('.header').classList.add('modal-open');
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.querySelector('.header').classList.remove('modal-open');
     }
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.querySelector('.header').classList.remove('modal-open');
     };
   }, [isOpen]);
 
