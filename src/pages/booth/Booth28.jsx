@@ -44,7 +44,7 @@ const Booth28 = ({ date }) => {
   const handleMarkerClick = async id => {
     try {
       window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-      const locationData = await boothDetail(id);
+      const locationData = await boothDetail(id, date);
       setData([locationData]);
       setSelectedBoothId(id);
     } catch (e) {
