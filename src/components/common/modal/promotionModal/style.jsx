@@ -15,7 +15,7 @@ export const IsModal = styled(Modal)`
   height: 100%;
   background: rgba(0, 0, 0, 0.2);
   /* mix-blend-mode: multiply; */
-  z-index: 1000 !important;
+  z-index: 2000 !important;
 `;
 
 export const CustomOverlay = styled.div`

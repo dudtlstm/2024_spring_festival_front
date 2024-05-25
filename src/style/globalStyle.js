@@ -109,6 +109,7 @@ export const GlobalStyle = createGlobalStyle`
     scrollbar-width: none; /* 파이어폭스 */
   }
 
-
-
+  .modal-open .header {
+    z-index: 0 !important; /* 모달이 열렸을 때 헤더를 뒤로 보냄 이거 이제 제발 되어라 */
+  }
 `;

@@ -14,15 +14,15 @@ function NoticeModal({ isOpen, onClose, onConfirm, description, title, link }) {
   useEffect(() => {
     if (isOpen) {
       document.addEventListener("mousedown", handleClickOutside);
-      document.querySelector('.header').classList.add('modal-open');
+      document.body.classList.add("modal-open");
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
-      document.querySelector('.header').classList.remove('modal-open');
+      document.body.classList.remove("modal-open");
     }
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
-      document.querySelector('.header').classList.remove('modal-open');
+      document.body.classList.remove("modal-open");
     };
   }, [isOpen]);
 
@@ -44,7 +44,7 @@ function NoticeModal({ isOpen, onClose, onConfirm, description, title, link }) {
         <S.SiteConnect>
           <S.SiteConnectTitle>사이트 연결</S.SiteConnectTitle>
           <S.SiteConnectContent>
-            축기단 인스타그램으로 이동합니다
+            축제기획단 인스타그램으로 이동합니다.
           </S.SiteConnectContent>
           <S.SiteConnectButton>
             <S.SiteConnectCancle onClick={onClose}>취소</S.SiteConnectCancle>

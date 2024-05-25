@@ -14,15 +14,15 @@ function PromotionModal({ isOpen, onClose, onConfirm, description, title }) {
   useEffect(() => {
     if (isOpen) {
       document.addEventListener("mousedown", handleClickOutside);
-      document.querySelector('.header').classList.add('modal-open');
+      document.body.classList.add("modal-open");
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
-      document.querySelector('.header').classList.remove('modal-open');
+      document.body.classList.remove("modal-open");
     }
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
-      document.querySelector('.header').classList.remove('modal-open');
+      document.body.classList.remove("modal-open");
     };
   }, [isOpen]);
 
@@ -30,7 +30,7 @@ function PromotionModal({ isOpen, onClose, onConfirm, description, title }) {
     <S.IsModal
       isOpen={isOpen}
       onRequestClose={onClose}
-      contentLabel="사이트 연결 확인"
+      contentLabel="서비스 연결 확인"
       ariaHideApp={false}
       shouldCloseOnOverlayClick={true}
       // zIndex={200}
