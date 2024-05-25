@@ -61,6 +61,14 @@ export const Information = styled.div`
   font-weight: 500;
   line-height: 16px; /* 133.333% */
 `;
+export const InfoIcon = styled.img`
+  display: flex;
+  width: 16px;
+  height: 16px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 8px;
+`;
 export const SeparationBar = styled.div`
   width: 100%;
   height: 4px;
@@ -219,14 +227,26 @@ export const BottomBox = styled.div`
   gap: 10px;
   align-self: stretch;
   border-top: 1px solid var(--use-stroke-stroke---disable, #e2e3ec);
-  background: #fff;
+  /* background: #fff; */
   box-shadow: 0px -2px 4px 0px rgba(226, 230, 239, 0.25);
 `;
-export const HeartButton = styled.div`
+export const Heart = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+export const HeartButton = styled.img`
   width: 24px;
   height: 24px;
   flex-shrink: 0;
-  border: 1px solid red;
+`;
+export const HeartCount = styled.div`
+  color: var(--use-font-font---disable, #c4c4c4);
+  font-family: Pretendard;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 12px; /* 120% */
+  text-align: center;
 `;
 export const WriteReply = styled.div`
   display: flex;
@@ -239,9 +259,8 @@ export const WriteReply = styled.div`
   background: var(--use-background-background---section, #fbfbfb);
 `;
 
-export const SendReply = styled.div`
+export const SendReply = styled.img`
   width: 24px;
   height: 24px;
   flex-shrink: 0;
-  border: 1px solid blue;
 `;

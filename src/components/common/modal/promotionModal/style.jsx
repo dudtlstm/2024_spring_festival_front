@@ -148,9 +148,9 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
 `;
-export const PasswordIcon = styled.input`
+export const PasswordIcon = styled.img`
   width: 24px;
   height: 24px;
   flex-shrink: 0;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 `;
