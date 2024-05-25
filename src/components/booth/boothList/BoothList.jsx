@@ -51,6 +51,16 @@ const BoothList = ({ date, category, data, onLocationClick }) => {
   //   }
   // };
 
+  const getBoothImg = booth => {
+    if (booth.thumbnail) {
+      return booth.thumbnail;
+    }
+    if (Array.isArray(booth.images) && booth.images.length > 0) {
+      return booth.images[0];
+    }
+    return BoothImg;
+  };
+
   return (
     <S.BoothListWrapper>
       {data.length > 0 ? (
@@ -58,7 +68,7 @@ const BoothList = ({ date, category, data, onLocationClick }) => {
           <S.BoothCardWrapper key={booth.id}>
             <S.BoothCardContent onClick={() => handleCardClick(booth.id)}>
               {/* 부스 이미지 */}
-              <S.BoothCardImg src={booth.thumbnail || BoothImg} />
+              <S.BoothCardImg src={getBoothImg(booth)} />
               <S.BoothCardContentInfo>
                 <S.BoothCardContentInfoTitle>
                   {booth.name.length < 14
