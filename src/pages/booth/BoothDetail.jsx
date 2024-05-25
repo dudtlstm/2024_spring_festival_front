@@ -127,25 +127,30 @@ const BoothDetail = () => {
     setIsModalOpen(false);
     setNewComment("");
   };
-
+  // 좋아요 버튼 부분
   const handleHeartClick = () => {
     setIsLiked(!isLiked);
-    const likeCookie = `liked_booth_${id}`;
-    if (isLiked) {
-      document.cookie = `${likeCookie}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    if (!isLiked) {
+      axios
+        .post(`https://mua-dongguk-server.site/api/v1/booth/${id}/likes`)
+        .then((response) => {
+          console.log("좋아요가 추가되었습니다.");
+          setLikeCount((prevCount) => prevCount + 1);
+        })
+        .catch((error) => {
+          console.error("좋아요를 추가하는 중 오류 발생:", error);
+        });
     } else {
-      document.cookie = `${likeCookie}=true; path=/;`;
+      axios
+        .delete(`https://mua-dongguk-server.site/api/v1/booth/${id}/likes`)
+        .then((response) => {
+          console.log("좋아요가 삭제되었습니다.");
+          setLikeCount((prevCount) => prevCount - 1);
+        })
+        .catch((error) => {
+          console.error("좋아요를 삭제하는 중 오류 발생:", error);
+        });
     }
-
-    axios
-      .post(`https://mua-dongguk-server.site/api/v1/booth/${id}/boothlike`)
-      .then((response) => {
-        console.log("하트가 성공적으로 전송되었습니다.");
-        setLikeCount((prevCount) => prevCount + (isLiked ? -1 : 1));
-      })
-      .catch((error) => {
-        console.error("하트를 전송하는 중 오류 발생:", error);
-      });
   };
 
   if (loading) {
@@ -242,7 +247,11 @@ const BoothDetail = () => {
             placeholder="댓글을 입력하세요"
           />
           <S.SendReply
-            src="../booth/send.png"
+            src={
+              newComment.trim().length > 0
+                ? "../booth/colorsend.png"
+                : "../booth/send.png"
+            }
             alt="전송"
             onClick={handleSubmitComment}
           />

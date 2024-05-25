@@ -44,12 +44,18 @@ function PromotionModal({
       const response = await axios.delete(
         `https://mua-dongguk-server.site/api/v1/booth/${boothId}/comments/${commentId}`,
         {
-          data: { password: parseInt(password) },
+          data: { password: parseInt(password) }, // 비밀번호를 데이터로 전송
         }
       );
-      console.log("댓글이 성공적으로 삭제되었습니다.");
-      onConfirm(); // 삭제 성공 시 부모 컴포넌트에서 콜백 호출
-      onClose(); // 모달 닫기
+
+      if (response.data === "success") {
+        console.log("댓글이 성공적으로 삭제되었습니다.");
+        onConfirm(); // 삭제 성공 시 부모 컴포넌트에서 콜백 호출
+        onClose(); // 모달 닫기
+      } else {
+        console.error("비밀번호가 일치하지 않습니다.");
+        setDeleteError("비밀번호가 일치하지 않습니다.");
+      }
     } catch (error) {
       console.error("댓글 삭제 중 오류:", error);
       setDeleteError(error.message);
@@ -88,7 +94,6 @@ function PromotionModal({
           </S.SiteConnectButton>
         </S.SiteConnect>
       </S.SiteConnectWrapper>
-      {deleteError && <div>댓글 삭제 오류: {deleteError}</div>}
     </S.IsModal>
   );
 }
