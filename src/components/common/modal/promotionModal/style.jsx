@@ -77,6 +77,18 @@ export const SiteConnectContent = styled.div`
   letter-spacing: -0.25px;
 `;
 
+export const SiteConnectContent2 = styled.div`
+  width: 100%;
+  color: var(--use-font-font---info, #929292);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+  letter-spacing: -0.25px;
+`;
+
 export const SiteConnectButton = styled.div`
   display: flex;
   align-items: flex-start;
@@ -130,28 +142,25 @@ export const SiteConnectCancle = styled.div`
 `;
 // 비밀번호
 export const PasswordInput = styled.input`
-  text-align: center;
-  width: 146px;
-  height: 40px;
-  margin-top: 20px;
-  display: flex;
-  /* padding: 8px 20px; */
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  border-radius: 8px;
-  border: 1.45px solid var(--use-stroke-stroke---main, #c9cad3);
-  background: var(--use-background-background---main, #fff);
+  box-sizing: border-box;
+  border: 1px solid red;
 `;
 
 export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 1px solid red;
+  position: relative;
+  width: fit-content;
 `;
 export const PasswordIcon = styled.img`
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
-  /* border: 1px solid red; */
+  position: absolute;
+  /* right: 10px; */
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 20px; /* Adjust the size as needed */
+  height: 20px; /* Adjust the size as needed */
+  pointer-events: auto; /* Allow clicking on the icon */
 `;

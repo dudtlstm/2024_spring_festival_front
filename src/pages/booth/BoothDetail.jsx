@@ -46,9 +46,9 @@ const BoothDetail = () => {
   const [newComment, setNewComment] = useState("");
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
-  const [likeCount, setLikeCount] = useState(0); // 좋아요 수 상태 추가
+  const [likeCount, setLikeCount] = useState(0);
 
-  const placeholderImage = "/booth/time.png"; // 대체 이미지 경로
+  const placeholderImage = "/booth/booth.png";
 
   useEffect(() => {
     const fetchBoothDetail = async () => {
@@ -58,6 +58,7 @@ const BoothDetail = () => {
         );
         console.log(response.data);
         setBoothDetail(response.data);
+        setLikeCount(response.data.like_cnt);
       } catch (error) {
         console.error("Error fetching booth detail:", error);
         setError(error.message);
@@ -71,28 +72,22 @@ const BoothDetail = () => {
         const response = await axios.get(
           `https://mua-dongguk-server.site/api/v1/booth/${id}/comments`
         );
+
         console.log(response.data);
+        const formattedComments = response.data.map((comment) => ({
+          id: comment.id,
+          content: comment.content,
+          created_at: comment.created_at,
+        }));
+
         setComments(response.data);
       } catch (error) {
         console.error("Error fetching comments:", error);
       }
     };
 
-    const fetchLikeCount = async () => {
-      try {
-        const response = await axios.get(
-          `https://mua-dongguk-server.site/api/v1/booth/${id}/like`
-        );
-        console.log(response.data);
-        setLikeCount(response.data.likeCount); // API가 { likeCount: number }를 반환한다고 가정
-      } catch (error) {
-        console.error("Error fetching like count:", error);
-      }
-    };
-
     fetchBoothDetail();
     fetchComments();
-    fetchLikeCount();
   }, [id]);
 
   const handlePrevClick = () => {
@@ -108,11 +103,11 @@ const BoothDetail = () => {
   };
 
   const handleDeleteClick = () => {
-    setIsDeleteModalOpen(true); // 삭제하기 버튼을 누르면 삭제 모달 열림
+    setIsDeleteModalOpen(true);
   };
 
   const handleCloseDeleteModal = () => {
-    setIsDeleteModalOpen(false); // 삭제 모달 닫기
+    setIsDeleteModalOpen(false);
   };
 
   const handleConfirmDelete = () => {
@@ -125,19 +120,16 @@ const BoothDetail = () => {
   }, []);
 
   const handleSubmitComment = () => {
-    setIsModalOpen(true); // 전송하기 버튼을 누르면 ReplyModal 열림
+    setIsModalOpen(true);
   };
 
   const handleModalClose = () => {
     setIsModalOpen(false);
-    setNewComment(""); // 모달이 닫힐 때 댓글 입력창 비우기
+    setNewComment("");
   };
 
   const handleHeartClick = () => {
-    // 좋아요 상태를 토글
     setIsLiked(!isLiked);
-
-    // 부스에 대한 좋아요 정보를 쿠키에 저장
     const likeCookie = `liked_booth_${id}`;
     if (isLiked) {
       document.cookie = `${likeCookie}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
@@ -145,12 +137,11 @@ const BoothDetail = () => {
       document.cookie = `${likeCookie}=true; path=/;`;
     }
 
-    // 서버에 좋아요 상태를 전송하여 업데이트
     axios
-      .post(`https://mua-dongguk-server.site/api/v1/booth/${id}/like`)
+      .post(`https://mua-dongguk-server.site/api/v1/booth/${id}/boothlike`)
       .then((response) => {
         console.log("하트가 성공적으로 전송되었습니다.");
-        setLikeCount((prevCount) => prevCount + (isLiked ? -1 : 1)); // 좋아요 수 업데이트
+        setLikeCount((prevCount) => prevCount + (isLiked ? -1 : 1));
       })
       .catch((error) => {
         console.error("하트를 전송하는 중 오류 발생:", error);
@@ -169,22 +160,34 @@ const BoothDetail = () => {
     return <div>No booth available</div>;
   }
 
+  const images =
+    boothDetail.images && boothDetail.images.length > 0
+      ? boothDetail.images
+      : [placeholderImage];
+
   return (
     <>
       <S.ImageContainer>
         <S.ImageNotice
-          src={boothDetail.images[currentIndex]}
+          src={images[currentIndex]}
           alt={`Booth image ${currentIndex + 1}`}
+          className={
+            images[currentIndex] === placeholderImage ? "placeholder" : ""
+          }
           onError={(e) => {
-            e.target.onerror = null; // 무한 루프 방지
+            e.target.onerror = null;
             e.target.src = placeholderImage;
           }}
         />
-        <S.LeftButton onClick={handlePrevClick} />
-        <S.RightButton onClick={handleNextClick} />
+        {images.length > 1 && (
+          <>
+            <S.LeftButton onClick={handlePrevClick} />
+            <S.RightButton onClick={handleNextClick} />
+          </>
+        )}
       </S.ImageContainer>
       <S.Pagination>
-        {boothDetail.images.map((_, index) => (
+        {images.map((_, index) => (
           <S.Dot key={index} active={index === currentIndex} />
         ))}
       </S.Pagination>
@@ -194,17 +197,14 @@ const BoothDetail = () => {
       </S.DetailBox>
       <S.InformationBox>
         <S.Information>
-          {" "}
-          <S.InfoIcon src="/booth/location.png" alt="위치" />
+          <S.InfoIcon src="/booth/reloca.png" alt="위치" />
           {boothDetail.location}
         </S.Information>
         <S.Information>
-          {" "}
-          <S.InfoIcon src="/booth/time.png" alt="time" />
+          <S.InfoIcon src="/booth/retime.png" alt="time" />
           {boothDetail.during}
         </S.Information>
         <S.Information>
-          {" "}
           <S.InfoIcon src="/booth/pin.png" alt="pin" />
           {boothDetail.operator}
         </S.Information>
@@ -254,7 +254,7 @@ const BoothDetail = () => {
           onClose={handleModalClose}
           description={newComment}
           title="비밀번호 설정"
-          id={id} // id 값을 전달
+          id={id}
         />
       )}
       {isDeleteModalOpen && (

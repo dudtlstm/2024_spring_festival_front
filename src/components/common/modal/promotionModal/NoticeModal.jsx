@@ -40,9 +40,9 @@ function NoticeModal({ isOpen, onClose, onConfirm, description, title, link }) {
       <S.SiteConnectWrapper ref={modalRef}>
         <S.SiteConnect>
           <S.SiteConnectTitle>사이트 연결</S.SiteConnectTitle>
-          <S.SiteConnectContent>
-            축기단 인스타그램으로 이동합니다
-          </S.SiteConnectContent>
+          <S.SiteConnectContent2>
+            축제기획단 인스타그램으로 이동합니다
+          </S.SiteConnectContent2>
           <S.SiteConnectButton>
             <S.SiteConnectCancle onClick={onClose}>취소</S.SiteConnectCancle>
             <S.SiteConnectConfirm onClick={handleConfirm}>
