@@ -45,6 +45,10 @@ const BoothDetail = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newComment, setNewComment] = useState("");
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(0); // 좋아요 수 상태 추가
+
+  const placeholderImage = "/booth/time.png"; // 대체 이미지 경로
 
   useEffect(() => {
     const fetchBoothDetail = async () => {
@@ -61,6 +65,7 @@ const BoothDetail = () => {
         setLoading(false);
       }
     };
+
     const fetchComments = async () => {
       try {
         const response = await axios.get(
@@ -73,8 +78,21 @@ const BoothDetail = () => {
       }
     };
 
+    const fetchLikeCount = async () => {
+      try {
+        const response = await axios.get(
+          `https://mua-dongguk-server.site/api/v1/booth/${id}/like`
+        );
+        console.log(response.data);
+        setLikeCount(response.data.likeCount); // API가 { likeCount: number }를 반환한다고 가정
+      } catch (error) {
+        console.error("Error fetching like count:", error);
+      }
+    };
+
     fetchBoothDetail();
     fetchComments();
+    fetchLikeCount();
   }, [id]);
 
   const handlePrevClick = () => {
@@ -115,6 +133,30 @@ const BoothDetail = () => {
     setNewComment(""); // 모달이 닫힐 때 댓글 입력창 비우기
   };
 
+  const handleHeartClick = () => {
+    // 좋아요 상태를 토글
+    setIsLiked(!isLiked);
+
+    // 부스에 대한 좋아요 정보를 쿠키에 저장
+    const likeCookie = `liked_booth_${id}`;
+    if (isLiked) {
+      document.cookie = `${likeCookie}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    } else {
+      document.cookie = `${likeCookie}=true; path=/;`;
+    }
+
+    // 서버에 좋아요 상태를 전송하여 업데이트
+    axios
+      .post(`https://mua-dongguk-server.site/api/v1/booth/${id}/like`)
+      .then((response) => {
+        console.log("하트가 성공적으로 전송되었습니다.");
+        setLikeCount((prevCount) => prevCount + (isLiked ? -1 : 1)); // 좋아요 수 업데이트
+      })
+      .catch((error) => {
+        console.error("하트를 전송하는 중 오류 발생:", error);
+      });
+  };
+
   if (loading) {
     return <Spinner />;
   }
@@ -133,6 +175,10 @@ const BoothDetail = () => {
         <S.ImageNotice
           src={boothDetail.images[currentIndex]}
           alt={`Booth image ${currentIndex + 1}`}
+          onError={(e) => {
+            e.target.onerror = null; // 무한 루프 방지
+            e.target.src = placeholderImage;
+          }}
         />
         <S.LeftButton onClick={handlePrevClick} />
         <S.RightButton onClick={handleNextClick} />
@@ -147,9 +193,21 @@ const BoothDetail = () => {
         <S.Detail>{boothDetail.description}</S.Detail>
       </S.DetailBox>
       <S.InformationBox>
-        <S.Information>{boothDetail.location}</S.Information>
-        <S.Information>{boothDetail.during}</S.Information>
-        <S.Information>{boothDetail.operator}</S.Information>
+        <S.Information>
+          {" "}
+          <S.InfoIcon src="/booth/location.png" alt="위치" />
+          {boothDetail.location}
+        </S.Information>
+        <S.Information>
+          {" "}
+          <S.InfoIcon src="/booth/time.png" alt="time" />
+          {boothDetail.during}
+        </S.Information>
+        <S.Information>
+          {" "}
+          <S.InfoIcon src="/booth/pin.png" alt="pin" />
+          {boothDetail.operator}
+        </S.Information>
       </S.InformationBox>
       <S.SeparationBar />
       <S.ReplyBox>
@@ -168,7 +226,14 @@ const BoothDetail = () => {
         </S.ReplyAllBox>
       ))}
       <S.BottomBox>
-        <S.HeartButton src="../public/booth/heart.png" alt="좋아요" />
+        <S.Heart>
+          <S.HeartButton
+            src={isLiked ? "/booth/fullheart.png" : "/booth/heart.svg"}
+            alt="좋아요"
+            onClick={handleHeartClick}
+          />{" "}
+          <S.HeartCount>{likeCount}</S.HeartCount>
+        </S.Heart>
         <S.WriteReply>
           <StyledTextArea
             hasValue={newComment.trim().length > 0}
@@ -176,12 +241,12 @@ const BoothDetail = () => {
             onChange={handleCommentChange}
             placeholder="댓글을 입력하세요"
           />
+          <S.SendReply
+            src="../booth/send.png"
+            alt="전송"
+            onClick={handleSubmitComment}
+          />
         </S.WriteReply>
-        <S.SendReply
-          src="../public/booth/send.png"
-          alt="전송"
-          onClick={handleSubmitComment}
-        />
       </S.BottomBox>
       {isModalOpen && (
         <PromotionModal

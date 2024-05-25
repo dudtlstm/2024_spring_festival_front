@@ -69,7 +69,6 @@ function PromotionModal({
             <br />
             비밀번호 4자리를 입력해주세요!
             <S.Container>
-              <S.PasswordIcon src="../public/booth/pw.png" alt="비밀번호" />
               <S.PasswordInput
                 type="password"
                 value={password}

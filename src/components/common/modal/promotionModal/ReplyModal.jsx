@@ -68,13 +68,13 @@ function PromotionModal({ isOpen, onClose, description, title, id }) {
             댓글 작성에 필요한 <br />
             숫자 4자리를 입력해주세요!{" "}
             <S.Container>
-              <S.PasswordIcon src="../public/booth/pw.png" alt="비밀번호" />
               <S.PasswordInput
                 type="password"
                 value={password}
                 onChange={handlePasswordChange}
                 maxLength={4}
               />
+              <S.PasswordIcon src="../public/booth/pw.png" alt="비밀번호" />
             </S.Container>
           </S.SiteConnectContent>
           <S.SiteConnectButton>
