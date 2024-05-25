@@ -30,7 +30,7 @@ function PromotionModal({ isOpen, onClose, onConfirm, description, title }) {
     <S.IsModal
       isOpen={isOpen}
       onRequestClose={onClose}
-      contentLabel="서비스 연결 확인"
+      contentLabel="사이트 연결 확인"
       ariaHideApp={false}
       shouldCloseOnOverlayClick={true}
       // zIndex={200}
