@@ -51,8 +51,7 @@ function TopBanner() {
     {
       img: "/image/mainpage/main_BigBanner_6.png",
       miniImg: "/image/mainpage/main_SmallBanner_6.png",
-      //추후 링크 수정 필요
-      link: "https://www.instagram.com/dudtlstm/",
+      link: "https://docs.google.com/forms/d/e/1FAIpQLSdSW8kBLvk6aCqjM98siWi4i0Xl2v-tZNdoe-mt4QMgep_MFw/viewform",
     },
   ];
 
@@ -91,7 +90,21 @@ function TopBanner() {
     <>
       <S.BannerWrapper>
         <S.BannerContainer>
-          <a href={banners[currentIndex].link}>
+          <a
+            href={banners[currentIndex].link}
+            target={
+              banners[currentIndex].link ===
+              "https://docs.google.com/forms/d/e/1FAIpQLSdSW8kBLvk6aCqjM98siWi4i0Xl2v-tZNdoe-mt4QMgep_MFw/viewform"
+                ? "_blank"
+                : "_self"
+            }
+            rel={
+              banners[currentIndex].link ===
+              "https://docs.google.com/forms/d/e/1FAIpQLSdSW8kBLvk6aCqjM98siWi4i0Xl2v-tZNdoe-mt4QMgep_MFw/viewform"
+                ? "noopener noreferrer"
+                : ""
+            }
+          >
             <S.BigBannerImg src={banners[currentIndex].img} loading="lazy" />
           </a>
           <S.MiniBannerContainer>
