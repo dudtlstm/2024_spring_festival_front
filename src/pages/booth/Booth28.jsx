@@ -33,7 +33,7 @@ const Booth28 = ({ date }) => {
   const handleLocationClick = async id => {
     try {
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      const locationData = await boothDetail(id);
+      const locationData = await boothDetail(id, date);
       setData([locationData]);
       setSelectedBoothId(id);
     } catch (e) {
