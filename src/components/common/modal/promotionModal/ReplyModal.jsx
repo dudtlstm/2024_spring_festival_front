@@ -6,7 +6,8 @@ import * as S from "./style";
 function PromotionModal({ isOpen, onClose, description, title, id }) {
   const [password, setPassword] = useState("");
   const [isConfirmEnabled, setIsConfirmEnabled] = useState(false);
-  const [responseStatus, setResponseStatus] = useState(null); // 응답 상태를 저장할 상태 추가
+  const [responseStatus, setResponseStatus] = useState(null);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const modalRef = useRef(null);
 
   const handleClickOutside = (event) => {
@@ -56,6 +57,10 @@ function PromotionModal({ isOpen, onClose, description, title, id }) {
     }
   };
 
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible((prevVisibility) => !prevVisibility);
+  };
+
   return (
     <S.IsModal
       isOpen={isOpen}
@@ -69,22 +74,26 @@ function PromotionModal({ isOpen, onClose, description, title, id }) {
           <S.SiteConnectTitle>{title}</S.SiteConnectTitle>
           <S.SiteConnectContent>
             댓글 작성에 필요한 <br />
-            숫자 4자리를 입력해주세요!{" "}
+            숫자 4자리를 입력해주세요!
             <S.Container>
               <S.PasswordInput
-                type="password"
+                type={isPasswordVisible ? "text" : "password"}
                 value={password}
                 onChange={handlePasswordChange}
                 maxLength={4}
               />
-              <S.PasswordIcon src="../public/booth/pw.png" alt="비밀번호" />
+              <S.PasswordIcon
+                src="../public/booth/pw.png"
+                alt="비밀번호"
+                onClick={togglePasswordVisibility}
+              />
             </S.Container>
           </S.SiteConnectContent>
           <S.SiteConnectButton>
             <S.SiteConnectCancle onClick={onClose}>취소</S.SiteConnectCancle>
             <S.SiteConnectConfirm
               onClick={handleConfirmClick}
-              disabled={!isConfirmEnabled} // 확인 버튼 활성화 여부에 따라 disabled 속성 설정
+              disabled={!isConfirmEnabled}
             >
               확인
             </S.SiteConnectConfirm>

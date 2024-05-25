@@ -14,33 +14,28 @@ export const Title = styled.div`
   font-weight: 600;
   line-height: 28px;
   letter-spacing: -0.48px;
-  padding: 0px 20px;
+  padding: 12px;
   margin-bottom: 16px;
 `;
 export const Detail = styled.div`
-  color: var(--use-font-font---head, #151515);
+  color: var(--use-font-font---body, #474747);
   font-family: Pretendard;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: 24px;
   letter-spacing: -0.25px;
-  flex: 1 0 0;
-  padding: 0px 20px;
-  align-items: center;
 `;
 export const DetailBox = styled.div`
-  margin-left: 5%;
   display: flex;
-  justify-content: center; /* 수평 중앙 정렬 */
+  padding: 12px;
   align-items: center;
-  padding: 12px 12px;
   gap: 10px;
   align-self: stretch;
   border-radius: 4px;
   background: var(--use-background-background---section, #fbfbfb);
-  width: 90%;
-  margin-bottom: 24px;
+  margin: 0px 20px;
+  margin-bottom: 12px;
 `;
 export const InformationBox = styled.div`
   display: flex;
@@ -48,6 +43,7 @@ export const InformationBox = styled.div`
   /* border: 1px solid red; */
   width: 90%;
   margin-left: 7%;
+  margin-top: 24px;
 `;
 export const Information = styled.div`
   display: flex;
@@ -163,9 +159,15 @@ export const ImageNotice = styled.img`
   max-width: 100%; /* 이미지의 너비를 부모 요소에 맞춤 */
   max-height: 100%; /* 이미지의 높이를 부모 요소에 맞춤 */
   flex-shrink: 0;
+
+  &.placeholder {
+    width: 90%;
+    height: 90%;
+  }
 `;
 
 export const RightButton = styled.button`
+  mix-blend-mode: multiply;
   width: 34px;
   height: 34px;
   flex-shrink: 0;
@@ -182,6 +184,7 @@ export const RightButton = styled.button`
 `;
 
 export const LeftButton = styled.button`
+  mix-blend-mode: multiply;
   width: 34px;
   height: 34px;
   flex-shrink: 0;
