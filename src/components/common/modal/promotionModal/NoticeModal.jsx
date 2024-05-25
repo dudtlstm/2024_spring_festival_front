@@ -42,7 +42,7 @@ function NoticeModal({ isOpen, onClose, onConfirm, description, title, link }) {
     >
       <S.SiteConnectWrapper ref={modalRef}>
         <S.SiteConnect>
-          <S.SiteConnectTitle>사이트 연결</S.SiteConnectTitle>
+          <S.SiteConnectTitle>인스타그램 연결</S.SiteConnectTitle>
           <S.SiteConnectContent>
             축제기획단 인스타그램으로 이동합니다.
           </S.SiteConnectContent>

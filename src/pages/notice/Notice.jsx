@@ -58,7 +58,7 @@ const Notice = ({ noticeId }) => {
     <div>
       <S.NoticeTitleWrapper>
         <img src="/promotion/promotionTitle.svg" alt="홍보안내문구" />
-        <div>카드를 클릭하면 축제기획단 인스타로 이동합니다! </div>
+        <div>카드를 클릭하면 축제기획단 인스타로 이동합니다!</div>
       </S.NoticeTitleWrapper>
       <S.CardWrapper>
         {notice.map((promo) => (
@@ -82,8 +82,8 @@ const Notice = ({ noticeId }) => {
           isOpen={isModalOpen}
           onClose={handleCloseModal}
           onConfirm={handleCloseModal}
-          title="사이트 연결"
-          description="축기단 인스타그램으로 이동합니다!"
+          title="인스타그램 연결"
+          description="축제기획단 인스타그램으로 이동합니다."
           link={selectedNotice.insta_url}
         />
       )}

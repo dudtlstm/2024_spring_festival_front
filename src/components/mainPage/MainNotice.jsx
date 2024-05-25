@@ -92,8 +92,8 @@ function MainNotice() {
         isOpen={modalIsOpen}
         onClose={closeModal}
         onConfirm={handleConfirm}
-        description="축제기획단 인스타그램으로 이동합니다"
-        title="사이트 연결"
+        description="축제기획단 인스타그램으로 이동합니다."
+        title="인스타그램 연결"
       />
     </S.NoticeWrapper>
   );
