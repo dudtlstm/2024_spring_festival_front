@@ -127,12 +127,9 @@ export const SiteConnectCancle = styled.div`
   gap: 12px;
   flex: 1 0 0;
   cursor: pointer;
-
   border-radius: 8px;
   border: 1px solid var(--use-stroke-stroke---main, #c9cad3);
-
   color: var(--use-font-font---info, #929292);
-
   font-family: Pretendard;
   font-size: 16px;
   font-style: normal;
@@ -141,26 +138,37 @@ export const SiteConnectCancle = styled.div`
   letter-spacing: -0.25px;
 `;
 // 비밀번호
-export const PasswordInput = styled.input`
-  box-sizing: border-box;
-  border: 1px solid red;
-`;
-
 export const Container = styled.div`
-  display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
   position: relative;
-  width: fit-content;
+  display: flex;
+  padding: 8px 20px;
+  flex-direction: column;
+  gap: 10px;
 `;
+export const PasswordInput = styled.input`
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 146px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1.45px solid var(--use-stroke-stroke---main, #c9cad3);
+  background: var(--use-background-background---main, #fff);
+  display: flex;
+  padding: 8px 20px;
+  gap: 10px;
+`;
+
 export const PasswordIcon = styled.img`
   position: absolute;
-  /* right: 10px; */
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
-  width: 20px; /* Adjust the size as needed */
-  height: 20px; /* Adjust the size as needed */
-  pointer-events: auto; /* Allow clicking on the icon */
+  width: 20px;
+  height: 20px;
+  pointer-events: auto;
+  right: 0;
 `;

@@ -83,7 +83,11 @@ function PromotionModal({ isOpen, onClose, description, title, id }) {
                 maxLength={4}
               />
               <S.PasswordIcon
-                src="../public/booth/pw.png"
+                src={
+                  isPasswordVisible
+                    ? "../public/booth/openeye.png"
+                    : "../public/booth/pw.png"
+                }
                 alt="비밀번호"
                 onClick={togglePasswordVisibility}
               />

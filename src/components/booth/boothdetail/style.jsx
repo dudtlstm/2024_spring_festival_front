@@ -136,8 +136,6 @@ export const ReplyData = styled.div`
 `;
 export const ReplyDelete = styled.div`
   color: var(--use-font-font---info, #929292);
-
-  /* Body3 */
   font-family: Pretendard;
   font-size: 12px;
   font-style: normal;
