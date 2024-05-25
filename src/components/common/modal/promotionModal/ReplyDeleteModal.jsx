@@ -23,15 +23,15 @@ function PromotionModal({
   useEffect(() => {
     if (isOpen) {
       document.addEventListener("mousedown", handleClickOutside);
-      document.querySelector('.header').classList.add('modal-open');
+      document.body.classList.add("modal-open");
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
-      document.querySelector('.header').classList.remove('modal-open');
+      document.body.classList.remove("modal-open");
     }
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
-      document.querySelector('.header').classList.remove('modal-open');
+      document.body.classList.remove("modal-open");
     };
   }, [isOpen]);
 

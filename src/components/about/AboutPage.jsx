@@ -50,7 +50,7 @@ function AboutPage() {
         <S.LastWrapper>
           <S.LastInfo>사이트 경험은 어떠셨나요? 후기를 남겨주세요</S.LastInfo>
           <a
-            href="https://www.instagram.com/dudtlstm/"
+            href="https://forms.gle/BvbusGMWPqYiFDfu5"
             target="_blank"
             rel="noopener noreferrer"
           >

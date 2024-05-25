@@ -18,7 +18,4 @@ export const HeaderWrapper = styled.div`
 
   z-index: 100;
 
-  &.modal-open {
-    z-index: 0;
-  }
 `;
