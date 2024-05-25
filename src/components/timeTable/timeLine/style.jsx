@@ -104,13 +104,17 @@ export const PerformancePlace = styled.div`
   padding: 12px;
   align-items: center;
 
-  color: var(--use-font-font---info, #929292);
+  color: var(--use-font-font---info, #474747);
+  /* color: var(--use-font-font---info, #929292); */
+  text-align: center;
+
+  /* Head3 */
   font-family: Pretendard;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
-  line-height: 24px;
-  letter-spacing: -0.2px;
+  line-height: 20px; /* 125% */
+  letter-spacing: -0.16px;
 `;
 
 // PerformanceCard.jsx

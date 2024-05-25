@@ -104,6 +104,7 @@ const TimeLine = ({ date }) => {
               ref={scrollRef}
               top={barPosition}
               src={realtimeBarImg}
+              // style={{ zIndex: 30 }}
               zIndex={30}
               alt="----------------------------"
             />

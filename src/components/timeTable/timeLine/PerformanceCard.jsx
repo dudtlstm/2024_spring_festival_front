@@ -11,6 +11,7 @@ const PerformanceCard = ({ performance }) => {
       bgcolor={performance.is_now ? "now" : "not"}
       bordercolor={performance.is_now ? "now" : "not"}
       timeslots={timeCheck}
+      // style={{ zIndex: 10 }}
       zIndex={10}
     >
       <S.PerformanceTeam>{performance.operator}</S.PerformanceTeam>

@@ -50,9 +50,10 @@ const Content = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+
+  padding-top: 52px;
 `;
 
-const idPattern = /^\/(booths|notice)\/([^/]+)$/;
 // 부스 상세 페이지 url 패턴 정의
 const boothsDetailPattern = /^\/(booths)\/([^/]+)$/;
 

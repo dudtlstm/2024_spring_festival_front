@@ -54,6 +54,7 @@ const Nav = () => {
   };
 
   return (
+    // <S.NavWrapper style={{ zIndex: 100 }}>
     <S.NavWrapper zIndex={50}>
       {route_map.map((page) => (
         <Link to={page.route} key={page.id}>

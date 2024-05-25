@@ -1,3 +1,4 @@
+import ReactDom from "react-dom";
 import React, { useEffect, useRef } from "react";
 import * as S from "./style";
 
@@ -22,7 +23,7 @@ function PromotionModal({ isOpen, onClose, onConfirm, description, title }) {
     };
   }, [isOpen]);
 
-  return (
+  return ReactDom.createPortal(
     <S.IsModal
       isOpen={isOpen}
       onRequestClose={onClose}
@@ -30,7 +31,7 @@ function PromotionModal({ isOpen, onClose, onConfirm, description, title }) {
       ariaHideApp={false}
       shouldCloseOnOverlayClick={true}
       zIndex={200}
-//       overlayClassName={S.CustomOverlay}
+      //       overlayClassName={S.CustomOverlay}
     >
       <S.SiteConnectWrapper ref={modalRef}>
         <S.SiteConnect>
@@ -44,7 +45,8 @@ function PromotionModal({ isOpen, onClose, onConfirm, description, title }) {
           </S.SiteConnectButton>
         </S.SiteConnect>
       </S.SiteConnectWrapper>
-    </S.IsModal>
+    </S.IsModal>,
+    document.querySelector("#portal")
   );
 }
 
