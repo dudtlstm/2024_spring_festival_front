@@ -9,48 +9,12 @@ import { booth } from '../../../apis/api/booth';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../../common/Spinner';
 
-const dummyData = [
-  {
-    id: 1,
-    img: BoothImg,
-    name: '부스 이름',
-    like: 186,
-    time: '(화,수,목) 11:00 ~ 11:00',
-    location: '멀티미디어공학과',
-  },
-  {
-    id: 2,
-    img: BoothImg,
-    name: '부스 이름',
-    like: 186,
-    time: '(화,수,목) 11:00 ~ 11:00',
-    location: '멀티미디어공학과',
-  },
-];
-
 const BoothList = ({ date, category, data, onLocationClick }) => {
   const navigate = useNavigate();
   const handleCardClick = id => {
     // navigate(`/booths/${id}`);
     navigate(`/booths/${id}`, { state: { date } }); // date 포함하여 api 요청
   };
-  // useEffect(() => {
-  //   fetchData();
-  // }, [category]);
-
-  // const fetchData = async () => {
-  //   try {
-  //     const result = await booth(date, category);
-  //     console.log(result);
-  //     if (Array.isArray(result)) {
-  //       setBoothListData(result);
-  //     } else {
-  //       // console.error('Expected an array but got:', result);
-  //     }
-  //   } catch (error) {
-  //     // console.error('Fetch data error: ', error);
-  //   }
-  // };
 
   const getBoothImg = booth => {
     if (booth.thumbnail) {
