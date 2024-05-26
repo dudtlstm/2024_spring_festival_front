@@ -14,8 +14,9 @@ export const Title = styled.div`
   font-weight: 600;
   line-height: 28px;
   letter-spacing: -0.48px;
-  padding: 12px;
-  margin-bottom: 16px;
+  /* padding: 12px; */
+  margin-bottom: 12px;
+  margin-left: 20px;
 `;
 export const Detail = styled.div`
   color: var(--use-font-font---body, #474747);
@@ -36,6 +37,7 @@ export const DetailBox = styled.div`
   background: var(--use-background-background---section, #fbfbfb);
   margin: 0px 20px;
   margin-bottom: 12px;
+  margin-left: 20px;
 `;
 export const InformationBox = styled.div`
   display: flex;
@@ -142,37 +144,33 @@ export const ReplyDelete = styled.div`
   font-weight: 500;
   line-height: 16px; /* 133.333% */
 `;
-
 export const ImageContainer = styled.div`
   position: relative;
-  /* display: flex;
+  display: flex;
   justify-content: center;
-  align-items: center; */
-  /* width: 390px;
-  height: 390px; */
+  align-items: center;
+
+  max-width: 100%; /* 이미지의 너비를 부모 요소에 맞춤 */
+  max-height: 100%; /* 이미지의 높이를 부모 요소에 맞춤 */
   margin: 0 auto; /* 부모 요소를 화면 중앙에 배치 */
 `;
+
 export const ImageNotice = styled.img`
   object-fit: contain;
   max-width: 100%; /* 이미지의 너비를 부모 요소에 맞춤 */
   max-height: 100%; /* 이미지의 높이를 부모 요소에 맞춤 */
-  flex-shrink: 0;
 
-  &.placeholder {
-    width: 90%;
-    height: 90%;
-  }
+  aspect-ratio: 1 / 1; /* 이미지의 가로세로 비율을 1:1로 지정 */
 `;
 
 export const RightButton = styled.button`
-  mix-blend-mode: multiply;
+  margin-right: 8px;
   width: 34px;
   height: 34px;
-  flex-shrink: 0;
-  fill: var(--use-background-background---deep, #f1f1f1);
-  background-color: rgba(241, 241, 241, 1);
+  background-color: rgba(0, 0, 0, 0.3);
   position: absolute;
   border-radius: 20%;
+  margin-right: 8px;
   right: 0;
   &::before {
     content: ">";
@@ -182,12 +180,12 @@ export const RightButton = styled.button`
 `;
 
 export const LeftButton = styled.button`
+  margin-left: 8px;
   mix-blend-mode: multiply;
   width: 34px;
   height: 34px;
-  flex-shrink: 0;
-  fill: var(--use-background-background---deep, #f1f1f1);
-  background-color: rgba(241, 241, 241, 1);
+  background-color: rgba(0, 0, 0, 0.3);
+
   border-radius: 20%;
   position: absolute;
   left: 0;
@@ -224,10 +222,8 @@ export const Dot = styled.div`
 export const BottomBox = styled.div`
   position: fixed;
   bottom: 0;
-
   width: 100%;
   max-width: 430px;
-
   display: flex;
   padding: 12px 20px;
   align-items: center;

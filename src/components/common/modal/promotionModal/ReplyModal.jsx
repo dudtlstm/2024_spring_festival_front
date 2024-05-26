@@ -3,7 +3,7 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import * as S from "./style";
 
-function PromotionModal({
+function ReplyModal({
   isOpen,
   onClose,
   description,
@@ -49,7 +49,7 @@ function PromotionModal({
     if (isConfirmEnabled) {
       axios
         .post(`https://mua-dongguk-server.site/api/v1/booth/${id}/comments`, {
-          password: parseInt(password, 10),
+          password: password,
           content: description,
         })
         .then((response) => {
@@ -119,8 +119,7 @@ function PromotionModal({
     </S.IsModal>
   );
 }
-
-PromotionModal.propTypes = {
+ReplyModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   description: PropTypes.string.isRequired,
@@ -129,4 +128,4 @@ PromotionModal.propTypes = {
   onCommentSubmit: PropTypes.func.isRequired,
 };
 
-export default PromotionModal;
+export default ReplyModal;
