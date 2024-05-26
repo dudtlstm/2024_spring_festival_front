@@ -1,10 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 //title.jsx
 export const TitleWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  margin-top: ${(props) => (props.$marginTop ? props.$marginTop : "64px")};
+  margin-top: ${props => (props.$marginTop ? props.$marginTop : '64px')};
   align-items: center;
   justify-content: space-between;
   padding: 20px;
@@ -238,7 +238,7 @@ export const PromotionImg = styled.img`
 `;
 
 export const PromotionCount = styled.div`
-  padding: 3px 14px;
+  padding: 3px 12px;
   font-size: 10px;
   background-color: #fa9487;
   color: white;
