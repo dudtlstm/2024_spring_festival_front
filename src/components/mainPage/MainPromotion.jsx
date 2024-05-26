@@ -16,10 +16,13 @@ function MainPromotion() {
   useEffect(() => {
     const fetchImages = async () => {
       const imageData = await fetchPromotionBanner();
-      const formattedImages = imageData.map((data) => ({
-        img: data.banner,
-        url: data.insta_url,
-      }));
+      // 이미지가 null인 경우 필터링
+      const formattedImages = imageData
+        .filter((data) => data.banner !== null)
+        .map((data) => ({
+          img: data.banner,
+          url: data.insta_url,
+        }));
       setImages(formattedImages);
     };
 
