@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import * as S from "../../components/booth/boothdetail/style";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import ReplyDeleteModal from "../../components/common/modal/promotionModal/ReplyDeleteModal";
 import PromotionModal from "../../components/common/modal/promotionModal/ReplyModal";
 import styled from "styled-components";
@@ -37,6 +37,10 @@ const StyledTextArea = styled.textarea`
 
 const BoothDetail = () => {
   const { id } = useParams();
+  // date를 api에 포함하기 위함
+  const { date } = location.state || {};
+  console.log("date: ", date);
+  //-----------------------
   const [boothDetail, setBoothDetail] = useState(null);
   const [comments, setComments] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -54,14 +58,27 @@ const BoothDetail = () => {
     const fetchBoothDetail = async () => {
       try {
         const response = await axios.get(
-          `https://mua-dongguk-server.site/api/v1/booth/${id}`
+          `https://mua-dongguk-server.site/api/v1/booth/${id}?date=${date}`
         );
-        console.log(response.data);
+        console.log("부스 상세: ", response.data);
         setBoothDetail(response.data);
         setLikeCount(response.data.like_cnt);
       } catch (error) {
         console.error("Error fetching booth detail:", error);
         setError(error.message);
+        // 현아의 css를 위한 임의 코드-------
+        setBoothDetail({
+          id: 1,
+          name: "String",
+          description: "String",
+          operator: "String",
+          location: "String",
+          during: "String",
+          like_cnt: "Number",
+          is_liked: true,
+          images: ["", ""],
+        });
+        //-----------------------------------
       } finally {
         setLoading(false);
       }
@@ -73,7 +90,7 @@ const BoothDetail = () => {
           `https://mua-dongguk-server.site/api/v1/booth/${id}/comments`
         );
 
-        console.log(response.data);
+        console.log("부스 댓글: ", response.data);
         const formattedComments = response.data.map((comment) => ({
           id: comment.id,
           content: comment.content,
@@ -237,6 +254,7 @@ const BoothDetail = () => {
         </S.Information>
       </S.InformationBox>
       <S.SeparationBar />
+      {/* 댓글 란 */}
       <S.ReplyBox>
         <S.ReplyStart>댓글</S.ReplyStart>
         <S.ReplyCount>{comments.length}</S.ReplyCount>
@@ -252,6 +270,7 @@ const BoothDetail = () => {
           </S.ReplySub>
         </S.ReplyAllBox>
       ))}
+      {/* 댓글 입력란 */}
       <S.BottomBox>
         <S.Heart>
           <S.HeartButton
