@@ -43,6 +43,7 @@ function ReplyModal({
   const handlePasswordChange = (event) => {
     const newPassword = event.target.value;
     setPassword(newPassword);
+    setIsConfirmEnabled(newPassword.length === 4); // 비밀번호가 4자리일 때만 true로 설정
   };
 
   const handleConfirmClick = () => {
