@@ -327,7 +327,10 @@ const BoothDetail = () => {
                 : "../booth/send.png"
             }
             alt="전송"
-            onClick={handleSubmitComment}
+            onClick={
+              newComment.trim().length > 0 ? handleSubmitComment : undefined
+            } // 댓글이 비어있으면 클릭 이벤트 없음
+            disabled={newComment.trim().length === 0} // 댓글이 비어있으면 버튼 비활성화 // 댓글이 비어있으면 버튼 비활성화
           />
         </S.WriteReply>
       </S.BottomBox>
