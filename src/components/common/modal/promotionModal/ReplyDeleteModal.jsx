@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import * as S from './style';
+import OpenEyeImg from '../../../../../public/booth/openeye.png';
+import CloseEyeImg from '../../../../../public/booth/pw.png';
 
 function ReplyDeleteModal({
   isOpen,
@@ -95,11 +97,7 @@ function ReplyDeleteModal({
                 maxLength={4}
               />
               <S.PasswordIcon
-                src={
-                  isPasswordVisible
-                    ? '../public/booth/openeye.png'
-                    : '../public/booth/pw.png'
-                }
+                src={isPasswordVisible ? OpenEyeImg : CloseEyeImg}
                 alt="비밀번호"
                 onClick={togglePasswordVisibility}
               />
