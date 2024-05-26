@@ -37,10 +37,10 @@ const StyledTextArea = styled.textarea`
 
 const BoothDetail = () => {
   const { id } = useParams();
-  // date를 api에 포함하기 위함
+  const location = useLocation();
   const { date } = location.state || {};
   console.log("date: ", date);
-  //-----------------------
+
   const [boothDetail, setBoothDetail] = useState(null);
   const [comments, setComments] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -63,10 +63,10 @@ const BoothDetail = () => {
         console.log("부스 상세: ", response.data);
         setBoothDetail(response.data);
         setLikeCount(response.data.like_cnt);
+        setIsLiked(response.data.is_liked);
       } catch (error) {
         console.error("Error fetching booth detail:", error);
         setError(error.message);
-        // 현아의 css를 위한 임의 코드-------
         setBoothDetail({
           id: 1,
           name: "String",
@@ -78,7 +78,6 @@ const BoothDetail = () => {
           is_liked: true,
           images: ["", ""],
         });
-        //-----------------------------------
       } finally {
         setLoading(false);
       }
@@ -87,16 +86,14 @@ const BoothDetail = () => {
     const fetchComments = async () => {
       try {
         const response = await axios.get(
-          `https://mua-dongguk-server.site/api/v1/booth/${id}/comments`
+          `https://mua-dongguk-server.site/api/v1/booth/${id}/comments?date=${date}`
         );
-
         console.log("부스 댓글: ", response.data);
         const formattedComments = response.data.map((comment) => ({
           id: comment.id,
           content: comment.content,
           created_at: comment.created_at,
         }));
-
         setComments(response.data);
       } catch (error) {
         console.error("Error fetching comments:", error);
@@ -105,7 +102,7 @@ const BoothDetail = () => {
 
     fetchBoothDetail();
     fetchComments();
-  }, [id]);
+  }, [id, date]);
 
   const handlePrevClick = () => {
     setCurrentIndex((prevIndex) =>
@@ -149,31 +146,30 @@ const BoothDetail = () => {
   const fetchComments = async () => {
     try {
       const response = await axios.get(
-        `https://mua-dongguk-server.site/api/v1/booth/${id}/comments`
+        `https://mua-dongguk-server.site/api/v1/booth/${id}/comments?date=${date}`
       );
-
       console.log(response.data);
       const formattedComments = response.data.map((comment) => ({
         id: comment.id,
         content: comment.content,
         created_at: comment.created_at,
       }));
-
       setComments(response.data);
     } catch (error) {
       console.error("Error fetching comments:", error);
     }
   };
 
-  // 좋아요 버튼 부분
   const handleHeartClick = () => {
-    setIsLiked(!isLiked);
     if (!isLiked) {
       axios
-        .post(`https://mua-dongguk-server.site/api/v1/booth/${id}/likes`)
+        .post(
+          `https://mua-dongguk-server.site/api/v1/booth/${id}/likes?date=${date}`,
+          { is_clicked: true }
+        )
         .then((response) => {
           console.log("좋아요가 추가되었습니다.");
-          console.log("Response Data:", response.data); // Log response data here
+          setIsLiked(true);
           setLikeCount((prevCount) => prevCount + 1);
         })
         .catch((error) => {
@@ -181,9 +177,13 @@ const BoothDetail = () => {
         });
     } else {
       axios
-        .delete(`https://mua-dongguk-server.site/api/v1/booth/${id}/likes`)
+        .post(
+          `https://mua-dongguk-server.site/api/v1/booth/${id}/likes?date=${date}`,
+          { is_clicked: false }
+        )
         .then((response) => {
           console.log("좋아요가 삭제되었습니다.");
+          setIsLiked(false);
           setLikeCount((prevCount) => prevCount - 1);
         })
         .catch((error) => {
@@ -254,7 +254,6 @@ const BoothDetail = () => {
         </S.Information>
       </S.InformationBox>
       <S.SeparationBar />
-      {/* 댓글 란 */}
       <S.ReplyBox>
         <S.ReplyStart>댓글</S.ReplyStart>
         <S.ReplyCount>{comments.length}</S.ReplyCount>
@@ -270,14 +269,13 @@ const BoothDetail = () => {
           </S.ReplySub>
         </S.ReplyAllBox>
       ))}
-      {/* 댓글 입력란 */}
       <S.BottomBox>
         <S.Heart>
           <S.HeartButton
             src={isLiked ? "/booth/fullheart.png" : "/booth/heart.svg"}
             alt="좋아요"
             onClick={handleHeartClick}
-          />{" "}
+          />
           <S.HeartCount>{likeCount}</S.HeartCount>
         </S.Heart>
         <S.WriteReply>
@@ -305,7 +303,7 @@ const BoothDetail = () => {
           description={newComment}
           title="비밀번호 설정"
           id={id}
-          onCommentSubmit={fetchComments} // Pass the fetchComments function to PromotionModal
+          onCommentSubmit={fetchComments}
         />
       )}
       {isDeleteModalOpen && (
