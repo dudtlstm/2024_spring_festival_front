@@ -4,25 +4,7 @@ import MarkerBooth from '../../../../public/booth/marker_booth.svg';
 import MarkerFood from '../../../../public/booth/marker_food.svg';
 import MarkerMarket from '../../../../public/booth/marker_market.svg';
 
-const dummyData = [
-  {
-    id: 1,
-    name: '이름1',
-    location: '위치1',
-    latitude: 37.558288,
-    longitude: 127.000173,
-  },
-  {
-    id: 2,
-    name: '이름2',
-    location: '위치2',
-    latitude: 37.54699,
-    longitude: 127.09598,
-  },
-];
-
 const Map = ({ data, category, selectedBoothId, resetData, onMarkerClick }) => {
-  console.log('잘 받고있니>?', data);
   const [map, setMap] = useState();
   const markersRef = useRef([]);
 
@@ -96,10 +78,6 @@ const Map = ({ data, category, selectedBoothId, resetData, onMarkerClick }) => {
         });
 
         if (selectedBoothId === item.id) {
-          console.log(
-            'item.location_info.longitude: ',
-            item.location_info.longitude
-          );
           map.setCenter(
             new kakao.maps.LatLng(
               item.location_info.latitude,
