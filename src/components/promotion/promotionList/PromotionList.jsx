@@ -20,6 +20,7 @@ function PromotionList() {
             img: promotion.image,
             url: promotion.insta_url,
           }));
+          console.log(transformedData);
           setPromotions(transformedData);
         } else {
           // console.error("Fetched data is not an array:", data);
@@ -56,6 +57,14 @@ function PromotionList() {
                 />
               )
             )}
+            {/* 마지막 인덱스 홍보 게시글 */}
+            <Card
+              id={promotions[promotions.length - 1].id}
+              title={promotions[promotions.length - 1].title}
+              description={promotions[promotions.length - 1].description}
+              img={promotions[promotions.length - 1].img}
+              url={promotions[promotions.length - 1].url}
+            />
           </S.PromotionListCards>
         </S.PromotionListWrapper>
       )}
