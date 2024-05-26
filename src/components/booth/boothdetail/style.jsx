@@ -150,7 +150,6 @@ export const ImageContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  /* min-width: 100%; */
   max-height: 100%; /* 이미지의 높이를 부모 요소에 맞춤 */
 
   .slick-slider {
