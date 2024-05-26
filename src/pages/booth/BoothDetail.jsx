@@ -79,7 +79,7 @@ const BoothDetail = () => {
         const response = await axios.get(
           `https://mua-dongguk-server.site/api/v1/booth/${id}?date=${date}`
         );
-        console.log("부스 상세: ", response.data);
+        // console.log("부스 상세: ", response.data);
         setBoothDetail(response.data);
         setLikeCount(response.data.like_cnt);
         const likedStatus = localStorage.getItem(`liked_${id}`);
@@ -112,7 +112,7 @@ const BoothDetail = () => {
         const response = await axios.get(
           `https://mua-dongguk-server.site/api/v1/booth/${id}/comments?date=${date}`
         );
-        console.log("부스 댓글: ", response.data);
+        // console.log("부스 댓글: ", response.data);
         const formattedComments = response.data.map((comment) => ({
           id: comment.id,
           content: comment.content,
@@ -150,7 +150,7 @@ const BoothDetail = () => {
   };
 
   const handleConfirmDelete = () => {
-    console.log("댓글이 삭제되었습니다.");
+    // console.log("댓글이 삭제되었습니다.");
     setIsDeleteModalOpen(false);
   };
 
@@ -176,7 +176,7 @@ const BoothDetail = () => {
       const response = await axios.get(
         `https://mua-dongguk-server.site/api/v1/booth/${id}/comments?date=${date}`
       );
-      console.log(response.data);
+      // console.log(response.data);
       const formattedComments = response.data.map((comment) => ({
         id: comment.id,
         content: comment.content,
@@ -196,7 +196,7 @@ const BoothDetail = () => {
           { is_clicked: true }
         )
         .then((response) => {
-          console.log("좋아요가 추가되었습니다.");
+          // console.log("좋아요가 추가되었습니다.");
           setIsLiked(true);
           setLikeCount((prevCount) => prevCount + 1);
           localStorage.setItem(`liked_${id}`, true);
@@ -211,7 +211,7 @@ const BoothDetail = () => {
           { is_clicked: false }
         )
         .then((response) => {
-          console.log("좋아요가 삭제되었습니다.");
+          // console.log("좋아요가 삭제되었습니다.");
           setIsLiked(false);
           setLikeCount((prevCount) => prevCount - 1);
           localStorage.removeItem(`liked_${id}`);
