@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
-import axios from 'axios';
-import PropTypes from 'prop-types';
-import * as S from './style';
-import OpenEyeImg from '../../../../../public/booth/openeye.png';
-import CloseEyeImg from '../../../../../public/booth/pw.png';
+import React, { useEffect, useRef, useState } from "react";
+import axios from "axios";
+import PropTypes from "prop-types";
+import * as S from "./style";
+import OpenEyeImg from "../../../../../public/booth/openeye.png";
+import CloseEyeImg from "../../../../../public/booth/pw.png";
 
 function ReplyModal({
   isOpen,
@@ -13,13 +13,13 @@ function ReplyModal({
   id,
   onCommentSubmit,
 }) {
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState("");
   const [isConfirmEnabled, setIsConfirmEnabled] = useState(false);
   const [responseStatus, setResponseStatus] = useState(null);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const modalRef = useRef(null);
 
-  const handleClickOutside = event => {
+  const handleClickOutside = (event) => {
     if (modalRef.current && !modalRef.current.contains(event.target)) {
       onClose();
     }
@@ -27,49 +27,49 @@ function ReplyModal({
 
   useEffect(() => {
     if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-      document.body.classList.add('modal-open');
+      document.addEventListener("mousedown", handleClickOutside);
+      document.body.classList.add("modal-open");
     } else {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.body.classList.remove('modal-open');
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.body.classList.remove("modal-open");
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.body.classList.remove('modal-open');
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.body.classList.remove("modal-open");
     };
   }, [isOpen]);
 
-  const handlePasswordChange = event => {
+  const handlePasswordChange = (event) => {
     const newPassword = event.target.value;
     setPassword(newPassword);
-    setIsConfirmEnabled(newPassword.length === 4);
-    setIsConfirmEnabled(newPassword.length > 0); // Enable button for any non-empty input
   };
 
   const handleConfirmClick = () => {
-    if (isConfirmEnabled) {
+    if (password.length === 4) {
       axios
         .post(`https://mua-dongguk-server.site/api/v1/booth/${id}/comments`, {
           password: password,
           content: description,
         })
-        .then(response => {
+        .then((response) => {
           setResponseStatus(response.status); // 성공하면 상태 설정
-          console.log('댓글과 비밀번호가 성공적으로 전송되었습니다.');
+          console.log("댓글과 비밀번호가 성공적으로 전송되었습니다.");
           onCommentSubmit(); // 새 댓글을 추가
           onClose(); // 모달 닫기
         })
-        .catch(error => {
+        .catch((error) => {
           setResponseStatus(error.response ? error.response.status : 500); // 실패하면 상태 설정
-          console.error('댓글과 비밀번호 전송 중 오류:', error);
+          console.error("댓글과 비밀번호 전송 중 오류:", error);
         });
     }
   };
 
   const togglePasswordVisibility = () => {
-    setIsPasswordVisible(prevVisibility => !prevVisibility);
+    setIsPasswordVisible((prevVisibility) => !prevVisibility);
   };
+
+  const isConfirmEnabled = password.length === 4; // 비밀번호가 4자리인지 확인
 
   return (
     <S.IsModal
@@ -87,7 +87,7 @@ function ReplyModal({
             숫자 4자리를 입력해주세요!
             <S.Container>
               <S.PasswordInput
-                type={isPasswordVisible ? 'text' : 'password'}
+                type={isPasswordVisible ? "text" : "password"}
                 value={password}
                 onChange={handlePasswordChange}
                 maxLength={4}
@@ -104,7 +104,11 @@ function ReplyModal({
             <S.SiteConnectConfirm
               onClick={handleConfirmClick}
               disabled={!isConfirmEnabled}
-              isConfirmEnabled={isConfirmEnabled} // Pass the state to style the button
+              active={isConfirmEnabled} // 버튼의 활성화 여부에 따라 클래스 적용
+              style={{
+                backgroundColor: isConfirmEnabled ? "#F97C69" : "#F1F1F1",
+                color: isConfirmEnabled ? "white" : "#C4C4C4",
+              }}
             >
               확인
             </S.SiteConnectConfirm>
@@ -112,7 +116,7 @@ function ReplyModal({
         </S.SiteConnect>
       </S.SiteConnectWrapper>
       {responseStatus && (
-        <div>응답 상태: {responseStatus === 200 ? '성공' : '실패'}</div>
+        <div>응답 상태: {responseStatus === 200 ? "성공" : "실패"}</div>
       )}
     </S.IsModal>
   );
