@@ -279,7 +279,7 @@ const BoothDetail = () => {
           {boothDetail.during}
         </S.Information>
         <S.Information>
-          <S.InfoIcon src="/booth/pin.png" alt="pin" />
+          <S.InfoIcon src="/booth/repin.png" alt="pin" />
           {boothDetail.operator}
         </S.Information>
       </S.InformationBox>
