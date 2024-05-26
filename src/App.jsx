@@ -15,7 +15,7 @@ ReactGA.initialize(gaTrackingId);
 
 const history = createBrowserHistory();
 history.listen((location) => {
-  console.log(location.pathname);
+  // console.log(location.pathname);
   ReactGA.set({ page: location.pathname });
   ReactGA.pageview(location.pathname);
 });
@@ -63,7 +63,7 @@ const Layout = () => {
   useEffect(() => {
     if (gaTrackingId) {
       const pagePath = location.pathname + location.search;
-      console.log(`Logging pageview for ${pagePath}`);
+      // console.log(`Logging pageview for ${pagePath}`);
       ReactGA.set({ page: pagePath });
       ReactGA.pageview(pagePath);
     }
