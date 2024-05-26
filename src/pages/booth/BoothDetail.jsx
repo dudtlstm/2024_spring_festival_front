@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import axios from "axios";
 import * as S from "../../components/booth/boothdetail/style";
 import { useParams, useLocation } from "react-router-dom";
@@ -8,6 +8,10 @@ import styled from "styled-components";
 import Spinner from "../../components/common/Spinner";
 import { useCookies } from "react-cookie"; // Import the useCookies hook
 import { currentDate } from "../../utils/currentDate";
+
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const StyledTextArea = styled.textarea`
   width: 242px;
@@ -61,6 +65,8 @@ const BoothDetail = () => {
   // 부스 id, 댓글 id
   // const [boothId, setBoothId] = useState(null);
   const [commentId, setCommentId] = useState(null);
+
+  const sliderRef = useRef(null);
 
   const openReplyDeleteModal = () => {
     setReplyDeleteModalOpen(true);
@@ -130,15 +136,16 @@ const BoothDetail = () => {
   }, [id, date]);
 
   const handlePrevClick = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? boothDetail.images.length - 1 : prevIndex - 1
-    );
+    sliderRef.current.slickPrev();
   };
 
   const handleNextClick = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === boothDetail.images.length - 1 ? 0 : prevIndex + 1
-    );
+    sliderRef.current.slickNext();
+  };
+
+  const handleDotClick = (index) => {
+    setCurrentIndex(index);
+    sliderRef.current.slickGoTo(index);
   };
 
   const handleDeleteClick = (commentId) => {
@@ -240,20 +247,35 @@ const BoothDetail = () => {
       ? boothDetail.images
       : [placeholderImage];
 
+  const settings = {
+    rows: 1,
+    slidesPerRow: 1,
+    dots: false,
+    slidesToShow: 1,
+    infinite: false,
+    slidesToScroll: 1,
+    beforeChange: (oldIndex, newIndex) => {
+      setCurrentIndex(newIndex);
+    },
+  };
+
   return (
     <>
       <S.ImageContainer>
-        <S.ImageNotice
-          src={images[currentIndex]}
-          alt={`Booth image ${currentIndex + 1}`}
-          className={
-            images[currentIndex] === placeholderImage ? "placeholder" : ""
-          }
-          onError={(e) => {
-            e.target.onerror = null;
-            e.target.src = placeholderImage;
-          }}
-        />
+        <Slider {...settings} ref={sliderRef}>
+          {images.map((image, index) => (
+            <S.ImageNotice
+              key={index}
+              src={image}
+              alt={`Booth image ${index + 1}`}
+              className={image === placeholderImage ? "placeholder" : ""}
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = placeholderImage;
+              }}
+            />
+          ))}
+        </Slider>
         {images.length > 1 && (
           <>
             <S.LeftButton onClick={handlePrevClick} />
@@ -263,7 +285,11 @@ const BoothDetail = () => {
       </S.ImageContainer>
       <S.Pagination>
         {images.map((_, index) => (
-          <S.Dot key={index} active={index === currentIndex} />
+          <S.Dot
+            key={index}
+            active={index === currentIndex}
+            onClick={() => handleDotClick(index)}
+          />
         ))}
       </S.Pagination>
       <S.Title>{boothDetail.name}</S.Title>

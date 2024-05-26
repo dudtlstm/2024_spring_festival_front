@@ -150,9 +150,14 @@ export const ImageContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  max-width: 100%; /* 이미지의 너비를 부모 요소에 맞춤 */
   max-height: 100%; /* 이미지의 높이를 부모 요소에 맞춤 */
-  margin: 0 auto; /* 부모 요소를 화면 중앙에 배치 */
+
+  .slick-slider {
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0 auto;
+  }
 `;
 
 export const ImageNotice = styled.img`
