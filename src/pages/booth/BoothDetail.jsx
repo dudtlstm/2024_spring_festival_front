@@ -126,7 +126,28 @@ const BoothDetail = () => {
   const handleModalClose = () => {
     setIsModalOpen(false);
     setNewComment("");
+    fetchComments(); // Fetch latest comments when the modal is closed
   };
+
+  const fetchComments = async () => {
+    try {
+      const response = await axios.get(
+        `https://mua-dongguk-server.site/api/v1/booth/${id}/comments`
+      );
+
+      console.log(response.data);
+      const formattedComments = response.data.map((comment) => ({
+        id: comment.id,
+        content: comment.content,
+        created_at: comment.created_at,
+      }));
+
+      setComments(response.data);
+    } catch (error) {
+      console.error("Error fetching comments:", error);
+    }
+  };
+
   // 좋아요 버튼 부분
   const handleHeartClick = () => {
     setIsLiked(!isLiked);
@@ -135,6 +156,7 @@ const BoothDetail = () => {
         .post(`https://mua-dongguk-server.site/api/v1/booth/${id}/likes`)
         .then((response) => {
           console.log("좋아요가 추가되었습니다.");
+          console.log("Response Data:", response.data); // Log response data here
           setLikeCount((prevCount) => prevCount + 1);
         })
         .catch((error) => {
@@ -264,6 +286,7 @@ const BoothDetail = () => {
           description={newComment}
           title="비밀번호 설정"
           id={id}
+          onCommentSubmit={fetchComments} // Pass the fetchComments function to PromotionModal
         />
       )}
       {isDeleteModalOpen && (

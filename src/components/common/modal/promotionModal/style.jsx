@@ -107,9 +107,7 @@ export const SiteConnectConfirm = styled.div`
   cursor: pointer;
   border-radius: 8px;
   background: var(--main-red-400, #f97c69);
-
   color: var(--use-font-font---white, #fff);
-
   font-family: Pretendard;
   font-size: 16px;
   font-style: normal;
@@ -137,15 +135,12 @@ export const SiteConnectCancle = styled.div`
   line-height: 24px;
   letter-spacing: -0.25px;
 `;
-// 비밀번호
 export const Container = styled.div`
-  justify-content: center;
+  display: flex;
+  margin-top: 20px;
   align-items: center;
   position: relative;
-  display: flex;
-  padding: 8px 20px;
   flex-direction: column;
-  gap: 10px;
 `;
 export const PasswordInput = styled.input`
   box-sizing: border-box;
@@ -160,6 +155,8 @@ export const PasswordInput = styled.input`
   display: flex;
   padding: 8px 20px;
   gap: 10px;
+  /* border: 1px solid red; */
+  text-align: center;
 `;
 
 export const PasswordIcon = styled.img`
@@ -171,4 +168,5 @@ export const PasswordIcon = styled.img`
   height: 20px;
   pointer-events: auto;
   right: 0;
+  margin-right: 65px;
 `;
