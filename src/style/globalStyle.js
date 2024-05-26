@@ -33,6 +33,9 @@ export const GlobalStyle = createGlobalStyle`
   *[hidden] {
       display: none;
   }
+  * { 
+    font-family: 'Apple SD Gothic Neo' !important;
+  }
 
   body {
     touch-action: manipulation;
