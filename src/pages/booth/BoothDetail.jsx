@@ -7,6 +7,7 @@ import PromotionModal from "../../components/common/modal/promotionModal/ReplyMo
 import styled from "styled-components";
 import Spinner from "../../components/common/Spinner";
 import { useCookies } from "react-cookie"; // Import the useCookies hook
+import { currentDate } from "../../utils/currentDate";
 
 const StyledTextArea = styled.textarea`
   width: 242px;
@@ -39,8 +40,10 @@ const StyledTextArea = styled.textarea`
 const BoothDetail = () => {
   const { id } = useParams();
   const location = useLocation();
-  const { date } = location.state || {};
+  var date = location.state != null ? location.state.date : currentDate();
 
+  console.log(location.state);
+  console.log(date);
   const [boothDetail, setBoothDetail] = useState(null);
   const [comments, setComments] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
