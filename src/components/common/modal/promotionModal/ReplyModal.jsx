@@ -69,8 +69,6 @@ function ReplyModal({
     setIsPasswordVisible((prevVisibility) => !prevVisibility);
   };
 
-  const isConfirmEnabled = password.length === 4; // 비밀번호가 4자리인지 확인
-
   return (
     <S.IsModal
       isOpen={isOpen}
