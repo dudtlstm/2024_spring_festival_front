@@ -2,6 +2,7 @@ import React from "react";
 import * as S from "./style";
 import { Link, useNavigate } from "react-router-dom";
 import * as images from "../../../assets/images/layout_images";
+import { handleCopyClipBoard } from "../../../utils/copyClipBoard";
 
 const logoMap = {
   "/promotion": images.promotionText,
@@ -15,9 +16,14 @@ const logoMap = {
 
 const Header = ({ currentPath }) => {
   const navigate = useNavigate();
+  const baseURL = "https://dgu-mua.site";
 
   const isDepthPage = () => {
     return currentPath.startsWith("/booths/") || currentPath === "/about";
+  };
+
+  const isBoothDetail = () => {
+    return currentPath.startsWith("/booths/");
   };
 
   const handleClick = () => {
@@ -43,9 +49,16 @@ const Header = ({ currentPath }) => {
   return (
     <S.HeaderWrapper className="header">
       <img src={logoSrc} alt="무아지경" onClick={handleClick} />
-      <Link to="/about">
-        <img src={images.lionImg} alt="🦁" />
-      </Link>
+      {isBoothDetail() ? (
+        <S.ShareImg
+          src="/layout/header/share.png"
+          onClick={() => handleCopyClipBoard(`${baseURL}${currentPath}`)}
+        />
+      ) : (
+        <Link to="/about">
+          <img src={images.lionImg} alt="🦁" />
+        </Link>
+      )}
     </S.HeaderWrapper>
   );
 };
