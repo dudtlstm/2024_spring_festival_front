@@ -44,9 +44,11 @@ function ReplyDeleteModal({
 
   const handlePasswordChange = (event) => {
     const newPassword = event.target.value;
-    setPassword(newPassword);
-    onPasswordChange(newPassword); // 상위 컴포넌트로 비밀번호 전달
-    setIsConfirmEnabled(newPassword.length === 4); // 비밀번호 길이가 4자리가 되면 활성화
+    if (/^[0-9]*$/.test(newPassword)) {
+      // 숫자인지 확인
+      setPassword(newPassword);
+      setIsConfirmEnabled(newPassword.length === 4); // 비밀번호가 4자리일 때만 true로 설정
+    }
   };
 
   const handleConfirmClick = () => {

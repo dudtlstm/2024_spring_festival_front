@@ -21,7 +21,7 @@ const StyledTextArea = styled.textarea`
   letter-spacing: -0.25px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */ /* 중앙 정렬 제거 */
   gap: 10px;
   flex: 1 0 0;
   background-color: transparent;
@@ -32,8 +32,8 @@ const StyledTextArea = styled.textarea`
     outline: none;
     border-color: transparent;
   }
-  padding: 4px 8px;
   box-sizing: border-box;
+  padding-bottom: 1px;
 `;
 
 const BoothDetail = () => {
