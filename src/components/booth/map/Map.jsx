@@ -22,7 +22,7 @@ const dummyData = [
 ];
 
 const Map = ({ data, category, selectedBoothId, resetData, onMarkerClick }) => {
-  console.log('잘 받고있니>?', selectedBoothId);
+  console.log('잘 받고있니>?', data);
   const [map, setMap] = useState();
   const markersRef = useRef([]);
 
@@ -81,7 +81,10 @@ const Map = ({ data, category, selectedBoothId, resetData, onMarkerClick }) => {
         const markerImage = changeMarkerImg(category);
 
         const marker = new kakao.maps.Marker({
-          position: new kakao.maps.LatLng(item.latitude, item.longitude),
+          position: new kakao.maps.LatLng(
+            item.location_info.latitude,
+            item.location_info.longitude
+          ),
           image: markerImage,
         });
         marker.setMap(map);
@@ -93,7 +96,16 @@ const Map = ({ data, category, selectedBoothId, resetData, onMarkerClick }) => {
         });
 
         if (selectedBoothId === item.id) {
-          map.setCenter(new kakao.maps.LatLng(item.latitude, item.longitude));
+          console.log(
+            'item.location_info.longitude: ',
+            item.location_info.longitude
+          );
+          map.setCenter(
+            new kakao.maps.LatLng(
+              item.location_info.latitude,
+              item.location_info.longitude
+            )
+          );
           map.setLevel(2);
         }
       });
