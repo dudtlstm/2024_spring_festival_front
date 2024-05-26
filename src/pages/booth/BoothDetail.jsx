@@ -1,18 +1,18 @@
-import React, { useState, useEffect, useCallback } from "react";
-import axios from "axios";
-import * as S from "../../components/booth/boothdetail/style";
-import { useParams, useLocation } from "react-router-dom";
-import ReplyDeleteModal from "../../components/common/modal/promotionModal/ReplyDeleteModal";
-import PromotionModal from "../../components/common/modal/promotionModal/ReplyModal";
-import styled from "styled-components";
-import Spinner from "../../components/common/Spinner";
-import { useCookies } from "react-cookie"; // Import the useCookies hook
+import React, { useState, useEffect, useCallback } from 'react';
+import axios from 'axios';
+import * as S from '../../components/booth/boothdetail/style';
+import { useParams, useLocation } from 'react-router-dom';
+import ReplyDeleteModal from '../../components/common/modal/promotionModal/ReplyDeleteModal';
+import PromotionModal from '../../components/common/modal/promotionModal/ReplyModal';
+import styled from 'styled-components';
+import Spinner from '../../components/common/Spinner';
+import { useCookies } from 'react-cookie'; // Import the useCookies hook
 
 const StyledTextArea = styled.textarea`
   width: 242px;
   height: 24px;
-  color: ${(props) =>
-    props.hasValue ? "#000" : "var(--use-font-font---disable, #C4C4C4)"};
+  color: ${props =>
+    props.hasValue ? '#000' : 'var(--use-font-font---disable, #C4C4C4)'};
   font-family: Pretendard;
   font-size: 16px;
   font-style: normal;
@@ -47,15 +47,19 @@ const BoothDetail = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [newComment, setNewComment] = useState("");
+  const [newComment, setNewComment] = useState('');
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
-  const [cookies, setCookie] = useCookies(["isLiked"]); // Use the useCookies hook
+  const [cookies, setCookie] = useCookies(['isLiked']); // Use the useCookies hook
   const [isReplyDeleteModalOpen, setReplyDeleteModalOpen] = useState(false);
-  const [modalPassword, setModalPassword] = useState(""); // 실제 비밀번호를 여기에 설정합니다
+  const [modalPassword, setModalPassword] = useState(''); // 실제 비밀번호를 여기에 설정합니다
 
-  const placeholderImage = "/booth/booth.png";
+  const placeholderImage = '/booth/booth.png';
+
+  // 부스 id, 댓글 id
+  // const [boothId, setBoothId] = useState(null);
+  const [commentId, setCommentId] = useState(null);
 
   const openReplyDeleteModal = () => {
     setReplyDeleteModalOpen(true);
@@ -65,7 +69,7 @@ const BoothDetail = () => {
     setReplyDeleteModalOpen(false);
   };
 
-  const handlePasswordChange = (newPassword) => {
+  const handlePasswordChange = newPassword => {
     setModalPassword(newPassword);
   };
 
@@ -75,28 +79,28 @@ const BoothDetail = () => {
         const response = await axios.get(
           `https://mua-dongguk-server.site/api/v1/booth/${id}?date=${date}`
         );
-        console.log("부스 상세: ", response.data);
+        console.log('부스 상세: ', response.data);
         setBoothDetail(response.data);
         setLikeCount(response.data.like_cnt);
         const likedStatus = localStorage.getItem(`liked_${id}`);
-        if (likedStatus === "true") {
+        if (likedStatus === 'true') {
           setIsLiked(true);
         } else {
           setIsLiked(false);
         }
       } catch (error) {
-        console.error("Error fetching booth detail:", error);
+        console.error('Error fetching booth detail:', error);
         setError(error.message);
         setBoothDetail({
           id: 1,
-          name: "String",
-          description: "String",
-          operator: "String",
-          location: "String",
-          during: "String",
-          like_cnt: "Number",
+          name: 'String',
+          description: 'String',
+          operator: 'String',
+          location: 'String',
+          during: 'String',
+          like_cnt: 'Number',
           is_liked: true,
-          images: ["", ""],
+          images: ['', ''],
         });
       } finally {
         setLoading(false);
@@ -108,15 +112,15 @@ const BoothDetail = () => {
         const response = await axios.get(
           `https://mua-dongguk-server.site/api/v1/booth/${id}/comments?date=${date}`
         );
-        console.log("부스 댓글: ", response.data);
-        const formattedComments = response.data.map((comment) => ({
+        console.log('부스 댓글: ', response.data);
+        const formattedComments = response.data.map(comment => ({
           id: comment.id,
           content: comment.content,
           created_at: comment.created_at,
         }));
         setComments(response.data);
       } catch (error) {
-        console.error("Error fetching comments:", error);
+        console.error('Error fetching comments:', error);
       }
     };
 
@@ -125,18 +129,19 @@ const BoothDetail = () => {
   }, [id, date]);
 
   const handlePrevClick = () => {
-    setCurrentIndex((prevIndex) =>
+    setCurrentIndex(prevIndex =>
       prevIndex === 0 ? boothDetail.images.length - 1 : prevIndex - 1
     );
   };
 
   const handleNextClick = () => {
-    setCurrentIndex((prevIndex) =>
+    setCurrentIndex(prevIndex =>
       prevIndex === boothDetail.images.length - 1 ? 0 : prevIndex + 1
     );
   };
 
-  const handleDeleteClick = () => {
+  const handleDeleteClick = commentId => {
+    setCommentId(commentId);
     setIsDeleteModalOpen(true);
   };
 
@@ -145,11 +150,11 @@ const BoothDetail = () => {
   };
 
   const handleConfirmDelete = () => {
-    console.log("댓글이 삭제되었습니다.");
+    console.log('댓글이 삭제되었습니다.');
     setIsDeleteModalOpen(false);
   };
 
-  const handleCommentChange = useCallback((event) => {
+  const handleCommentChange = useCallback(event => {
     setNewComment(event.target.value);
   }, []);
 
@@ -159,7 +164,7 @@ const BoothDetail = () => {
 
   const handleModalClose = () => {
     setIsModalOpen(false);
-    setNewComment("");
+    setNewComment('');
     fetchComments(); // Fetch latest comments when the modal is closed
   };
 
@@ -169,14 +174,14 @@ const BoothDetail = () => {
         `https://mua-dongguk-server.site/api/v1/booth/${id}/comments?date=${date}`
       );
       console.log(response.data);
-      const formattedComments = response.data.map((comment) => ({
+      const formattedComments = response.data.map(comment => ({
         id: comment.id,
         content: comment.content,
         created_at: comment.created_at,
       }));
       setComments(response.data);
     } catch (error) {
-      console.error("Error fetching comments:", error);
+      console.error('Error fetching comments:', error);
     }
   };
 
@@ -187,14 +192,14 @@ const BoothDetail = () => {
           `https://mua-dongguk-server.site/api/v1/booth/${id}/likes?date=${date}`,
           { is_clicked: true }
         )
-        .then((response) => {
-          console.log("좋아요가 추가되었습니다.");
+        .then(response => {
+          console.log('좋아요가 추가되었습니다.');
           setIsLiked(true);
-          setLikeCount((prevCount) => prevCount + 1);
+          setLikeCount(prevCount => prevCount + 1);
           localStorage.setItem(`liked_${id}`, true);
         })
-        .catch((error) => {
-          console.error("좋아요를 추가하는 중 오류 발생:", error);
+        .catch(error => {
+          console.error('좋아요를 추가하는 중 오류 발생:', error);
         });
     } else {
       axios
@@ -202,14 +207,14 @@ const BoothDetail = () => {
           `https://mua-dongguk-server.site/api/v1/booth/${id}/likes?date=${date}`,
           { is_clicked: false }
         )
-        .then((response) => {
-          console.log("좋아요가 삭제되었습니다.");
+        .then(response => {
+          console.log('좋아요가 삭제되었습니다.');
           setIsLiked(false);
-          setLikeCount((prevCount) => prevCount - 1);
+          setLikeCount(prevCount => prevCount - 1);
           localStorage.removeItem(`liked_${id}`);
         })
-        .catch((error) => {
-          console.error("좋아요를 삭제하는 중 오류 발생:", error);
+        .catch(error => {
+          console.error('좋아요를 삭제하는 중 오류 발생:', error);
         });
     }
   };
@@ -238,9 +243,9 @@ const BoothDetail = () => {
           src={images[currentIndex]}
           alt={`Booth image ${currentIndex + 1}`}
           className={
-            images[currentIndex] === placeholderImage ? "placeholder" : ""
+            images[currentIndex] === placeholderImage ? 'placeholder' : ''
           }
-          onError={(e) => {
+          onError={e => {
             e.target.onerror = null;
             e.target.src = placeholderImage;
           }}
@@ -283,21 +288,23 @@ const BoothDetail = () => {
       {comments.map((comment, index) => (
         <S.ReplyAllBox
           key={comment.id}
-          style={index === comments.length - 1 ? { paddingBottom: "60px" } : {}}
+          style={index === comments.length - 1 ? { paddingBottom: '60px' } : {}}
         >
           <S.Reply>{comment.content}</S.Reply>
           <S.ReplySub>
             <S.ReplyData>
               {new Date(comment.created_at).toLocaleDateString()}
             </S.ReplyData>
-            <S.ReplyDelete onClick={handleDeleteClick}>삭제</S.ReplyDelete>
+            <S.ReplyDelete onClick={() => handleDeleteClick(comment.id)}>
+              삭제
+            </S.ReplyDelete>
           </S.ReplySub>
         </S.ReplyAllBox>
       ))}
       <S.BottomBox>
         <S.Heart>
           <S.HeartButton
-            src={isLiked ? "/booth/fullheart.png" : "/booth/heart.svg"}
+            src={isLiked ? '/booth/fullheart.png' : '/booth/heart.svg'}
             alt="좋아요"
             onClick={handleHeartClick}
           />
@@ -313,8 +320,8 @@ const BoothDetail = () => {
           <S.SendReply
             src={
               newComment.trim().length > 0
-                ? "../booth/colorsend.png"
-                : "../booth/send.png"
+                ? '../booth/colorsend.png'
+                : '../booth/send.png'
             }
             alt="전송"
             onClick={handleSubmitComment}
@@ -338,6 +345,8 @@ const BoothDetail = () => {
           onConfirm={handleConfirmDelete}
           password={modalPassword}
           onPasswordChange={handlePasswordChange} // 비밀번호 변경 핸들러 추가
+          boothId={id}
+          commentId={commentId}
         />
       )}
     </>
