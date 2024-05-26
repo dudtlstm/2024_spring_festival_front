@@ -145,15 +145,15 @@ export const ReplyDelete = styled.div`
 
 export const ImageContainer = styled.div`
   position: relative;
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
-  width: 390px;
-  height: 390px;
+  align-items: center; */
+  /* width: 390px;
+  height: 390px; */
   margin: 0 auto; /* 부모 요소를 화면 중앙에 배치 */
 `;
-
 export const ImageNotice = styled.img`
+  object-fit: contain;
   max-width: 100%; /* 이미지의 너비를 부모 요소에 맞춤 */
   max-height: 100%; /* 이미지의 높이를 부모 요소에 맞춤 */
   flex-shrink: 0;
@@ -222,14 +222,20 @@ export const Dot = styled.div`
     `}
 `;
 export const BottomBox = styled.div`
+  position: fixed;
+  bottom: 0;
+
+  width: 100%;
+  max-width: 430px;
+
   display: flex;
   padding: 12px 20px;
   align-items: center;
   gap: 10px;
   align-self: stretch;
   border-top: 1px solid var(--use-stroke-stroke---disable, #e2e3ec);
-  /* background: #fff; */
   box-shadow: 0px -2px 4px 0px rgba(226, 230, 239, 0.25);
+  background-color: #fff;
 `;
 export const Heart = styled.div`
   display: flex;
