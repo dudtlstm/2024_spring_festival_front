@@ -11,6 +11,7 @@ const Booth29 = ({ date }) => {
   const [category, setCategory] = useState('부스');
   const [data, setData] = useState([]);
   const [selectedBoothId, setSelectedBoothId] = useState(null);
+  const [isFoodClicked, setIsFoodClicked] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -42,10 +43,19 @@ const Booth29 = ({ date }) => {
 
   const handleMarkerClick = async id => {
     try {
-      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-      const locationData = await boothDetail(id, date);
-      setData([locationData]);
-      setSelectedBoothId(id);
+      if (category === '푸드트럭') {
+        const result = await booth(date, category);
+        setData(result);
+        setIsFoodClicked(true);
+      } else {
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: 'smooth',
+        });
+        const locationData = await boothDetail(id, date);
+        setData([locationData]);
+        setSelectedBoothId(id);
+      }
     } catch (e) {
       // console.log(e);
     }
@@ -66,6 +76,7 @@ const Booth29 = ({ date }) => {
         selectedBoothId={selectedBoothId}
         resetData={resetData}
         onMarkerClick={handleMarkerClick}
+        isFoodClicked={isFoodClicked}
       />
       <Category
         category={category}
