@@ -17,5 +17,8 @@ export const HeaderWrapper = styled.div`
   background: var(--use-background-background---main, #fff);
 
   z-index: 100;
-
+`;
+export const ShareImg = styled.img`
+  width: 24px;
+  height: 24px;
 `;
