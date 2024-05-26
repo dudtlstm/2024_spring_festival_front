@@ -1,7 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
-import axios from "axios";
-import PropTypes from "prop-types";
-import * as S from "./style";
+import React, { useEffect, useRef, useState } from 'react';
+import axios from 'axios';
+import PropTypes from 'prop-types';
+import * as S from './style';
+import OpenEyeImg from '../../../../../public/booth/openeye.png';
+import CloseEyeImg from '../../../../../public/booth/pw.png';
 
 function ReplyModal({
   isOpen,
@@ -11,13 +13,13 @@ function ReplyModal({
   id,
   onCommentSubmit,
 }) {
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState('');
   const [isConfirmEnabled, setIsConfirmEnabled] = useState(false);
   const [responseStatus, setResponseStatus] = useState(null);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const modalRef = useRef(null);
 
-  const handleClickOutside = (event) => {
+  const handleClickOutside = event => {
     if (modalRef.current && !modalRef.current.contains(event.target)) {
       onClose();
     }
@@ -25,20 +27,20 @@ function ReplyModal({
 
   useEffect(() => {
     if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-      document.body.classList.add("modal-open");
+      document.addEventListener('mousedown', handleClickOutside);
+      document.body.classList.add('modal-open');
     } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.body.classList.remove("modal-open");
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.body.classList.remove('modal-open');
     }
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.body.classList.remove("modal-open");
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.body.classList.remove('modal-open');
     };
   }, [isOpen]);
 
-  const handlePasswordChange = (event) => {
+  const handlePasswordChange = event => {
     const newPassword = event.target.value;
     setPassword(newPassword);
     setIsConfirmEnabled(newPassword.length === 4);
@@ -52,21 +54,21 @@ function ReplyModal({
           password: password,
           content: description,
         })
-        .then((response) => {
+        .then(response => {
           setResponseStatus(response.status); // 성공하면 상태 설정
-          console.log("댓글과 비밀번호가 성공적으로 전송되었습니다.");
+          console.log('댓글과 비밀번호가 성공적으로 전송되었습니다.');
           onCommentSubmit(); // 새 댓글을 추가
           onClose(); // 모달 닫기
         })
-        .catch((error) => {
+        .catch(error => {
           setResponseStatus(error.response ? error.response.status : 500); // 실패하면 상태 설정
-          console.error("댓글과 비밀번호 전송 중 오류:", error);
+          console.error('댓글과 비밀번호 전송 중 오류:', error);
         });
     }
   };
 
   const togglePasswordVisibility = () => {
-    setIsPasswordVisible((prevVisibility) => !prevVisibility);
+    setIsPasswordVisible(prevVisibility => !prevVisibility);
   };
 
   return (
@@ -85,17 +87,13 @@ function ReplyModal({
             숫자 4자리를 입력해주세요!
             <S.Container>
               <S.PasswordInput
-                type={isPasswordVisible ? "text" : "password"}
+                type={isPasswordVisible ? 'text' : 'password'}
                 value={password}
                 onChange={handlePasswordChange}
                 maxLength={4}
               />
               <S.PasswordIcon
-                src={
-                  isPasswordVisible
-                    ? "../public/booth/openeye.png"
-                    : "../public/booth/pw.png"
-                }
+                src={isPasswordVisible ? OpenEyeImg : CloseEyeImg}
                 alt="비밀번호"
                 onClick={togglePasswordVisibility}
               />
@@ -114,7 +112,7 @@ function ReplyModal({
         </S.SiteConnect>
       </S.SiteConnectWrapper>
       {responseStatus && (
-        <div>응답 상태: {responseStatus === 200 ? "성공" : "실패"}</div>
+        <div>응답 상태: {responseStatus === 200 ? '성공' : '실패'}</div>
       )}
     </S.IsModal>
   );
