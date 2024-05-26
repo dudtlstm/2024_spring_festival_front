@@ -19,7 +19,6 @@ const Booth30 = ({ date }) => {
   const fetchData = async () => {
     try {
       const result = await booth(date, category);
-      console.log(result);
       if (Array.isArray(result)) {
         setData(result);
       } else {

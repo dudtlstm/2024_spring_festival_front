@@ -5,8 +5,6 @@ import * as S from './style';
 const Date29 = props => {
   return (
     <>
-      {/* <div>Booth</div>
-      <Link to={'/booths/1'}>detail 이동</Link> */}
       <S.DateWrapper>
         <S.Date>
           <Link to={props.url1}>
