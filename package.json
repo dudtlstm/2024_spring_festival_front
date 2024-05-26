@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "GENERATE_SOURCEMAP=false react-scripts build",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build --mode production",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
