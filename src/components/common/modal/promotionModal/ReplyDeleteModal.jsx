@@ -62,13 +62,13 @@ function ReplyDeleteModal({
         )
         .then((response) => {
           setResponseStatus(response.status);
-          console.log("댓글이 성공적으로 삭제되었습니다.");
+          // console.log("댓글이 성공적으로 삭제되었습니다.");
           onClose();
           window.location.reload();
         })
         .catch((error) => {
           setResponseStatus(error.response ? error.response.status : 500);
-          console.error("댓글 삭제 중 오류:", error);
+          // console.error("댓글 삭제 중 오류:", error);
         });
     }
   };

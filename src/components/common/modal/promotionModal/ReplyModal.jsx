@@ -58,13 +58,13 @@ function ReplyModal({
         })
         .then((response) => {
           setResponseStatus(response.status); // 성공하면 상태 설정
-          console.log("댓글과 비밀번호가 성공적으로 전송되었습니다.");
+          // console.log("댓글과 비밀번호가 성공적으로 전송되었습니다.");
           onCommentSubmit(); // 새 댓글을 추가
           onClose(); // 모달 닫기
         })
         .catch((error) => {
           setResponseStatus(error.response ? error.response.status : 500); // 실패하면 상태 설정
-          console.error("댓글과 비밀번호 전송 중 오류:", error);
+          // console.error("댓글과 비밀번호 전송 중 오류:", error);
         });
     }
   };

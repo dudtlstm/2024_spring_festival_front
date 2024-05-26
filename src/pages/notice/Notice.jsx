@@ -18,11 +18,11 @@ const Notice = ({ noticeId }) => {
         const response = await axios.get(
           "https://mua-dongguk-server.site/api/v1/notice"
         );
-        console.log(response.data);
+        // console.log(response.data);
 
         setNotice(response.data);
       } catch (error) {
-        console.error("Error fetching notice:", error);
+        // console.error("Error fetching notice:", error);
         setError(error.message);
       } finally {
         setLoading(false);
