@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
-import axios from "axios";
-import PropTypes from "prop-types";
-import * as S from "./style";
+import React, { useEffect, useRef, useState } from 'react';
+import axios from 'axios';
+import PropTypes from 'prop-types';
+import * as S from './style';
 
 function ReplyDeleteModal({
   isOpen,
@@ -13,13 +13,13 @@ function ReplyDeleteModal({
   password: modalPassword,
   onPasswordChange,
 }) {
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState('');
   const [isConfirmEnabled, setIsConfirmEnabled] = useState(false);
   const [responseStatus, setResponseStatus] = useState(null);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const modalRef = useRef(null);
 
-  const handleClickOutside = (event) => {
+  const handleClickOutside = event => {
     if (modalRef.current && !modalRef.current.contains(event.target)) {
       onClose();
     }
@@ -27,20 +27,20 @@ function ReplyDeleteModal({
 
   useEffect(() => {
     if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-      document.body.classList.add("modal-open");
+      document.addEventListener('mousedown', handleClickOutside);
+      document.body.classList.add('modal-open');
     } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.body.classList.remove("modal-open");
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.body.classList.remove('modal-open');
     }
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.body.classList.remove("modal-open");
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.body.classList.remove('modal-open');
     };
   }, [isOpen]);
 
-  const handlePasswordChange = (event) => {
+  const handlePasswordChange = event => {
     const newPassword = event.target.value;
     setPassword(newPassword);
     onPasswordChange(newPassword); // 상위 컴포넌트로 비밀번호 전달
@@ -56,20 +56,21 @@ function ReplyDeleteModal({
             data: { password: password },
           }
         )
-        .then((response) => {
+        .then(response => {
           setResponseStatus(response.status);
-          console.log("댓글이 성공적으로 삭제되었습니다.");
+          console.log('댓글이 성공적으로 삭제되었습니다.');
           onClose();
+          window.location.reload();
         })
-        .catch((error) => {
+        .catch(error => {
           setResponseStatus(error.response ? error.response.status : 500);
-          console.error("댓글 삭제 중 오류:", error);
+          console.error('댓글 삭제 중 오류:', error);
         });
     }
   };
 
   const togglePasswordVisibility = () => {
-    setIsPasswordVisible((prevVisibility) => !prevVisibility);
+    setIsPasswordVisible(prevVisibility => !prevVisibility);
   };
 
   return (
@@ -88,7 +89,7 @@ function ReplyDeleteModal({
             비밀번호 4자리를 입력해주세요!
             <S.Container>
               <S.PasswordInput
-                type={isPasswordVisible ? "text" : "password"}
+                type={isPasswordVisible ? 'text' : 'password'}
                 value={password}
                 onChange={handlePasswordChange}
                 maxLength={4}
@@ -96,8 +97,8 @@ function ReplyDeleteModal({
               <S.PasswordIcon
                 src={
                   isPasswordVisible
-                    ? "../public/booth/openeye.png"
-                    : "../public/booth/pw.png"
+                    ? '../public/booth/openeye.png'
+                    : '../public/booth/pw.png'
                 }
                 alt="비밀번호"
                 onClick={togglePasswordVisibility}
