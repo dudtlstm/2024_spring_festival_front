@@ -27,6 +27,8 @@ function MainPromotion() {
   }, []);
 
   const settings = {
+    rows: 1,
+    slidesPerRow: 1,
     dots: false,
     infinite: true,
     slidesToShow: 1,
