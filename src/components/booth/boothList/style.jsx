@@ -49,6 +49,10 @@ export const BoothCardContentInfoTitle = styled.div`
   font-weight: 600;
   line-height: 20px;
   letter-spacing: -0.16px;
+
+  @media (max-width: 359px) {
+    font-size: 13px;
+  }
 `;
 
 export const BoothCardContentInfoLike = styled.div`
@@ -92,6 +96,13 @@ export const BoothCardContentInfoTimeText = styled.div`
   font-size: 12px;
   font-weight: 500;
   line-height: 16px;
+  @media (max-width: 362px) {
+    display: block;
+    overflow: hidden;
+    width: 105px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 `;
 
 // 위치

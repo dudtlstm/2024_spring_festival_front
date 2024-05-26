@@ -31,6 +31,11 @@ export const CategoryItem = styled.div`
   line-height: 24px;
   letter-spacing: -0.25px;
   cursor: pointer;
+
+  @media (max-width: 385px) {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
 `;
 
 export const CategoryReset = styled.div`
@@ -42,6 +47,11 @@ export const CategoryReset = styled.div`
 export const CategoryResetImg = styled.img`
   width: 24px;
   height: 24px;
+
+  @media (max-width: 385px) {
+    width: 18px;
+    height: 18px;
+  }
 `;
 export const CategoryResetText = styled.div`
   color: #c4c4c4;
@@ -50,4 +60,12 @@ export const CategoryResetText = styled.div`
   font-weight: 600;
   line-height: 24px;
   letter-spacing: -0.25px;
+
+  @media (max-width: 385px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 345px) {
+    font-size: 12px;
+  }
 `;
