@@ -52,8 +52,22 @@ const BoothDetail = () => {
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
   const [cookies, setCookie] = useCookies(["isLiked"]); // Use the useCookies hook
+  const [isReplyDeleteModalOpen, setReplyDeleteModalOpen] = useState(false);
+  const [modalPassword, setModalPassword] = useState(""); // 실제 비밀번호를 여기에 설정합니다
 
   const placeholderImage = "/booth/booth.png";
+
+  const openReplyDeleteModal = () => {
+    setReplyDeleteModalOpen(true);
+  };
+
+  const closeReplyDeleteModal = () => {
+    setReplyDeleteModalOpen(false);
+  };
+
+  const handlePasswordChange = (newPassword) => {
+    setModalPassword(newPassword);
+  };
 
   useEffect(() => {
     const fetchBoothDetail = async () => {
@@ -322,6 +336,8 @@ const BoothDetail = () => {
           isOpen={isDeleteModalOpen}
           onClose={handleCloseDeleteModal}
           onConfirm={handleConfirmDelete}
+          password={modalPassword}
+          onPasswordChange={handlePasswordChange} // 비밀번호 변경 핸들러 추가
         />
       )}
     </>

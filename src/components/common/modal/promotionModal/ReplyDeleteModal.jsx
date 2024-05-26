@@ -43,9 +43,8 @@ function ReplyDeleteModal({
   const handlePasswordChange = (event) => {
     const newPassword = event.target.value;
     setPassword(newPassword);
-    setIsConfirmEnabled(
-      newPassword === modalPassword && newPassword.length === 4
-    );
+    onPasswordChange(newPassword); // 상위 컴포넌트로 비밀번호 전달
+    setIsConfirmEnabled(newPassword.length === 4); // 비밀번호 길이가 4자리가 되면 활성화
   };
 
   const handleConfirmClick = () => {
@@ -54,9 +53,7 @@ function ReplyDeleteModal({
         .delete(
           `https://mua-dongguk-server.site/api/v1/booth/${boothId}/comments/${commentId}`,
           {
-            data: {
-              password: password,
-            },
+            data: { password: password },
           }
         )
         .then((response) => {
@@ -118,9 +115,6 @@ function ReplyDeleteModal({
           </S.SiteConnectButton>
         </S.SiteConnect>
       </S.SiteConnectWrapper>
-      {/* {responseStatus && (
-        <div>응답 상태: {responseStatus === 200 ? "성공" : "실패"}</div>
-      )} */}
     </S.IsModal>
   );
 }
@@ -133,6 +127,7 @@ ReplyDeleteModal.propTypes = {
   boothId: PropTypes.string.isRequired,
   commentId: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
+  onPasswordChange: PropTypes.func.isRequired,
 };
 
 export default ReplyDeleteModal;
