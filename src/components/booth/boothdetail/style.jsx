@@ -181,11 +181,9 @@ export const RightButton = styled.button`
 
 export const LeftButton = styled.button`
   margin-left: 8px;
-  mix-blend-mode: multiply;
   width: 34px;
   height: 34px;
   background-color: rgba(0, 0, 0, 0.3);
-
   border-radius: 20%;
   position: absolute;
   left: 0;
