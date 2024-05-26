@@ -42,8 +42,6 @@ const BoothDetail = () => {
   const location = useLocation();
   var date = location.state != null ? location.state.date : currentDate();
 
-  console.log(location.state);
-  console.log(date);
   const [boothDetail, setBoothDetail] = useState(null);
   const [comments, setComments] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
