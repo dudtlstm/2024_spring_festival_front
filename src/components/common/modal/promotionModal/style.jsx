@@ -157,6 +157,7 @@ export const PasswordInput = styled.input`
   gap: 10px;
   /* border: 1px solid red; */
   text-align: center;
+  font-size: 16px; // 원하는 폰트 사이즈로 지정
 `;
 
 export const PasswordIcon = styled.img`
