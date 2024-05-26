@@ -4,7 +4,14 @@ import MarkerBooth from '../../../../public/booth/marker_booth.svg';
 import MarkerFood from '../../../../public/booth/marker_food.svg';
 import MarkerMarket from '../../../../public/booth/marker_market.svg';
 
-const Map = ({ data, category, selectedBoothId, resetData, onMarkerClick }) => {
+const Map = ({
+  data,
+  category,
+  selectedBoothId,
+  resetData,
+  onMarkerClick,
+  isFoodClicked,
+}) => {
   const [map, setMap] = useState();
   const markersRef = useRef([]);
 
@@ -78,6 +85,16 @@ const Map = ({ data, category, selectedBoothId, resetData, onMarkerClick }) => {
         });
 
         if (selectedBoothId === item.id) {
+          map.setCenter(
+            new kakao.maps.LatLng(
+              item.location_info.latitude,
+              item.location_info.longitude
+            )
+          );
+          map.setLevel(2);
+        }
+
+        if (isFoodClicked) {
           map.setCenter(
             new kakao.maps.LatLng(
               item.location_info.latitude,
