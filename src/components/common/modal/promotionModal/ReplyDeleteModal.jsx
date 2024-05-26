@@ -3,13 +3,15 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import * as S from "./style";
 
-function PromotionModal({
+function ReplyDeleteModal({
   isOpen,
   onClose,
   description,
   title,
   boothId,
   commentId,
+  password: modalPassword,
+  onPasswordChange,
 }) {
   const [password, setPassword] = useState("");
   const [isConfirmEnabled, setIsConfirmEnabled] = useState(false);
@@ -41,27 +43,29 @@ function PromotionModal({
   const handlePasswordChange = (event) => {
     const newPassword = event.target.value;
     setPassword(newPassword);
-    setIsConfirmEnabled(newPassword.length === 4);
+    setIsConfirmEnabled(
+      newPassword === modalPassword && newPassword.length === 4
+    );
   };
 
   const handleConfirmClick = () => {
     if (isConfirmEnabled) {
       axios
         .delete(
-          `https://mua-dongguk-server.site/api/v1/booth/${id}/comments/${commentId}`,
+          `https://mua-dongguk-server.site/api/v1/booth/${boothId}/comments/${commentId}`,
           {
             data: {
-              password: parseInt(password, 10),
+              password: password,
             },
           }
         )
         .then((response) => {
-          setResponseStatus(response.status); // 성공하면 상태 설정
+          setResponseStatus(response.status);
           console.log("댓글이 성공적으로 삭제되었습니다.");
-          onClose(); // 모달 닫기
+          onClose();
         })
         .catch((error) => {
-          setResponseStatus(error.response ? error.response.status : 500); // 실패하면 상태 설정
+          setResponseStatus(error.response ? error.response.status : 500);
           console.error("댓글 삭제 중 오류:", error);
         });
     }
@@ -114,20 +118,21 @@ function PromotionModal({
           </S.SiteConnectButton>
         </S.SiteConnect>
       </S.SiteConnectWrapper>
-      {responseStatus && (
+      {/* {responseStatus && (
         <div>응답 상태: {responseStatus === 200 ? "성공" : "실패"}</div>
-      )}
+      )} */}
     </S.IsModal>
   );
 }
 
-PromotionModal.propTypes = {
+ReplyDeleteModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   description: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   boothId: PropTypes.string.isRequired,
   commentId: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
 };
 
-export default PromotionModal;
+export default ReplyDeleteModal;

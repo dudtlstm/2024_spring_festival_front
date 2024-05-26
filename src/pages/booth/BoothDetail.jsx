@@ -6,6 +6,7 @@ import ReplyDeleteModal from "../../components/common/modal/promotionModal/Reply
 import PromotionModal from "../../components/common/modal/promotionModal/ReplyModal";
 import styled from "styled-components";
 import Spinner from "../../components/common/Spinner";
+import { useCookies } from "react-cookie"; // Import the useCookies hook
 
 const StyledTextArea = styled.textarea`
   width: 242px;
@@ -39,7 +40,6 @@ const BoothDetail = () => {
   const { id } = useParams();
   const location = useLocation();
   const { date } = location.state || {};
-  console.log("date: ", date);
 
   const [boothDetail, setBoothDetail] = useState(null);
   const [comments, setComments] = useState([]);
@@ -51,6 +51,7 @@ const BoothDetail = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
+  const [cookies, setCookie] = useCookies(["isLiked"]); // Use the useCookies hook
 
   const placeholderImage = "/booth/booth.png";
 
@@ -63,7 +64,12 @@ const BoothDetail = () => {
         console.log("부스 상세: ", response.data);
         setBoothDetail(response.data);
         setLikeCount(response.data.like_cnt);
-        setIsLiked(response.data.is_liked);
+        const likedStatus = localStorage.getItem(`liked_${id}`);
+        if (likedStatus === "true") {
+          setIsLiked(true);
+        } else {
+          setIsLiked(false);
+        }
       } catch (error) {
         console.error("Error fetching booth detail:", error);
         setError(error.message);
@@ -171,6 +177,7 @@ const BoothDetail = () => {
           console.log("좋아요가 추가되었습니다.");
           setIsLiked(true);
           setLikeCount((prevCount) => prevCount + 1);
+          localStorage.setItem(`liked_${id}`, true);
         })
         .catch((error) => {
           console.error("좋아요를 추가하는 중 오류 발생:", error);
@@ -185,6 +192,7 @@ const BoothDetail = () => {
           console.log("좋아요가 삭제되었습니다.");
           setIsLiked(false);
           setLikeCount((prevCount) => prevCount - 1);
+          localStorage.removeItem(`liked_${id}`);
         })
         .catch((error) => {
           console.error("좋아요를 삭제하는 중 오류 발생:", error);
@@ -242,7 +250,7 @@ const BoothDetail = () => {
       <S.InformationBox>
         <S.Information>
           <S.InfoIcon src="/booth/reloca.png" alt="위치" />
-          {boothDetail.location}
+          {boothDetail.location_info.location}
         </S.Information>
         <S.Information>
           <S.InfoIcon src="/booth/retime.png" alt="time" />
@@ -258,8 +266,11 @@ const BoothDetail = () => {
         <S.ReplyStart>댓글</S.ReplyStart>
         <S.ReplyCount>{comments.length}</S.ReplyCount>
       </S.ReplyBox>
-      {comments.map((comment) => (
-        <S.ReplyAllBox key={comment.id}>
+      {comments.map((comment, index) => (
+        <S.ReplyAllBox
+          key={comment.id}
+          style={index === comments.length - 1 ? { paddingBottom: "60px" } : {}}
+        >
           <S.Reply>{comment.content}</S.Reply>
           <S.ReplySub>
             <S.ReplyData>
