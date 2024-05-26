@@ -3,7 +3,14 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import * as S from "./style";
 
-function PromotionModal({ isOpen, onClose, description, title, id }) {
+function PromotionModal({
+  isOpen,
+  onClose,
+  description,
+  title,
+  id,
+  onCommentSubmit,
+}) {
   const [password, setPassword] = useState("");
   const [isConfirmEnabled, setIsConfirmEnabled] = useState(false);
   const [responseStatus, setResponseStatus] = useState(null);
@@ -34,8 +41,8 @@ function PromotionModal({ isOpen, onClose, description, title, id }) {
   const handlePasswordChange = (event) => {
     const newPassword = event.target.value;
     setPassword(newPassword);
-
     setIsConfirmEnabled(newPassword.length === 4);
+    setIsConfirmEnabled(newPassword.length > 0); // Enable button for any non-empty input
   };
 
   const handleConfirmClick = () => {
@@ -48,6 +55,7 @@ function PromotionModal({ isOpen, onClose, description, title, id }) {
         .then((response) => {
           setResponseStatus(response.status); // 성공하면 상태 설정
           console.log("댓글과 비밀번호가 성공적으로 전송되었습니다.");
+          onCommentSubmit(); // 새 댓글을 추가
           onClose(); // 모달 닫기
         })
         .catch((error) => {
@@ -98,6 +106,7 @@ function PromotionModal({ isOpen, onClose, description, title, id }) {
             <S.SiteConnectConfirm
               onClick={handleConfirmClick}
               disabled={!isConfirmEnabled}
+              isConfirmEnabled={isConfirmEnabled} // Pass the state to style the button
             >
               확인
             </S.SiteConnectConfirm>
@@ -117,6 +126,7 @@ PromotionModal.propTypes = {
   description: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  onCommentSubmit: PropTypes.func.isRequired,
 };
 
 export default PromotionModal;
