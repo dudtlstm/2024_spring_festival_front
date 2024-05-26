@@ -1,29 +1,25 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as S from "./style/style";
 import TitleComponent from "./Title";
 import BoothRankCard from "./BoothRankCard";
-
 import { getTopBooth } from "../../apis/api/getTopBooth";
 import Spinner from "../common/Spinner";
 
 const BoothRank = () => {
   const [top3Booths, setTop3Booths] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+  const today = new Date();
+  let formattedDate = today.getDate();
+
+  // 날짜가 28, 29, 30이 아닌 경우 28일로 설정
+  if (formattedDate !== 28 && formattedDate !== 29 && formattedDate !== 30) {
+    formattedDate = 28;
+  }
 
   useEffect(() => {
     const fetchData = async () => {
-      const today = new Date();
-      let formattedDate = today.getDate();
-
-      // 날짜가 28, 29, 30이 아닌 경우 28일로 설정
-      if (
-        formattedDate !== 28 &&
-        formattedDate !== 29 &&
-        formattedDate !== 30
-      ) {
-        formattedDate = 28;
-      }
-
       try {
         const data = await getTopBooth(formattedDate);
         setTop3Booths(data);
@@ -33,7 +29,7 @@ const BoothRank = () => {
     };
 
     fetchData();
-  }, []);
+  }, [formattedDate]);
 
   const truncateTitle = (title, maxLength) => {
     return title.length > maxLength ? `${title.slice(0, maxLength)}...` : title;
@@ -43,6 +39,10 @@ const BoothRank = () => {
     return descript.length > maxLength
       ? `${descript.slice(0, maxLength)}...`
       : descript;
+  };
+
+  const handleCardClick = (id) => {
+    navigate(`/booths/${id}`, { state: { date: formattedDate } });
   };
 
   return (
@@ -66,7 +66,7 @@ const BoothRank = () => {
                   ? "/image/mainpage/num_2.png"
                   : "/image/mainpage/num_3.png"
               }
-              to={`/booths/${booth.id}`}
+              onClick={() => handleCardClick(booth.id)}
             />
           ))}
         </S.BoothRankBg>
