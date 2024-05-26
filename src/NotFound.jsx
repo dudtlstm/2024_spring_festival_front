@@ -11,10 +11,11 @@ const BackGroundColor = styled.div`
   justify-content: center;
   align-items: center;
 
-  background-color: #ffdcdc;
+  background-color: #f1f2fb;
 
-  color: black;
-  font-size: 35px;
+  color: #111;
+  font-size: 28px;
+  font-family: Pretendard;
 `;
 
 const NotFound = () => {
@@ -22,12 +23,16 @@ const NotFound = () => {
     <>
       <GlobalStyle />
       <BackGroundColor>
-        <div>😖😖😖</div>
+        <img src="/lion.png" style={{ width: "200px" }} />
+        <br />
+        <div style={{ fontSize: "50px", color: "#F7634E", fontWeight: "900" }}>
+          "Oops! 😖😖"
+        </div>
+        <br />
         <br />
         Sorry, <br />
         the page not found <br />
         <br />
-        <div>애도라 화잇팅이얏 XD🩷</div>
       </BackGroundColor>
     </>
   );
