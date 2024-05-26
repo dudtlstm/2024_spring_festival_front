@@ -96,7 +96,7 @@ const BoothDetail = () => {
           setIsLiked(false);
         }
       } catch (error) {
-        console.error("Error fetching booth detail:", error);
+        // console.error("Error fetching booth detail:", error);
         setError(error.message);
         setBoothDetail({
           id: 1,
@@ -127,7 +127,7 @@ const BoothDetail = () => {
         }));
         setComments(response.data);
       } catch (error) {
-        console.error("Error fetching comments:", error);
+        // console.error("Error fetching comments:", error);
       }
     };
 
@@ -192,7 +192,7 @@ const BoothDetail = () => {
       }));
       setComments(response.data);
     } catch (error) {
-      console.error("Error fetching comments:", error);
+      // console.error("Error fetching comments:", error);
     }
   };
 
@@ -225,7 +225,7 @@ const BoothDetail = () => {
           localStorage.removeItem(`liked_${id}`);
         })
         .catch((error) => {
-          console.error("좋아요를 삭제하는 중 오류 발생:", error);
+          // console.error("좋아요를 삭제하는 중 오류 발생:", error);
         });
     }
   };

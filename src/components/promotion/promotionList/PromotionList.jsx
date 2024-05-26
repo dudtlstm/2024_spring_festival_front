@@ -20,7 +20,7 @@ function PromotionList() {
             img: promotion.image,
             url: promotion.insta_url,
           }));
-          console.log(transformedData);
+          // console.log(transformedData);
           setPromotions(transformedData);
         } else {
           // console.error("Fetched data is not an array:", data);
