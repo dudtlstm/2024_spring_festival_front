@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as S from "./style";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import * as images from "../../../assets/images/layout_images";
 import { handleCopyClipBoard } from "../../../utils/copyClipBoard";
 import BoothShareModal from "../../common/modal/BoothShareModal";
@@ -22,6 +22,7 @@ const Header = ({ currentPath }) => {
   const closeModal = () => setModalIsOpen(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
   // const baseURL = "http://localhost:5173";
   const baseURL = "https://dgu-mua.site";
 
@@ -33,12 +34,13 @@ const Header = ({ currentPath }) => {
   };
 
   const handleClick = () => {
-    if (isDepthPage()) {
-      history.length > 0 ? navigate(-1) : navigate("/");
+    if (isDepthPage() && location.key !== "default") {
+      navigate(-1);
     } else {
       navigate("/");
     }
   };
+
   const handleShareClick = () => {
     handleCopyClipBoard(`${baseURL}${currentPath}`);
     setModalIsOpen(true);
