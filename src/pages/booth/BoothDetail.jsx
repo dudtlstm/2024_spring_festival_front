@@ -8,8 +8,6 @@ import styled from "styled-components";
 import Spinner from "../../components/common/Spinner";
 import { useCookies } from "react-cookie"; // Import the useCookies hook
 import { currentDate } from "../../utils/currentDate";
-// cookies
-import cookies from "react-cookies";
 // API
 import { fetchPostLike, fetchDeleteLike } from "../../apis/api/boothLike";
 // slider import
@@ -52,7 +50,6 @@ const BoothDetail = () => {
   const { id } = useParams();
   const { date } = useParams();
   const location = useLocation();
-  // var date = location.state != null ? location.state.date : currentDate();
 
   const [boothDetail, setBoothDetail] = useState(null);
   const [comments, setComments] = useState([]);
@@ -71,7 +68,6 @@ const BoothDetail = () => {
   const placeholderImage = "/booth/booth2x.png";
 
   // 부스 id, 댓글 id
-  // const [boothId, setBoothId] = useState(null);
   const [commentId, setCommentId] = useState(null);
 
   const sliderRef = useRef(null);
@@ -138,13 +134,6 @@ const BoothDetail = () => {
         // console.error("Error fetching comments:", error);
       }
     };
-
-    // // 새로고침 후에도 쿠키 값을 복원
-    // const cookieName = id; // 저장할 쿠키 이름을 정의합니다.
-    // const savedCookie = cookies.load(cookieName);
-    // if (savedCookie) {
-    //   document.cookie = `${cookieName}=${savedCookie}`;
-    // }
 
     fetchBoothDetail();
     fetchComments();
@@ -221,9 +210,6 @@ const BoothDetail = () => {
 
         localStorage.removeItem(`liked_${id}`);
 
-        // const cookieName = id; // 저장할 쿠키 이름을 정의합니다.
-        // cookies.remove(cookieName, { path: "/" }); // 쿠키 삭제
-
         console.log("좋아요 삭제");
       } else {
         await fetchPostLike(id, date);
@@ -240,40 +226,6 @@ const BoothDetail = () => {
       );
     }
   };
-
-  // const handleHeartClick = () => {
-  //   if (!isLiked) {
-  //     axios
-  //       .post(
-  //         `https://mua-dongguk-server.site/api/v1/booth/${id}/likes?date=${date}`,
-  //         { is_clicked: true }
-  //       )
-  //       .then((response) => {
-  //         // console.log("좋아요가 추가되었습니다.");
-  //         setIsLiked(true);
-  //         setLikeCount((prevCount) => prevCount + 1);
-  //         localStorage.setItem(`liked_${id}`, true);
-  //       })
-  //       .catch((error) => {
-  //         console.error("좋아요를 추가하는 중 오류 발생:", error);
-  //       });
-  //   } else {
-  //     axios
-  //       .post(
-  //         `https://mua-dongguk-server.site/api/v1/booth/${id}/likes?date=${date}`,
-  //         { is_clicked: false }
-  //       )
-  //       .then((response) => {
-  //         // console.log("좋아요가 삭제되었습니다.");
-  //         setIsLiked(false);
-  //         setLikeCount((prevCount) => prevCount - 1);
-  //         localStorage.removeItem(`liked_${id}`);
-  //       })
-  //       .catch((error) => {
-  //         // console.error("좋아요를 삭제하는 중 오류 발생:", error);
-  //       });
-  //   }
-  // };
 
   if (loading) {
     return <Spinner />;
@@ -406,17 +358,6 @@ const BoothDetail = () => {
             />
           </S.WriteReply>
         </S.BottomBox>
-        <div
-          style={{
-            position: "fixed",
-            bottom: "10px",
-            left: "10px",
-            fontSize: "20px",
-            color: "gray",
-          }}
-        >
-          ※ 점검 중입니다.
-        </div>
 
         {isModalOpen && (
           <PromotionModal
