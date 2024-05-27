@@ -1,11 +1,10 @@
 import styled, { css } from "styled-components";
 
-export const ScrollableContainer = styled.div`
+export const BoothDetailContainer = styled.div`
   width: 100%;
-  height: 100vh; /* 부모 컨테이너의 높이를 화면 높이로 설정 */
-  overflow: auto; /* 컨텐츠가 넘칠 경우 스크롤 생기게 설정 */
+  overflow-x: hidden;
+  box-sizing: border-box;
 `;
-
 export const Title = styled.div`
   color: var(--use-font-font---head, #151515);
   font-family: Pretendard;

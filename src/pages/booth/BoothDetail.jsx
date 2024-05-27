@@ -13,11 +13,6 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const BoothDetailContainer = styled.div`
-  width: 100%;
-  overflow-x: hidden;
-`;
-
 const StyledTextArea = styled.textarea`
   width: 242px;
   height: 24px;
@@ -266,7 +261,7 @@ const BoothDetail = () => {
 
   return (
     <>
-      <BoothDetailContainer>
+      <S.BoothDetailContainer>
         <S.ImageContainer>
           <Slider {...settings} ref={sliderRef}>
             {images.map((image, index) => (
@@ -390,7 +385,7 @@ const BoothDetail = () => {
             commentId={commentId}
           />
         )}
-      </BoothDetailContainer>
+      </S.BoothDetailContainer>
     </>
   );
 };
