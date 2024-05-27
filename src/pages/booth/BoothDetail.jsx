@@ -221,8 +221,8 @@ const BoothDetail = () => {
 
         localStorage.removeItem(`liked_${id}`);
 
-        const cookieName = id; // 저장할 쿠키 이름을 정의합니다.
-        cookies.remove(cookieName, { path: "/" }); // 쿠키 삭제
+        // const cookieName = id; // 저장할 쿠키 이름을 정의합니다.
+        // cookies.remove(cookieName, { path: "/" }); // 쿠키 삭제
 
         console.log("좋아요 삭제");
       } else {

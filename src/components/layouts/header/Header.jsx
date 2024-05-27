@@ -34,7 +34,7 @@ const Header = ({ currentPath }) => {
 
   const handleClick = () => {
     if (isDepthPage()) {
-      navigate(-1);
+      history.length > 0 ? navigate(-1) : navigate("/");
     } else {
       navigate("/");
     }
