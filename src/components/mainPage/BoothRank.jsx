@@ -13,15 +13,31 @@ const BoothRank = () => {
   const today = new Date();
   let formattedDate = today.getDate();
 
-  // 날짜가 28, 29, 30이 아닌 경우 28일로 설정
-  if (formattedDate !== 28 && formattedDate !== 29 && formattedDate !== 30) {
-    formattedDate = 28;
-  }
+  // // 날짜가 28, 29, 30이 아닌 경우 28일로 설정
+  // if (formattedDate !== 28 && formattedDate !== 29 && formattedDate !== 30) {
+  //   formattedDate = 28;
+  // }
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getTopBooth(formattedDate);
+        let data;
+        if (formattedDate === 28 || formattedDate === 29 || formattedDate === 30) {
+          data = await getTopBooth(formattedDate);
+        } else {
+          const data28 = await getTopBooth(28);
+          const data29 = await getTopBooth(29);
+          const data30 = await getTopBooth(30);
+          data = [...data28, ...data29, ...data30];
+
+          const boothMap = new Map();
+          data.forEach(booth => {
+            if (!boothMap.has(booth.id)) {
+              boothMap.set(booth.id, booth);
+            }
+          });
+          data = Array.from(boothMap.values()).sort((a, b) => b.like_cnt - a.like_cnt).slice(0, 3);
+        }
         setTop3Booths(data);
       } finally {
         setLoading(false);
