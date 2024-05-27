@@ -338,7 +338,8 @@ const BoothDetail = () => {
             </S.ReplySub>
           </S.ReplyAllBox>
         ))}
-        <S.BottomBox>
+
+        {/* <S.BottomBox>
           <S.Heart>
             <S.HeartButton
               src={isLiked ? "/booth/fullheart.png" : "/booth/heart.svg"}
@@ -367,7 +368,19 @@ const BoothDetail = () => {
               disabled={newComment.trim().length === 0} // 댓글이 비어있으면 버튼 비활성화 // 댓글이 비어있으면 버튼 비활성화
             />
           </S.WriteReply>
-        </S.BottomBox>
+        </S.BottomBox> */}
+        <div
+          style={{
+            position: "fixed",
+            bottom: "10px",
+            left: "10px",
+            fontSize: "20px",
+            color: "gray",
+          }}
+        >
+          ※ 점검 중입니다.
+        </div>
+
         {isModalOpen && (
           <PromotionModal
             isOpen={isModalOpen}
