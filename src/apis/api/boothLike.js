@@ -6,10 +6,10 @@ export const fetchPostLike = async (id, date) => {
     const cookieName = id; // react-cookie 라이브러리 활용-쿠키 저장
 
     const response = await API.post(`api/v1/booth/${id}/likes?date=${date}`);
-    if(response){
-      const responseValue = response.data.key; // string 을 끼워넣은 방법으로 옳지 않음 -> 수정 필요
-      setCookie(cookieName, responseValue,{path: '/'}); // string 을 끼워넣은 방법으로 옳지 않음 -> 수정 필요
-    }
+    // if(response){
+    //   const responseValue = response.data.key; // string 을 끼워넣은 방법으로 옳지 않음 -> 수정 필요
+    //   setCookie(cookieName, responseValue,{path: '/'}); // string 을 끼워넣은 방법으로 옳지 않음 -> 수정 필요
+    // }
     console.log("like post, ", response.data);
 
     return response.data;
