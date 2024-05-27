@@ -8,6 +8,10 @@ import styled from "styled-components";
 import Spinner from "../../components/common/Spinner";
 import { useCookies } from "react-cookie"; // Import the useCookies hook
 import { currentDate } from "../../utils/currentDate";
+// cookies
+import cookies from "react-cookies";
+// API
+import { fetchPostLike, fetchDeleteLike } from "../../apis/api/boothLike";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -135,6 +139,13 @@ const BoothDetail = () => {
       }
     };
 
+    // // 새로고침 후에도 쿠키 값을 복원
+    // const cookieName = id; // 저장할 쿠키 이름을 정의합니다.
+    // const savedCookie = cookies.load(cookieName);
+    // if (savedCookie) {
+    //   document.cookie = `${cookieName}=${savedCookie}`;
+    // }
+
     fetchBoothDetail();
     fetchComments();
   }, [id, date]);
@@ -200,39 +211,69 @@ const BoothDetail = () => {
     }
   };
 
-  const handleHeartClick = () => {
-    if (!isLiked) {
-      axios
-        .post(
-          `https://mua-dongguk-server.site/api/v1/booth/${id}/likes?date=${date}`,
-          { is_clicked: true }
-        )
-        .then((response) => {
-          // console.log("좋아요가 추가되었습니다.");
-          setIsLiked(true);
-          setLikeCount((prevCount) => prevCount + 1);
-          localStorage.setItem(`liked_${id}`, true);
-        })
-        .catch((error) => {
-          console.error("좋아요를 추가하는 중 오류 발생:", error);
-        });
-    } else {
-      axios
-        .post(
-          `https://mua-dongguk-server.site/api/v1/booth/${id}/likes?date=${date}`,
-          { is_clicked: false }
-        )
-        .then((response) => {
-          // console.log("좋아요가 삭제되었습니다.");
-          setIsLiked(false);
-          setLikeCount((prevCount) => prevCount - 1);
-          localStorage.removeItem(`liked_${id}`);
-        })
-        .catch((error) => {
-          // console.error("좋아요를 삭제하는 중 오류 발생:", error);
-        });
+  // 좋아요 버튼 클릭 함수 - api 요청
+  const handleHeartClick = async () => {
+    try {
+      if (isLiked) {
+        await fetchDeleteLike(id, date);
+        setIsLiked(false);
+        setLikeCount((prevCount) => prevCount - 1);
+
+        localStorage.removeItem(`liked_${id}`);
+
+        const cookieName = id; // 저장할 쿠키 이름을 정의합니다.
+        cookies.remove(cookieName, { path: "/" }); // 쿠키 삭제
+
+        console.log("좋아요 삭제");
+      } else {
+        await fetchPostLike(id, date);
+        setIsLiked(true);
+        setLikeCount((prevCount) => prevCount + 1);
+
+        localStorage.setItem(`liked_${id}`, "true");
+        console.log("좋아요 추가");
+      }
+    } catch (error) {
+      console.error(
+        `좋아요를 ${isLiked ? "삭제하는" : "추가하는"} 중 오류 발생:`,
+        error
+      );
     }
   };
+
+  // const handleHeartClick = () => {
+  //   if (!isLiked) {
+  //     axios
+  //       .post(
+  //         `https://mua-dongguk-server.site/api/v1/booth/${id}/likes?date=${date}`,
+  //         { is_clicked: true }
+  //       )
+  //       .then((response) => {
+  //         // console.log("좋아요가 추가되었습니다.");
+  //         setIsLiked(true);
+  //         setLikeCount((prevCount) => prevCount + 1);
+  //         localStorage.setItem(`liked_${id}`, true);
+  //       })
+  //       .catch((error) => {
+  //         console.error("좋아요를 추가하는 중 오류 발생:", error);
+  //       });
+  //   } else {
+  //     axios
+  //       .post(
+  //         `https://mua-dongguk-server.site/api/v1/booth/${id}/likes?date=${date}`,
+  //         { is_clicked: false }
+  //       )
+  //       .then((response) => {
+  //         // console.log("좋아요가 삭제되었습니다.");
+  //         setIsLiked(false);
+  //         setLikeCount((prevCount) => prevCount - 1);
+  //         localStorage.removeItem(`liked_${id}`);
+  //       })
+  //       .catch((error) => {
+  //         // console.error("좋아요를 삭제하는 중 오류 발생:", error);
+  //       });
+  //   }
+  // };
 
   if (loading) {
     return <Spinner />;
@@ -339,7 +380,7 @@ const BoothDetail = () => {
           </S.ReplyAllBox>
         ))}
 
-        {/* <S.BottomBox>
+        <S.BottomBox>
           <S.Heart>
             <S.HeartButton
               src={isLiked ? "/booth/fullheart.png" : "/booth/heart.svg"}
@@ -368,7 +409,7 @@ const BoothDetail = () => {
               disabled={newComment.trim().length === 0} // 댓글이 비어있으면 버튼 비활성화 // 댓글이 비어있으면 버튼 비활성화
             />
           </S.WriteReply>
-        </S.BottomBox> */}
+        </S.BottomBox>
         <div
           style={{
             position: "fixed",
