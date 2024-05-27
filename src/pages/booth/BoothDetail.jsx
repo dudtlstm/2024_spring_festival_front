@@ -13,6 +13,11 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+const BoothDetailContainer = styled.div`
+  width: 100%;
+  overflow-x: hidden;
+`;
+
 const StyledTextArea = styled.textarea`
   width: 242px;
   height: 24px;
@@ -261,127 +266,131 @@ const BoothDetail = () => {
 
   return (
     <>
-      <S.ImageContainer>
-        <Slider {...settings} ref={sliderRef}>
-          {images.map((image, index) => (
-            <S.ImageNotice
+      <BoothDetailContainer>
+        <S.ImageContainer>
+          <Slider {...settings} ref={sliderRef}>
+            {images.map((image, index) => (
+              <S.ImageNotice
+                key={index}
+                src={image}
+                alt={`Booth image ${index + 1}`}
+                className={image === placeholderImage ? "placeholder" : ""}
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = placeholderImage;
+                }}
+              />
+            ))}
+          </Slider>
+          {images.length > 1 && (
+            <>
+              <S.LeftButton onClick={handlePrevClick} />
+              <S.RightButton onClick={handleNextClick} />
+            </>
+          )}
+        </S.ImageContainer>
+        <S.Pagination>
+          {images.map((_, index) => (
+            <S.Dot
               key={index}
-              src={image}
-              alt={`Booth image ${index + 1}`}
-              className={image === placeholderImage ? "placeholder" : ""}
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = placeholderImage;
-              }}
+              active={index === currentIndex}
+              onClick={() => handleDotClick(index)}
             />
           ))}
-        </Slider>
-        {images.length > 1 && (
-          <>
-            <S.LeftButton onClick={handlePrevClick} />
-            <S.RightButton onClick={handleNextClick} />
-          </>
-        )}
-      </S.ImageContainer>
-      <S.Pagination>
-        {images.map((_, index) => (
-          <S.Dot
-            key={index}
-            active={index === currentIndex}
-            onClick={() => handleDotClick(index)}
-          />
-        ))}
-      </S.Pagination>
-      <S.Title>{boothDetail.name}</S.Title>
-      <S.DetailBox>
-        <S.Detail>{boothDetail.description}</S.Detail>
-      </S.DetailBox>
-      <S.InformationBox>
-        <S.Information>
-          <S.InfoIcon src="/booth/reloca.png" alt="위치" />
-          {boothDetail.location_info.location}
-        </S.Information>
-        <S.Information>
-          <S.InfoIcon src="/booth/retime.png" alt="time" />
-          {boothDetail.during}
-        </S.Information>
-        <S.Information>
-          <S.InfoIcon src="/booth/repin.png" alt="pin" />
-          {boothDetail.operator}
-        </S.Information>
-      </S.InformationBox>
-      <S.SeparationBar />
-      <S.ReplyBox>
-        <S.ReplyStart>댓글</S.ReplyStart>
-        <S.ReplyCount>{comments.length}</S.ReplyCount>
-      </S.ReplyBox>
-      {comments.map((comment, index) => (
-        <S.ReplyAllBox
-          key={comment.id}
-          style={index === comments.length - 1 ? { paddingBottom: "60px" } : {}}
-        >
-          <S.Reply>{comment.content}</S.Reply>
-          <S.ReplySub>
-            <S.ReplyData>
-              {new Date(comment.created_at).toLocaleDateString()}
-            </S.ReplyData>
-            <S.ReplyDelete onClick={() => handleDeleteClick(comment.id)}>
-              삭제
-            </S.ReplyDelete>
-          </S.ReplySub>
-        </S.ReplyAllBox>
-      ))}
-      <S.BottomBox>
-        <S.Heart>
-          <S.HeartButton
-            src={isLiked ? "/booth/fullheart.png" : "/booth/heart.svg"}
-            alt="좋아요"
-            onClick={handleHeartClick}
-          />
-          <S.HeartCount>{likeCount}</S.HeartCount>
-        </S.Heart>
-        <S.WriteReply>
-          <StyledTextArea
-            hasValue={newComment.trim().length > 0}
-            value={newComment}
-            onChange={handleCommentChange}
-            placeholder="댓글을 입력하세요"
-          />
-          <S.SendReply
-            src={
-              newComment.trim().length > 0
-                ? "../booth/colorsend.png"
-                : "../booth/send.png"
+        </S.Pagination>
+        <S.Title>{boothDetail.name}</S.Title>
+        <S.DetailBox>
+          <S.Detail>{boothDetail.description}</S.Detail>
+        </S.DetailBox>
+        <S.InformationBox>
+          <S.Information>
+            <S.InfoIcon src="/booth/reloca.png" alt="위치" />
+            {boothDetail.location_info.location}
+          </S.Information>
+          <S.Information>
+            <S.InfoIcon src="/booth/retime.png" alt="time" />
+            {boothDetail.during}
+          </S.Information>
+          <S.Information>
+            <S.InfoIcon src="/booth/repin.png" alt="pin" />
+            {boothDetail.operator}
+          </S.Information>
+        </S.InformationBox>
+        <S.SeparationBar />
+        <S.ReplyBox>
+          <S.ReplyStart>댓글</S.ReplyStart>
+          <S.ReplyCount>{comments.length}</S.ReplyCount>
+        </S.ReplyBox>
+        {comments.map((comment, index) => (
+          <S.ReplyAllBox
+            key={comment.id}
+            style={
+              index === comments.length - 1 ? { paddingBottom: "60px" } : {}
             }
-            alt="전송"
-            onClick={
-              newComment.trim().length > 0 ? handleSubmitComment : undefined
-            } // 댓글이 비어있으면 클릭 이벤트 없음
-            disabled={newComment.trim().length === 0} // 댓글이 비어있으면 버튼 비활성화 // 댓글이 비어있으면 버튼 비활성화
+          >
+            <S.Reply>{comment.content}</S.Reply>
+            <S.ReplySub>
+              <S.ReplyData>
+                {new Date(comment.created_at).toLocaleDateString()}
+              </S.ReplyData>
+              <S.ReplyDelete onClick={() => handleDeleteClick(comment.id)}>
+                삭제
+              </S.ReplyDelete>
+            </S.ReplySub>
+          </S.ReplyAllBox>
+        ))}
+        <S.BottomBox>
+          <S.Heart>
+            <S.HeartButton
+              src={isLiked ? "/booth/fullheart.png" : "/booth/heart.svg"}
+              alt="좋아요"
+              onClick={handleHeartClick}
+            />
+            <S.HeartCount>{likeCount}</S.HeartCount>
+          </S.Heart>
+          <S.WriteReply>
+            <StyledTextArea
+              hasValue={newComment.trim().length > 0}
+              value={newComment}
+              onChange={handleCommentChange}
+              placeholder="댓글을 입력하세요"
+            />
+            <S.SendReply
+              src={
+                newComment.trim().length > 0
+                  ? "../booth/colorsend.png"
+                  : "../booth/send.png"
+              }
+              alt="전송"
+              onClick={
+                newComment.trim().length > 0 ? handleSubmitComment : undefined
+              } // 댓글이 비어있으면 클릭 이벤트 없음
+              disabled={newComment.trim().length === 0} // 댓글이 비어있으면 버튼 비활성화 // 댓글이 비어있으면 버튼 비활성화
+            />
+          </S.WriteReply>
+        </S.BottomBox>
+        {isModalOpen && (
+          <PromotionModal
+            isOpen={isModalOpen}
+            onClose={handleModalClose}
+            description={newComment}
+            title="비밀번호 설정"
+            id={id}
+            onCommentSubmit={fetchComments}
           />
-        </S.WriteReply>
-      </S.BottomBox>
-      {isModalOpen && (
-        <PromotionModal
-          isOpen={isModalOpen}
-          onClose={handleModalClose}
-          description={newComment}
-          title="비밀번호 설정"
-          id={id}
-          onCommentSubmit={fetchComments}
-        />
-      )}
-      {isDeleteModalOpen && (
-        <ReplyDeleteModal
-          isOpen={isDeleteModalOpen}
-          onClose={handleCloseDeleteModal}
-          onConfirm={handleConfirmDelete}
-          password={modalPassword}
-          onPasswordChange={handlePasswordChange} // 비밀번호 변경 핸들러 추가
-          boothId={id}
-          commentId={commentId}
-        />
-      )}
+        )}
+        {isDeleteModalOpen && (
+          <ReplyDeleteModal
+            isOpen={isDeleteModalOpen}
+            onClose={handleCloseDeleteModal}
+            onConfirm={handleConfirmDelete}
+            password={modalPassword}
+            onPasswordChange={handlePasswordChange} // 비밀번호 변경 핸들러 추가
+            boothId={id}
+            commentId={commentId}
+          />
+        )}
+      </BoothDetailContainer>
     </>
   );
 };
