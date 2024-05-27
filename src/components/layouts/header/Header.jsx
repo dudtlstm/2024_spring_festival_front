@@ -22,6 +22,7 @@ const Header = ({ currentPath }) => {
   const closeModal = () => setModalIsOpen(false);
 
   const navigate = useNavigate();
+  // const baseURL = "http://localhost:5173";
   const baseURL = "https://dgu-mua.site";
 
   const isDepthPage = () => {

@@ -55,7 +55,7 @@ const Content = styled.div`
 `;
 
 // 부스 상세 페이지 url 패턴 정의
-const boothsDetailPattern = /^\/(booths)\/([^/]+)$/;
+const boothsDetailPattern = /^\/booths\/(28|29|30)\/(\d+)$/;
 
 const Layout = () => {
   const location = useLocation();
