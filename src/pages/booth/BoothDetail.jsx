@@ -12,11 +12,11 @@ import { currentDate } from "../../utils/currentDate";
 import cookies from "react-cookies";
 // API
 import { fetchPostLike, fetchDeleteLike } from "../../apis/api/boothLike";
-
+// slider import
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+// img import
 import send from "/booth/send.png";
 import colorsend from "/booth/colorsend.png";
 
@@ -397,11 +397,7 @@ const BoothDetail = () => {
               placeholder="댓글을 입력하세요"
             />
             <S.SendReply
-              src={
-                newComment.trim().length > 0 ? { colorsend } : { send }
-                // ? "../booth/colorsend.png"
-                // : "../booth/send.png"
-              }
+              src={newComment.trim().length > 0 ? colorsend : send}
               alt="전송"
               onClick={
                 newComment.trim().length > 0 ? handleSubmitComment : undefined
