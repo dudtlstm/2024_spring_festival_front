@@ -13,6 +13,9 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+import send from "/booth/send.png";
+import colorsend from "/booth/colorsend.png";
+
 const StyledTextArea = styled.textarea`
   width: 242px;
   height: 24px;
@@ -43,8 +46,9 @@ const StyledTextArea = styled.textarea`
 
 const BoothDetail = () => {
   const { id } = useParams();
+  const { date } = useParams();
   const location = useLocation();
-  var date = location.state != null ? location.state.date : currentDate();
+  // var date = location.state != null ? location.state.date : currentDate();
 
   const [boothDetail, setBoothDetail] = useState(null);
   const [comments, setComments] = useState([]);
@@ -352,9 +356,9 @@ const BoothDetail = () => {
             />
             <S.SendReply
               src={
-                newComment.trim().length > 0
-                  ? "../booth/colorsend.png"
-                  : "../booth/send.png"
+                newComment.trim().length > 0 ? { colorsend } : { send }
+                // ? "../booth/colorsend.png"
+                // : "../booth/send.png"
               }
               alt="전송"
               onClick={

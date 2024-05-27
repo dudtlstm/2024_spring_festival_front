@@ -26,7 +26,7 @@ const router = createBrowserRouter([
       { path: "/booth/28", element: <Booth28 date="28" /> },
       { path: "/booth/29", element: <Booth29 date="29" /> },
       { path: "/booth/30", element: <Booth30 date="30" /> },
-      { path: "/booths/:id", element: <BoothDetail /> },
+      { path: "/booths/:date/:id", element: <BoothDetail /> },
 
       // 타임테이블 페이지
       // { path: "/performance", element: <TimeTable /> },
