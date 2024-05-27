@@ -10,49 +10,31 @@ const BoothRank = () => {
   const [top3Booths, setTop3Booths] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const today = new Date();
-  let formattedDate = today.getDate();
-
-  // // 날짜가 28, 29, 30이 아닌 경우 28일로 설정
-  // if (formattedDate !== 28 && formattedDate !== 29 && formattedDate !== 30) {
-  //   formattedDate = 28;
-  // }
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let data;
-        if (
-          formattedDate === 28 ||
-          formattedDate === 29 ||
-          formattedDate === 30
-        ) {
-          data = await getTopBooth(formattedDate);
-        } else {
-          const data28 = await getTopBooth(28);
-          const data29 = await getTopBooth(29);
-          const data30 = await getTopBooth(30);
-          data = [...data28, ...data29, ...data30];
-
-          const boothMap = new Map();
-          data.forEach((booth) => {
-            if (!boothMap.has(booth.id)) {
-              boothMap.set(booth.id, booth);
-            }
-          });
-          data = Array.from(boothMap.values())
-            .sort((a, b) => b.like_cnt - a.like_cnt)
-            .slice(0, 3);
-        }
+        const data = await getTopBooth();
+        // console.log("Fetched Booth Data:", data);
         setTop3Booths(data);
-        console.log("main: ", data);
       } finally {
         setLoading(false);
       }
     };
 
     fetchData();
-  }, [formattedDate]);
+  }, []);
+
+  const getFormattedDate = (during) => {
+    if (during.includes("화")) {
+      return 28;
+    } else if (during.includes("수")) {
+      return 29;
+    } else if (during.includes("목")) {
+      return 30;
+    }
+    return 28;
+  };
 
   const truncateTitle = (title, maxLength) => {
     return title.length > maxLength ? `${title.slice(0, maxLength)}...` : title;
@@ -64,11 +46,9 @@ const BoothRank = () => {
       : descript;
   };
 
-  const handleCardClick = (id) => {
-    // navigate(`/booths/${date}/${id}`); // date 포함하여 api 요청
-    // date 값 반환되면 위의 코드 주석 풀기
-
-    navigate(`/booth/28`); //임시로 부스 페이지로 이동하게 함
+  const handleCardClick = (id, during) => {
+    const date = getFormattedDate(during);
+    navigate(`/booths/${date}/${id}`);
   };
 
   return (
@@ -92,7 +72,7 @@ const BoothRank = () => {
                   ? "/image/mainpage/num_2.png"
                   : "/image/mainpage/num_3.png"
               }
-              onClick={() => handleCardClick(booth.id)}
+              onClick={() => handleCardClick(booth.id, booth.during)}
             />
           ))}
         </S.BoothRankBg>
