@@ -35,7 +35,7 @@ const BoothShareModal = ({ isOpen, onClose }) => {
     >
       <S.SiteConnectWrapper ref={modalRef}>
         <S.SiteConnect>
-          z<S.SiteConnectTitle>복사 완료</S.SiteConnectTitle>
+          <S.SiteConnectTitle>복사 완료</S.SiteConnectTitle>
           <S.SiteConnectContent2>
             클립보드에 링크가 복사되었습니다.
           </S.SiteConnectContent2>
