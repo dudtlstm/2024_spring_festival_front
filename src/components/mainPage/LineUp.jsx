@@ -5,7 +5,6 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { fetchArtistImages } from "../../apis/api/getLineUp";
-import { currentDate } from "../../utils/currentDate";
 import Spinner from "../common/Spinner";
 
 function LineUp() {
@@ -16,13 +15,9 @@ function LineUp() {
 
   useEffect(() => {
     const fetchData = async () => {
-      let day;
       const today = new Date();
-      if (today.getDate() >= 28 && today.getDate() <= 30) {
-        day = today.getDate();
-      } else {
-        day = 29;
-      }
+      const day =
+        today.getDate() === 29 || today.getDate() === 30 ? today.getDate() : 29;
       const imageData = await fetchArtistImages(day);
       setArtistImages(imageData);
       setLoading(false);
@@ -78,7 +73,11 @@ function LineUp() {
     <S.LineUpWrapper>
       <TitleComponent
         title={"라인업"}
-        to={`/performance/${currentDate()}`}
+        to={`/performance/${
+          new Date().getDate() === 29 || new Date().getDate() === 30
+            ? new Date().getDate()
+            : 29
+        }`}
         marginTop={"32px"}
       />
       <S.LineUpImgWrapper>
@@ -87,9 +86,7 @@ function LineUp() {
         ) : (
           <Slider {...settings}>
             {artistImages.map((imageUrl, index) => (
-              // <S.LineUpImgContainer>
               <S.LineUpImg key={index} src={imageUrl} loading="lazy" />
-              // </S.LineUpImgContainer>
             ))}
           </Slider>
         )}
