@@ -10,11 +10,18 @@ const BoothRank = () => {
   const [top3Booths, setTop3Booths] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const today = new Date();
+  let formattedDate = today.getDate();
+
+  // // 날짜가 28, 29, 30이 아닌 경우 28일로 설정
+  if (formattedDate !== 28 && formattedDate !== 29 && formattedDate !== 30) {
+    formattedDate = 28;
+  }
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getTopBooth();
+        const data = await getTopBooth(formattedDate);
         // console.log("Fetched Booth Data:", data);
         setTop3Booths(data);
       } finally {
@@ -25,16 +32,41 @@ const BoothRank = () => {
     fetchData();
   }, []);
 
-  const getFormattedDate = (during) => {
-    if (during.includes("화")) {
-      return 28;
-    } else if (during.includes("수")) {
-      return 29;
-    } else if (during.includes("목")) {
-      return 30;
-    }
-    return 28;
-  };
+  // const getFormattedDate = (during) => {
+  //   if (during.includes("화")) {
+  //     return 28;
+  //   } else if (during.includes("수")) {
+  //     return 29;
+  //   } else if (during.includes("목")) {
+  //     return 30;
+  //   }
+  //   return 28;
+  // };
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //      const data = await getTopBooth(formattedDate);
+  //       // console.log("Fetched Booth Data:", data);
+  //       setTop3Booths(data);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
+
+  // const getFormattedDate = (during) => {
+  //   if (during.includes("화")) {
+  //     return 28;
+  //   } else if (during.includes("수")) {
+  //     return 29;
+  //   } else if (during.includes("목")) {
+  //     return 30;
+  //   }
+  //   return 28;
+  // };
 
   const truncateTitle = (title, maxLength) => {
     return title.length > maxLength ? `${title.slice(0, maxLength)}...` : title;
@@ -46,9 +78,8 @@ const BoothRank = () => {
       : descript;
   };
 
-  const handleCardClick = (id, during) => {
-    const date = getFormattedDate(during);
-    navigate(`/booths/${date}/${id}`);
+  const handleCardClick = (id) => {
+    navigate(`/booths/${formattedDate}/${id}`);
   };
 
   return (
