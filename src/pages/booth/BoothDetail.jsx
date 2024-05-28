@@ -210,14 +210,14 @@ const BoothDetail = () => {
 
         localStorage.removeItem(`liked_${id}`);
 
-        console.log("좋아요 삭제");
+        // console.log("좋아요 삭제");
       } else {
         await fetchPostLike(id, date);
         setIsLiked(true);
         setLikeCount((prevCount) => prevCount + 1);
 
         localStorage.setItem(`liked_${id}`, "true");
-        console.log("좋아요 추가");
+        // console.log("좋아요 추가");
       }
     } catch (error) {
       console.error(
