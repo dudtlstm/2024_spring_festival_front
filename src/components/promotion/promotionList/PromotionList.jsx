@@ -57,14 +57,17 @@ function PromotionList() {
                 />
               )
             )}
-            {/* 마지막 인덱스 홍보 게시글 */}
-            <Card
-              id={promotions[promotions.length - 1].id}
-              title={promotions[promotions.length - 1].title}
-              description={promotions[promotions.length - 1].description}
-              img={promotions[promotions.length - 1].img}
-              url={promotions[promotions.length - 1].url}
-            />
+            {/* 마지막 인덱스에서 2개 홍보 게시글 */}
+            {promotions.slice(-2).map(promotion => (
+              <Card
+                key={promotion.id}
+                id={promotion.id}
+                title={promotion.title}
+                description={promotion.description}
+                img={promotion.img}
+                url={promotion.url}
+              />
+            ))}
           </S.PromotionListCards>
         </S.PromotionListWrapper>
       )}
