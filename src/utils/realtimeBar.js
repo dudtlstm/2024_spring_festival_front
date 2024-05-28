@@ -8,7 +8,7 @@ export const realtimeBar = (festaDate) =>{
   let diffMin = today.getTime() - festa_start.getTime(); // 공연 시작 시간으로부터 경과된 시간
   let diffMSec = Math.round(diffMin / (60 * 1000)); // 분 단위로 변경
 
-  if (festaDate == today.getDate() && diffMSec <= 600) { // 600분(13시 ~ 23시)
+  if (festaDate == today.getDate() && diffMSec <= 600 && diffMSec >=0) { // 600분(13시 ~ 23시)
     return diffMSec;
   }
   else {return null};
