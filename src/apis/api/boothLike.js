@@ -10,7 +10,7 @@ export const fetchPostLike = async (id, date) => {
 
       setCookie(boothId, secretKey,{path: '/'}); // string 을 끼워넣은 방법으로 옳지 않음 -> 수정 필요
     }
-    console.log("like post, ", response.data);
+    // console.log("like post, ", response.data);
 
     return response.data;
   } catch (error) {
